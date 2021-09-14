@@ -36,7 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<span><input type="checkbox" />Nhớ tài khoản</span>
 			<h6><a href="#">Quên mật khẩu?</a></h6>
 				<div class="clearfix"></div>
-				<a href="http://localhost/phpweb/Admin"><input type="submit" value="Đăng nhập" name="login"></a>
+				<a href="http://localhost/phpweb/Admin/admin.php"><input type="submit" value="Đăng nhập" name="login"></a>
 		</form>
 </div>
 </div>
