@@ -51,7 +51,7 @@
                             <ul class="nav navbar-nav">
 
                                 <li>
-                                    <a href=""><i class=" fa fa-user "></i>Trang Admin</a></li>
+                                    <a href="/Admin/admin.php"><i class=" fa fa-user "></i>Trang Admin</a></li>
 
 
                                 <li><a href="checkout.php"><i class="fa fa-credit-card "></i> Thanh Toán</a></li>
