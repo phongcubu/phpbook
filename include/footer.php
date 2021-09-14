@@ -135,11 +135,11 @@
             </div>
         </div>
 
-        <div class="footer-bottom ">
-            <div class="container ">
-                <div class="row ">
-                    <p class="pull-left ">Copyright © 2021 E-GAMING </p>
-                    <p class="pull-right ">Designed by <span><a target="_blank " href="#">thanhphong</a></span></p>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <p style="width:306px; margin: auto">Copyright © 2021.Phong_Sơn_Phương</p>
+                   
                 </div>
             </div>
         </div>
