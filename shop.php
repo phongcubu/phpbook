@@ -31,14 +31,9 @@
     // header
      include('include/header.php');
      
-     include('include/sliderbar.php');
-    ?>
+     include('include/sliderbar.php'); 
+?>
    
-
-    
-   <?php 
-        $sql_category = mysqli_query($con,' SELECT * FROM tbl_category ORDER BY category_id DESC');
-    ?>
     <section>
 		<div class="container">
 			<div class="row">
@@ -47,6 +42,7 @@
 						<h2>Danh Mục</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 							<?php 
+								 $sql_category = mysqli_query($con,' SELECT * FROM tbl_category ORDER BY category_id DESC');
                                 while ($category_item = mysqli_fetch_array($sql_category)) {
                                     ?>
 							<div class="panel panel-default">
@@ -62,10 +58,10 @@
 						</div><!--/category-products-->
 					
 						<div class="brands_products" ><!--brands_products-->
-							<h2>THƯƠNG HIỆU SẢN PHẨM</h2>
+							<h2>NHÀ XUẤT BẢN</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right"></span>Phương Mai</a></li>
+									<li><a href="#"> <span class="pull-right"></span></a></li>
 
 								</ul>
 							</div>
@@ -81,115 +77,44 @@
                                     
                     <?php 
                         $sql_cate_home = mysqli_query($con,' SELECT * FROM tbl_category ORDER BY category_id DESC');
-                        while ($category_item_home = mysqli_fetch_array($sql_cate_home )){
-                            ?>
+                        while($category_item_home = mysqli_fetch_array($sql_cate_home )){
+							$id_category = $category_item_home['category_id'];
+                    ?>
 					<div class="features_items"><!--features_items-->
 					<div class="three">
 							<h2 ><?php echo $category_item_home['category_name']; ?></h2>
-						</div>
+					</div>
 
-						<!-- <h2 class="title text-center"></h2> -->
+						<!--  lấy sản phẩm -->
+						<?php 
+                        $sql_product = mysqli_query($con,' SELECT * FROM tbl_sanpham ORDER BY sanpham_id DESC');
+                        while ($sanpham_item = mysqli_fetch_array($sql_product)) {
+                            if ($sanpham_item['category_id'] == $id_category) {
+                        ?>
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
-                                <a href="chi-tiet-san-pham.php">
+                                <a href="chi-tiet-san-pham.php?id=<?php echo $sanpham_item['sanpham_id'];  ?>">
                                 <div class="single-products">
 										<div class="productinfo text-center">
-											<img src="images/shop/sp1.jpg" alt="" />
+											<img src="images/product/<?php echo $sanpham_item['sanpham_image']; ?>" alt="" />
 											<!-- <h2></h2> -->
 											<p style="height: 20px;">
-												<span class="new_price"><?php echo number_format("1000000",0,",",".")."đ"; ?></span>
-												<span class="old_price"><?php echo number_format("1000000",0,",",".")."đ"; ?></span>
+												<span class="new_price"><?php echo number_format($sanpham_item['sanpham_giakhuyenmai'], 0, ",", ".")."đ"; ?></span>
+												<span class="old_price"><?php echo number_format($sanpham_item['sanpham_gia'], 0, ",", ".")."đ"; ?></span>
 											</p>
-											<p class="product-name" >Đắc Nhân Tâm</p>
+											<p class="product-name" ><?php echo $sanpham_item['sanpham_name']; ?></p>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ </a>
 										</div>
-										
+
 								</div>
                                 </a>
-								
-								
+	
 							</div>
 						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-                                <a href="chi-tiet-san-pham.php">
-                                <div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/shop/sp1.jpg" alt="" />
-											<p style="height: 20px;">
-												<span class="new_price"><?php echo number_format("1000000",0,",",".")."đ"; ?></span>
-												<span class="old_price"><?php echo number_format("1000000",0,",",".")."đ"; ?></span>
-											</p>
-											<p class="product-name" >Đắc Nhân Tâm</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ </a>
-										</div>
-										
-								</div>
-                                </a>
-								
-								
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-                                <a href="chi-tiet-san-pham.php">
-                                <div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/shop/sp1.jpg" alt="" />
-											<p style="height: 20px;">
-												<span class="new_price"><?php echo number_format("1000000",0,",",".")."đ"; ?></span>
-												<span class="old_price"><?php echo number_format("1000000",0,",",".")."đ"; ?></span>
-											</p>
-											<p class="product-name" >Đắc Nhân Tâm</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ </a>
-										</div>
-										
-								</div>
-                                </a>
-								
-								
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-                                <a href="chi-tiet-san-pham.php">
-                                <div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/shop/sp1.jpg" alt="" />
-											<p style="height: 20px;">
-												<span class="new_price"><?php echo number_format("1000000",0,",",".")."đ"; ?></span>
-												<span class="old_price"><?php echo number_format("1000000",0,",",".")."đ"; ?></span>
-											</p>
-											<p class="product-name" >Đắc Nhân Tâm</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ </a>
-										</div>
-										
-								</div>
-                                </a>
-								
-								
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-                                <a href="chi-tiet-san-pham.php">
-                                <div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/shop/sp1.jpg" alt="" />
-											<h2><?php echo number_format("1000000",0,",",".")."đ"; ?></h2>
-											<p class="product-name" >Đắc Nhân Tâm</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ </a>
-										</div>
-										
-								</div>
-                                </a>
-								
-								
-							</div>
-						</div>
-                      
-						
-					
+						<?php
+                            }
+                        }
+						?> <!--  kết thúc phần lấy sản phẩm -->
 					</div><!--features_items-->
 					
 					<?php
