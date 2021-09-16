@@ -1,3 +1,7 @@
+
+<?php
+    include('database/connectdb.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,119 +42,43 @@
                 <div class="col-sm-3">
                     <div class="left-sidebar">
                         <h2>Danh Mục</h2>
-                        <div class="panel-group category-products" id="accordian">
-                            <!--category-productsr-->
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span> LAPTOP
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="sportswear" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#">Dell </a></li>
-                                            <li><a href="#">Asus </a></li>
-                                            <li><a href="#">Msi</a></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordian" href="#mens">
-                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span> Mobile
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="mens" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#">Apple</a></li>
-                                            <li><a href="#">SamSung</a></li>
-                                            <li><a href="#">Nokia</a></li>
-                                            <li><a href="#">Xiaomi</a></li>
-                                            <li><a href="#">Oppo</a></li>
-
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordian" href="#womens">
-                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>Watches
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="womens" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#">Apple</a></li>
-                                            <li><a href="#">SamSung</a></li>
-                                            <li><a href="#">Xiaomi</a></li>
-                                            <li><a href="#">Oppo</a></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordian" href="#womens">
-                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>Airpod
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="womens" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#">Apple</a></li>
-                                            <li><a href="#">SamSung</a></li>
-                                            <li><a href="#">Xiaomi</a></li>
-                                            <li><a href="#">Oppo</a></li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--/category-products-->
-
-
-
-
-
+                        <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+							<?php 
+                             $sql_category = mysqli_query($con,' SELECT * FROM tbl_category ORDER BY category_id DESC');
+                                while ($category_item = mysqli_fetch_array($sql_category)) {
+                                    ?>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title"><a href="#"><?php echo $category_item['category_name'];?></a></h4>
+								</div>
+							</div>
+                            <?php
+                                }
+                            ?>
+							
+						</div><!--/category-products-->
 
                     </div>
                 </div>
 
                 <div class="col-sm-9 padding-right">
+                   
                     <div class="product-details">
+                    <div class="three" >
+							<h2 style="background-color: #fff; color:aqua">Chi Tiết Sản Phẩm</h2>
+					</div>
                         <!--product-details-->
-                        <div class="col-sm-5">
+                        <div class="col-sm-4">
                             <div class="view-product">
                             <img src="images/shop/sp1.jpg" class="newarrival" alt="" />
-
                             </div>
                            
-
                         </div>
-                        <div class="col-sm-7">
+                        <div class="col-sm-8">
                             <div class="product-information">
                                 <!--/product-information-->
                               
-                                <h2>Airpod</h2>
+                                <h2>Đắc Nhân Tâm</h2>
 
                                 <span>
 									<span class="product-price" style="color: #e21515;"><?php echo number_format("1000000",0,",",".")."đ"; ?></span>
@@ -165,10 +93,14 @@
                                 <p><b>Tình trạng:</b>còn hàng</p>
                                 <p><b>Thương Hiệu:</b>Phương Nam</p>
                                 <p><b>Danh mục:</b>sách hay cho bé</p>
+                            </div><!--/product-information-->
 
-
-                            </div>
-                            <!--/product-information-->
+                            <hr>
+                         
+                            <div class="col-sm-4" style="margin-right: 20px ;"><div><img src="images/shop/doitra.png" alt="" style="height: 80px;"> </div><div>7 ngày miễn phí trả hàng</div></div>
+                            <div class="col-sm-3" style="margin-right: 52px ;"><img src="images/shop/chinhhang.png" alt="" style="height: 80px;"><span>Hàng chính hãng 100%</span></div>
+                            <div class="col-sm-3"><img src="images/shop/ship.png" alt="" style="height: 80px;"><span>Miễn phí vận chuyển</span></div>
+                          
                         </div>
                     </div>
                     <!--/product-details-->

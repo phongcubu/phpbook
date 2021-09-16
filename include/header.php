@@ -8,7 +8,7 @@
                         <div class="contactinfo">
                             <ul class="nav nav-pills">
                                 <li><a href="#"><i class="fa fa-phone"></i><span style="color:red"> Hotline:</span>0814515062 - Phong | 0994494813 - Sơn | 0994494813 - Phương</a></li>
-                                <li><a href="#"><i class="fa fa-envelope"></i> pspbook@gmail.com</a></li>
+                                <li><a href="mailto:pspbookk@gmail.com"><i class="fa fa-envelope"></i> pspbookk@gmail.com</a></li>
                                 <li><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Mua hàng : 8:00am - 21h30pm</a></li>
                             </ul>
                         </div>
