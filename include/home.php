@@ -91,7 +91,7 @@
                                                 <p style="height: 20px;">
 												<span class="new_price"><?php echo number_format($product_item['sanpham_giakhuyenmai'], 0, ",", ".")."đ"; ?></span>
 												<span class="old_price"><?php echo number_format($product_item['sanpham_gia'], 0, ",", ".")."đ"; ?></span>
-											</p>
+												</p>
 											<p class="product-name" ><?php echo $product_item['sanpham_name']; ?></p>
                                                 <a href="gio-hang.php" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
                                             </div>
