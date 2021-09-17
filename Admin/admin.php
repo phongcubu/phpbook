@@ -4,6 +4,26 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<?php
+session_start();
+include('../database/connectdb.php');
+if(!isset($_SESSION['login']))
+{
+	header('Location: login.php');
+}
+if(isset($_GET['login'])){
+	$dangxuat = $_GET['login'];
+	}else{
+		$dangxuat = '';
+	}
+	if($dangxuat=='dangxuat'){
+		session_destroy();
+		header('Location: login.php');
+	}
+
+$sql_admin = mysqli_query($con,"SELECT * FROM tbl_admin");
+$row_admin = mysqli_fetch_array($sql_admin);
+?>
 <!DOCTYPE html>
 <head>
 <title>Admin</title>
@@ -18,6 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Custom CSS -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <link href="css/style-responsive.css" rel="stylesheet"/>
+<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
 <!-- font CSS -->
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <!-- font-awesome icons -->
@@ -38,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <header class="header fixed-top clearfix">
 <!--logo start-->
 <div class="brand">
-    <a href="" class="logo">
+    <a href="../index.php" class="logo">
         PSP BOOK
     </a>
     <div class="sidebar-toggle-box">
@@ -57,14 +78,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="images/2.png">
-                <span class="username">Admin</span>
+                <img alt="" src="../images/shop/logo.png">
+                <span class="username"><?php echo $row_admin['admin_name'];?></span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
-                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="login.php"><i class="fa fa-key"></i> Log Out</a></li>
+                <li><a href="#"><i class=" fa fa-suitcase"></i>Thông tin</a></li>
+                <li><a href="#"><i class="fa fa-cog"></i> Cài đặt</a></li>
+                <li><?php echo $_SESSION['login'] ?><a href="?login=dangxuat"><i class="fa fa-key"></i> Đăng xuất</a></li>
             </ul>
         </li>
         <!-- user login dropdown end -->
@@ -148,54 +169,66 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="market-updates">
 			<div class="col-md-3 market-update-gd">
 				<div class="market-update-block clr-block-2">
-					<div class="col-md-4 market-update-right">
-						<i class="fa fa-eye"> </i>
-					</div>
-					<div class="col-md-8 market-update-left">
-						<h4>Sản phẩm</h4>
-						<h3>0</h3>
-						<p>Đang được bán</p>
-				</div>
-				<div class="clearfix"> </div>
+					<a href="../Admin/QuanlySP.php">
+						<div class="col-md-4 market-update-right">
+							<i class="fa fa-eye"> </i>
+						</div>
+						<div class="col-md-8 market-update-left">
+							<h4>Sản phẩm</h4>
+							<h3>
+								0
+							</h3>
+							<p>Đang được bán</p>
+						</div>
+						<div class="clearfix"> </div>
+					</a>
 				</div>
 			</div>
 			<div class="col-md-3 market-update-gd">
 				<div class="market-update-block clr-block-1">
-					<div class="col-md-4 market-update-right">
-						<i class="fa fa-users" ></i>
-					</div>
-					<div class="col-md-8 market-update-left">
-						<h4>Khách hàng</h4>
-						<h3>0</h3>
-						<p>Đã đăng ký</p>
-					</div>
-				<div class="clearfix"> </div>
+					<a href="../Admin/QuanlyKH.php">
+						<div class="col-md-4 market-update-right">
+							<i class="fa fa-users" ></i>
+						</div>
+						<div class="col-md-8 market-update-left">
+							<h4>Khách hàng</h4>
+							<h3>0</h3>
+							<p>Đã đăng ký</p>
+						</div>
+						<div class="clearfix"> </div>
+					</a>
 				</div>
 			</div>
 			<div class="col-md-3 market-update-gd">
 				<div class="market-update-block clr-block-3">
-					<div class="col-md-4 market-update-right">
-						<i class="fa fa-bank fa-3x" style="color: white;"></i>
-					</div>
-					<div class="col-md-8 market-update-left">
-						<h4>Số thương hiệu</h4>
-						<h3>0</h3>
-						<p>Đang hợp tác</p>
-					</div>
-				<div class="clearfix"> </div>
+					<a href="../Admin/LietkeTH.php">
+						<div class="col-md-4 market-update-right">
+							<i class="fa fa-bank fa-3x" style="color: white;"></i>
+						</div>
+						<div class="col-md-8 market-update-left">
+							<h4>Số thương hiệu</h4>
+							<h3>
+								0
+							</h3>
+							<p>Đang hợp tác</p>
+						</div>
+						<div class="clearfix"> </div>
+					</a>
 				</div>
 			</div>
 			<div class="col-md-3 market-update-gd">
 				<div class="market-update-block clr-block-4">
-					<div class="col-md-4 market-update-right">
-						<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-					</div>
-					<div class="col-md-8 market-update-left">
-						<h4>Số đơn hàng</h4>
-						<h3>0</h3>
-						<p>Đã bán</p>
-					</div>
-					<div class="clearfix"> </div>
+					<a href="../Admin/QuanLyDonHang.php">
+						<div class="col-md-4 market-update-right">
+							<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+						</div>
+						<div class="col-md-8 market-update-left">
+							<h4>Số đơn hàng</h4>
+							<h3>0</h3>
+							<p>Đã bán</p>
+						</div>
+						<div class="clearfix"> </div>
+					</a>
 				</div>
 			</div>
 		<div class="clearfix"> </div>
@@ -223,16 +256,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>
 	$(document).ready(function() {
 		//BOX BUTTON SHOW AND CLOSE
-	   jQuery('.small-graph-box').hover(function() {
-		  jQuery(this).find('.box-button').fadeIn('fast');
-	   }, function() {
-		  jQuery(this).find('.box-button').fadeOut('fast');
-	   });
-	   jQuery('.small-graph-box .box-close').click(function() {
-		  jQuery(this).closest('.small-graph-box').fadeOut(200);
-		  return false;
-	   });
-	   
+	jQuery('.small-graph-box').hover(function() {
+		jQuery(this).find('.box-button').fadeIn('fast');
+	}, function() {
+		jQuery(this).find('.box-button').fadeOut('fast');
+	});
+	jQuery('.small-graph-box .box-close').click(function() {
+		jQuery(this).closest('.small-graph-box').fadeOut(200);
+		return false;
+	});
 	    //CHARTS
 	    function gd(year, day, month) {
 			return new Date(year, month - 1, day).getTime();
@@ -272,7 +304,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			resize: true
 		});
 		
-	   
 	});
 	</script>
 <!-- calendar -->

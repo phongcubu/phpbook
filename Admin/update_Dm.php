@@ -2,16 +2,15 @@
 include('../database/connectdb.php')
 ?>
 <?php
-$spl_select = mysqli_query($con,"SELECT * FROM tbl_category ORDER BY category_id DESC");
-if(isset($_GET['xoa']))
+if(isset($_POST['update_category_product']))
 {
-    $id=$_GET['xoa'];
-    $category_xoa = mysqli_query($con,"DELETE FROM tbl_category WHERE category_id = '$id'");
+    $tenDM = $_POST['category_product_name'];
+    $sql_insert =mysqli_query($con,"INSERT INTO tbl_category(category_name) values ('$tenDM')");
 }
 ?>
 <!DOCTYPE html>
 <head>
-<title>Liệt kê danh mục sản phẩms</title>
+<title>Cập nhật danh mục sản phẩm</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -141,96 +140,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper">
-		<div class="table-agile-info">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Liệt Kê Danh Mục
-        </div>
-                <div class="row w3-res-tb">
-            <div class="col-sm-5 m-b-xs">
-            <select class="input-sm form-control w-sm inline v-middle">
-                <option value="0">Bulk action</option>
-                <option value="1">Delete selected</option>
-                <option value="2">Bulk edit</option>
-                <option value="3">Export</option>
-            </select>
-            <button class="btn btn-sm btn-default">Apply</button>                
-            </div>
-            <div class="col-sm-4">
-            </div>
-            <div class="col-sm-3">
-            <div class="input-group">
-                <input type="text" class="input-sm form-control" placeholder="Search">
-                <span class="input-group-btn">
-                <button class="btn btn-sm btn-default" type="button">Go!</button>
-                </span>
-            </div>
-            </div>
-        </div>
-        <div class="table-responsive">
-
-            <table class="table table-striped b-t b-light">
-                <thead>
-                    <tr>
-                    <th style="width:20px;">
-                        <label class="i-checks m-b-none">
-                        <input type="checkbox"><i></i>
-                        </label>
-                    </th>
-                    <th>Tên Danh Mục</th>
-                    <th>Hiển Thị</th>
-                    
-                    <th style="width:30px;"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    while($row_category = mysqli_fetch_array($spl_select)){
-                    ?>
-                    <tr>
-                        <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                        <td><?php echo $row_category['category_name']; ?></td>
-                        <td>
-                            <span class="text-ellipsis">
-                                <a href="?hienthi=<?php echo $row_category['category_id'] ?>"><span class="fa-thumb-styling fa fa-eye" style="font-size: 25px; color:green"></span></a>
-                            </span>
-                        </td>
-                        <td>
-                            <a href="update_Dm.php/<?php echo $row_category['category_id'] ?>" class="active styling-edit" ui-toggle-class="">
-                            <i class="fa fa-pencil-square-o text-success text-active"></i>
-                            </a>
-                            <a  href="?xoa=<?php echo $row_category['category_id'] ?>" onclick="return confirm('bạn chắc chắn muốn xóa danh mục này chứ ?')"
-                            class="active styling-edit" ui-toggle-class="">
-                            <i class="fa fa-trash-o  text-danger text"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-        <footer class="panel-footer">
+        <div class="form-w3layouts">
             <div class="row">
-            
-            <div class="col-sm-5 text-center">
-                <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">Cập nhật danh mục sản phẩm</header>
+                    </section>
+                    <div class="panel-body">
+                        <div class="position-center">
+                            <form role="form" action="#" method="POST">
+                                <input type="hidden" name="_token" value="qjXZyD171s2S86tqwOpW7ygKbYI6Nh7QEVRcNwPG">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Tên danh mục:</label>
+                                    <input type="text" class="form-control" name="category_product_name" id="exampleInputEmail1" placeholder="tên danh mục">
+                                </div>
+                                <div class="form-group">
+                                    <select name="categoy_product_status" class="form-control trol input-lg m-bot15">
+                                        <option value="0">ẩn</option>
+                                        <option value="1">hiện</option>
+                                    </select>
+                                </div>
+                                <button type="submit" name="update_category_product" class="btn btn-info">Cập nhật danh mục</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-7 text-right text-center-xs">                
-                <ul class="pagination pagination-sm m-t-none m-b-none">
-                <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-                <li><a href="">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href="">4</a></li>
-                <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-                </ul>
-            </div>
-            </div>
-        </footer>
         </div>
-    </div>
+    </section>
 <!-- footer -->
 <div class="footer">
     <div class="wthree-copyright">
