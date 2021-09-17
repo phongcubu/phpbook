@@ -13,9 +13,9 @@
 							<div class="item active">
 								<div class="col-sm-4">
 								<h1><span>PSP</span>-BOOK</h1>
-									<h2>Free E-Commerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+									<h2>Thương Hiệu Viêt </h2>
+									<p>Mang giá trị tri thức đến cho người Việt </p>
+									<button type="button" class="btn btn-default get">Bắt Đầu Ngay</button>
 								</div>
 								<div class="col-sm-8">
 									<img src="images/shop/baner/banner1.jpg" class="girl img-responsive" alt="" />
@@ -25,9 +25,9 @@
 							<div class="item">
 								<div class="col-sm-4">
 									<h1><span>PSP</span>-BOOK</h1>
-									<h2>100% Responsive Design</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+									<h2>Thương Hiệu Viêt </h2>
+									<p>Mang giá trị tri thức đến cho người Việt </p>
+									<button type="button" class="btn btn-default get">Bắt Đầu Ngay</button>
 								</div>
 								<div class="col-sm-6">
 									<img src="images/shop/baner/banner2.jpg" class="girl img-responsive" alt="" />
@@ -38,9 +38,9 @@
 							<div class="item">
 								<div class="col-sm-4">
 								<h1><span>PSP</span>-BOOK</h1>
-									<h2>Free Ecommerce Template</h2>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+								<h2>Thương Hiệu Viêt </h2>
+									<p>Mang giá trị tri thức đến cho người Việt </p>
+									<button type="button" class="btn btn-default get">Bắt Đầu Ngay</button>
 								</div>
 								<div class="col-sm-8">
 									<img src="images/shop/baner/banner3.jpg" class="girl img-responsive" alt="" />

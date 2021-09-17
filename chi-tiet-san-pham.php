@@ -96,11 +96,34 @@
                             </div><!--/product-information-->
 
                             <hr>
-                         
-                            <div class="col-sm-4" style="margin-right: 20px ;"><div><img src="images/shop/doitra.png" alt="" style="height: 80px;"> </div><div>7 ngày miễn phí trả hàng</div></div>
-                            <div class="col-sm-3" style="margin-right: 52px ;"><img src="images/shop/chinhhang.png" alt="" style="height: 80px;"><span>Hàng chính hãng 100%</span></div>
-                            <div class="col-sm-3"><img src="images/shop/ship.png" alt="" style="height: 80px;"><span>Miễn phí vận chuyển</span></div>
-                          
+                         <div class="row">
+                            <div class="col-sm-4" >
+                            <table>
+                                <tr>
+                                    <td><img src="images/shop/doitra.png" style=" width: 43px;height: 36px; " alt=""></td>
+                                    <td style="font-size:12px">7 ngày miễn phí trả hàng</td>
+                                </tr>
+                            </table>
+                            </div>
+                            <div class="col-sm-4" >
+                            <table>
+                                <tr>
+                                    <td><img  src="images/shop/chinhhang.png" style=" width: 43px;height: 36px; " alt=""></td>
+                                    <td style="font-size:12px">Hàng chính hãng 100%</td>
+                                </tr>
+                            </table>
+                            </div>
+                            <div class="col-sm-4">
+                               
+                                <table>
+                                <tr>
+                                    <td><img  src="images/shop/ship.png" style=" width: 43px;height: 36px; " alt=""></td>
+                                    <td style="font-size:12px">Miễn phí vận chuyển trên mọi miền</td>
+                                </tr>
+                            </table>
+                            </div>
+                           
+                            </div>
                         </div>
                     </div>
                     <!--/product-details-->

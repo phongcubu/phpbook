@@ -1,68 +1,9 @@
-<footer id="footer ">
+<hr>
+<footer id="footer " style="background-color: #EEEEEE;">
         <!--Footer-->
-        <div class="footer-top ">
-            <div class="container ">
-                <div class="row ">
-                  
-                    <div class="col-sm-12">
-                        <div class="col-sm-3  ">
-                            <div class="video-gallery text-center ">
-                                <a href="# ">
+    
 
-                                    <img src="images/shop/thutuczip/chinhhang.png" style=" width: 100px; height: 100px; border-radius: 50%;" alt=" " />
-
-                                    <p>sản phẩm</p>
-                                    <h2 style="font-weight: 500; font-size: 16px;"> Chính Hãng</h2>
-
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3 ">
-                            <div class="video-gallery text-center ">
-                                <a href="# ">
-
-                                    <img src="images/shop/thutuczip/freeship.png" style=" width: 100px; height: 100px; border-radius: 50%;" alt=" " />
-
-
-                                </a>
-                                <p>miễn phí</p>
-                                <h2 style="font-weight: 500; font-size: 16px;">Toàn Quốc</h2>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3 ">
-                            <div class="video-gallery text-center ">
-                                <a href="# ">
-
-                                    <img src="images/shop/thutuczip/hotline.png" style=" width: 100px; height: 100px; border-radius: 50%;" alt=" " />
-
-
-                                </a>
-                                <p>
-                                    Hotline hỗ trợ</p>
-                                <h2 style="font-weight: 500; font-size: 16px;">1900.2091</h2>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-3 ">
-                            <div class="video-gallery text-center ">
-                                <a href="# ">
-
-                                    <img src="images/shop/thutuczip/doitra.png" style=" width: 100px; height: 100px; border-radius: 50%;" alt=" " />
-
-                                </a>
-                                <p>
-                                    Thủ tục đổi trả</p>
-                                <h2 style="font-weight: 500; font-size: 16px;">DỄ DÀNG</h2>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-widget ">
+        <div class="footer-widget " >
             <div class="container ">
                 <div class="row ">
                     <div class="col-sm-2 ">
@@ -100,13 +41,7 @@
                     <div class="col-sm-2 ">
                         <div class="single-widget ">
                             <h2>Thanh toán miễn phí</h2>
-                            <!-- <ul class="nav nav-pills nav-stacked ">
-                                <li><a href="# ">Company Information</a></li>
-                                <li><a href="# ">Careers</a></li>
-                                <li><a href="# ">Store Location</a></li>
-                                <li><a href="# ">Affillate Program</a></li>
-                                <li><a href="# ">Copyright</a></li>
-                            </ul> -->
+                           
                             <table>
                                 <tr>
                                     <td><img src="images/shop/thanhtoan/bidv.png" style=" width: 90px; height: 40px;margin: 5px; " alt=""></td>
