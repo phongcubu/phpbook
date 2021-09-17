@@ -50,6 +50,10 @@
         // hiển thị chi tiết 1 sản phẩm
         include('include/chitietsp.php');
     }
+    elseif($tam == 'shop'){
+        // hiển thị chi tiết 1 sản phẩm
+        include('include/shop.php');
+    }
 
     else{
         //  home

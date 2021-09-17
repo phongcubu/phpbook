@@ -92,7 +92,7 @@
                             <ul class="nav navbar-nav collapse navbar-collapse ">
                                 <li><a href="index.php" class="active ">Trang Chủ</a></li>
                                
-                                 <li class="dropdown "><a href="shop.php">Sản Phẩm</a></li> 
+                                 <li class="dropdown "><a href="?quanly=shop">Sản Phẩm</a></li> 
 
                                 <li><a href="lienhe.php">Liên Hệ</a></li>
                             </ul>
