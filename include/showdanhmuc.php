@@ -1,40 +1,24 @@
-<?php
-    include('database/connectdb.php');
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Chi Tiết Sản Phẩm | PSP-BOOK</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
-    <link href="css/price-range.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <link href="css/main.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-</head>
-<!--/head-->
-
-<body>
 <?php 
-    // header
-     include('include/header.php');
-   
-    ?>
+//  kiểm tra id của tưng danh mục có tồn tại ?
+ if(isset($_GET['id']))
+ {
+	 $id = $_GET['id'];
+ }
+ else{
+	 $id ='';
+ }
+//  lấy sản phẩm theo từng id danh mục
+$sql_cate = mysqli_query($con, "SELECT * FROM tbl_category,tbl_sanpham  WHERE tbl_category.category_id = tbl_sanpham.category_id AND tbl_sanpham.category_id = $id 
+
+		ORDER BY tbl_sanpham.sanpham_id DESC");
+// lấy title
+$sql_cate_title = mysqli_query($con, "SELECT * FROM tbl_category,tbl_sanpham  WHERE tbl_category.category_id = tbl_sanpham.category_id AND tbl_sanpham.category_id = $id 
+
+		ORDER BY tbl_sanpham.sanpham_id DESC");
+$sql_title = mysqli_fetch_array($sql_cate_title);
+$title = $sql_title['category_name']
+
+?> 
 <section>
 		<div class="container">
 			<div class="row">
@@ -48,7 +32,7 @@
                                     ?>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#"><?php echo $category_item['category_name'];?></a></h4>
+									<h4 class="panel-title"><a href="?quanly=danhmuc&id=<?php echo $category_item['category_id'] ?>"><?php echo $category_item['category_name'];?></a></h4>
 								</div>
 							</div>
                             <?php
@@ -114,15 +98,17 @@
 				<div class="col-sm-9 padding-right">
                                     
 					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center rise-text"> Sản Phẩm Theo Danh Mục</h2>
+					<div class="three">
+						<h2 > Sản Phẩm <?php echo $title ;?> </h2>
+					</div>
                         <?php 
-							$sql_product =  mysqli_query($con,"SELECT * FROM tbl_sanpham ORDER BY sanpham_id ASC");
-                            while($product_item = mysqli_fetch_array($sql_product)) {
+							
+                            while($product_item = mysqli_fetch_array($sql_cate)) {
                         ?>
 						<div class="col-sm-4 ">
 							<div class="product-image-wrapper">
 								<div class="single-products">
-                                        <a href="chi-tiet-san-pham.php">
+                                        <a href="?quanly=chitietsp&id=<?php echo $product_item['sanpham_id'] ?>">
                                             <div class="productinfo text-center">
                                                 <img src="images/product/<?php echo $product_item['sanpham_image']; ?>"  alt="" />
                                                 <p style="height: 20px;">
@@ -152,17 +138,4 @@
 		</div>
 	</section>
 
-    <?php
-        include('include/footer.php');
-    ?>
-
-
-    <script src="js/jquery.js"></script>
-    <script src="js/price-range.js"></script>
-    <script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/main.js"></script>
-</body>
-
-</html>
+  

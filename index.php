@@ -33,9 +33,31 @@
      include('include/header.php');
     //  slider
       include('include/sliderbar.php');
-    //  slider
-    include('include/home.php');
-    //  slider
+
+    if(isset($_GET['quanly'])){
+		$tam = $_GET['quanly'];
+	}else{
+		$tam = '';
+	}
+    
+    if($tam =='danhmuc')
+    {
+        // hiên thị sản phẩm theo danh mục chọn
+      include('include/showdanhmuc.php');
+    }
+
+    elseif($tam == 'chitietsp'){
+        // hiển thị chi tiết 1 sản phẩm
+        include('include/chitietsp.php');
+    }
+
+    else{
+        //  home
+        include('include/home.php');
+    }
+    
+
+    //  footer
     include('include/footer.php');
       
     ?>
