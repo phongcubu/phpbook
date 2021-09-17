@@ -8,5 +8,4 @@ if ($con -> connect_errno) {
 }
 //  đọc csdl sang danh utf8 
   mysqli_set_charset($con,"utf8");
-   
 ?>

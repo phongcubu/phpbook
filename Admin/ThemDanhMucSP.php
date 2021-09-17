@@ -1,3 +1,13 @@
+<?php
+include('../database/connectdb.php')
+?>
+<?php
+if(isset($_POST['update_category_product']))
+{
+    $tenDM = $_POST['category_product_name'];
+    $sql_insert =mysqli_query($con,"INSERT INTO tbl_category(category_name) values ('$tenDM')");
+}
+?>
 <!DOCTYPE html>
 <head>
 <title>Thêm danh mục sản phẩm</title>
@@ -25,7 +35,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <header class="header fixed-top clearfix">
 <!--logo start-->
 <div class="brand">
-    <a href="index.php" class="logo">
+    <a href="../index.php" class="logo">
         PSP BOOK
     </a>
     <div class="sidebar-toggle-box">
@@ -145,16 +155,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <input type="text" class="form-control" name="category_product_name" id="exampleInputEmail1" placeholder="tên danh mục">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Mô tả danh mục:</label>
-                                    <textarea style="resize: none;" rows="8" class="form-control" name="category_product_desc" id="exampleInputEmail1" placeholder="tên danh mục"></textarea>
-                                </div>
-                                <div class="form-group">
                                     <select name="categoy_product_status" class="form-control trol input-lg m-bot15">
                                         <option value="0">ẩn</option>
                                         <option value="1">hiện</option>
                                     </select>
                                 </div>
-                                <button type="submit" name="updat_category_product" class="btn btn-info">Cập nhật danh mục</button>
+                                <button type="submit" name="update_category_product" class="btn btn-info">Thêm danh mục</button>
                             </form>
                         </div>
                     </div>
