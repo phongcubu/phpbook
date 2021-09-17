@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="index.html"><img style="width:90px;height: 70px;border-radius: 50%;" src="images/shop/logo2.jpg" alt="" /></a>
+                            <a href="index.php"><img style="width:90px;height: 70px;border-radius: 50%;" src="images/shop/logo2.jpg" alt="" /></a>
                         </div>
                         <div class="btn-group pull-right">
                             <div class="btn-group">

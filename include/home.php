@@ -11,7 +11,7 @@
                                     ?>
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#"><?php echo $category_item['category_name'];?></a></h4>
+									<h4 class="panel-title"><a href="?quanly=danhmuc&id=<?php echo $category_item['category_id'] ?>"><?php echo $category_item['category_name']?></a></h4>
 								</div>
 							</div>
                             <?php
@@ -85,7 +85,7 @@
 						<div class="col-sm-4 ">
 							<div class="product-image-wrapper">
 								<div class="single-products">
-                                        <a href="chi-tiet-san-pham.php">
+                                        <a href="?quanly=chitietsp&id=<?php echo $product_item['sanpham_id'] ?>">
                                             <div class="productinfo text-center">
                                                 <img src="images/product/<?php echo $product_item['sanpham_image']; ?>"  alt="" />
                                                 <p style="height: 20px;">
