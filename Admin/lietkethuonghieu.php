@@ -1,3 +1,7 @@
+<?php 
+ session_start();
+?>
+
 <!DOCTYPE html>
 <head>
 <title>Liệt kê thương hiệu</title>
@@ -20,113 +24,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery2.0.3.min.js"></script>
 </head>
 <body>
+<?php  
+include('include/header.php') ;
+include('include/aside.php') ;
+?>
 <section id="container">
-<!--header start-->
-<header class="header fixed-top clearfix">
-<!--logo start-->
-<div class="brand">
-    <a href="index.php" class="logo">
-        PSP BOOK
-    </a>
-    <div class="sidebar-toggle-box">
-        <div class="fa fa-bars"></div>
-    </div>
-</div>
-<!--logo end-->
-    
-<div class="top-nav clearfix">
-    <!--search & user info start-->
-    <ul class="nav pull-right top-menu">
-        <li>
-            <input type="text" class="form-control search" placeholder=" Search">
-        </li>
-        <!-- user login dropdown start-->
-        <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="images/2.png">
-                <span class="username">Admin</span>
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu extended logout">
-                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="login.php"><i class="fa fa-key"></i> Log Out</a></li>
-            </ul>
-        </li>
-        <!-- user login dropdown end -->
-    </ul>
-    <!--search & user info end-->
-</div>
-</header>
-<!--header end-->
-<!--sidebar start-->
-<aside>
-    <div id="sidebar" class="nav-collapse">
-        <!-- sidebar menu start-->
-        <div class="leftside-navigation">
-            <ul class="sidebar-menu" id="nav-accordion">
-                <li>
-                    <a class="active" href="admin.php">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Tổng quát</span>
-                    </a>
-                </li>
-                
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>Đơn hàng</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="them_don_hang.php">Thêm đơn hàng</a></li>
-						<li><a href="QuanLyDonHang.php">Quản lý đơn hàng</a></li>
-                    </ul>
-                </li>
-				<li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-users"></i>
-                        <span>Khách hàng</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="ThemKH.php">Thêm khách hàng</a></li>
-						<li><a href="QuanlyKH.php">Quản lý khách hàng</a></li>
-                    </ul>
-                </li>
-				<li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Danh mục sản phẩm</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="ThemDanhMucSP.php">Thêm danh muc sản phẩm</a></li>
-						<li><a href="LietkeDMSP.php">Liệt kê danh mục sản phẩm</a></li>
-                    </ul>
-                </li>
-				<li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-bank"></i>
-                        <span>Thương hiệu sản phẩm</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="ThemTH.php">Thêm thương hiệu sản phẩm</a></li>
-						<li><a href="LietkeTH.php">Liệt kê thương hiệu sản phẩm</a></li>
-                    </ul>
-                </li>
-				<li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-archive"></i>
-                        <span>Sản phẩm</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="ThemSP.php">Thêm sản phẩm</a></li>
-						<li><a href="QuanlySP.php">Quản lý sản phẩm</a></li>
-                    </ul>
-                </li>
-            </ul>            </div>
-        <!-- sidebar menu end-->
-    </div>
-</aside>
-<!--sidebar end-->
+
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper">
@@ -216,8 +119,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <td>
                     <span class="text-ellipsis">
                         
-                            <a href="http://localhost/webbook/unactive-brand-product/6"><span class="fa-thumb-styling fa fa-eye" style="font-size: 25px; color:green"></span></a>
-                                                </span>
+                     <a href="http://localhost/webbook/unactive-brand-product/6"><span class="fa-thumb-styling fa fa-eye" style="font-size: 25px; color:green"></span></a></span>
                     </td>
                 
                 <td>
@@ -252,7 +154,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </footer>
         </div>
     </div>
-
+    </section>
 <!-- footer -->
 <div class="footer">
     <div class="wthree-copyright">

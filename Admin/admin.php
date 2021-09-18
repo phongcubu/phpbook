@@ -1,28 +1,22 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+
 <?php
-session_start();
+ session_start();
 include('../database/connectdb.php');
-if(!isset($_SESSION['login']))
-{
-	header('Location: login.php');
-}
-if(isset($_GET['login'])){
-	$dangxuat = $_GET['login'];
-	}else{
-		$dangxuat = '';
-	}
+ if(!isset($_SESSION['login']))
+  {
+	header('Location: index.php');
+ }
+ if(isset($_GET['login'])){
+	  	$dangxuat = $_GET['login'];
+ 	}else{
+ 		$dangxuat = '';
+ 	}
 	if($dangxuat=='dangxuat'){
 		session_destroy();
-		header('Location: login.php');
-	}
+ 		header('Location: index.php');
+ 	}
 
-$sql_admin = mysqli_query($con,"SELECT * FROM tbl_admin");
-$row_admin = mysqli_fetch_array($sql_admin);
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -38,7 +32,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Custom CSS -->
 <link href="css/style.css" rel='stylesheet' type='text/css' />
 <link href="css/style-responsive.css" rel="stylesheet"/>
-<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
 <!-- font CSS -->
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 <!-- font-awesome icons -->
@@ -55,113 +49,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <section id="container">
-<!--header start-->
-<header class="header fixed-top clearfix">
-<!--logo start-->
-<div class="brand">
-    <a href="../index.php" class="logo">
-        PSP BOOK
-    </a>
-    <div class="sidebar-toggle-box">
-        <div class="fa fa-bars"></div>
-    </div>
-</div>
-<!--logo end-->
-<div class="nav notify-row" id="top_menu">
-</div>
-<div class="top-nav clearfix">
-    <!--search & user info start-->
-    <ul class="nav pull-right top-menu">
-        <li>
-            <input type="text" class="form-control search" placeholder=" Search">
-        </li>
-        <!-- user login dropdown start-->
-        <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="../images/shop/logo.png">
-                <span class="username"><?php echo $row_admin['admin_name'];?></span>
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu extended logout">
-                <li><a href="#"><i class=" fa fa-suitcase"></i>Thông tin</a></li>
-                <li><a href="#"><i class="fa fa-cog"></i> Cài đặt</a></li>
-                <li><?php echo $_SESSION['login'] ?><a href="?login=dangxuat"><i class="fa fa-key"></i> Đăng xuất</a></li>
-            </ul>
-        </li>
-        <!-- user login dropdown end -->
-    </ul>
-    <!--search & user info end-->
-</div>
-</header>
-<!--header end-->
-<!--sidebar start-->
-<aside>
-    <div id="sidebar" class="nav-collapse">
-        <!-- sidebar menu start-->
-        <div class="leftside-navigation">
-            <ul class="sidebar-menu" id="nav-accordion">
-                <li>
-                    <a class="active" href="admin.php">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Tổng quát</span>
-                    </a>
-                </li>
-                
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>Đơn hàng</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="them_don_hang.php">Thêm đơn hàng</a></li>
-						<li><a href="QuanLyDonHang.php">Quản lý đơn hàng</a></li>
-                    </ul>
-                </li>
-				<li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-users"></i>
-                        <span>Khách hàng</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="ThemKH.php">Thêm khách hàng</a></li>
-						<li><a href="QuanlyKH.php">Quản lý khách hàng</a></li>
-                    </ul>
-                </li>
-				<li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Danh mục sản phẩm</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="ThemDanhMucSP.php">Thêm danh muc sản phẩm</a></li>
-						<li><a href="LietkeDMSP.php">Liệt kê danh mục sản phẩm</a></li>
-                    </ul>
-                </li>
-				<li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-bank"></i>
-                        <span>Thương hiệu sản phẩm</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="ThemTH.php">Thêm thương hiệu sản phẩm</a></li>
-						<li><a href="LietkeTH.php">Liệt kê thương hiệu sản phẩm</a></li>
-                    </ul>
-                </li>
-				<li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-archive"></i>
-                        <span>Sản phẩm</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="ThemTH.php">Thêm sản phẩm</a></li>
-						<li><a href="QuanlySP.php">Quản lý sản phẩm</a></li>
-                    </ul>
-                </li>
-            </ul>            </div>
-        <!-- sidebar menu end-->
-    </div>
-</aside>
-<!--sidebar end-->
+<?php 
+
+    // header
+     include('include/header.php');
+    //  slider
+      include('include/aside.php');
+	  
+ 
+?>
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper">
@@ -234,17 +130,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 	</div>	
 		<!-- //market-->
-</section>
-<!-- footer -->
-		<div class="footer">
+        <!-- footer -->
+    <div class="footer">
 			<div class="wthree-copyright">
 				<p>© 2021 PSP BOOK | Thiết kế bởi: Phong-Sơn-Phương</p>
 			</div>
 		</div>
 <!-- / footer -->
 </section>
+
+</section>
 <!--main content end-->
 </section>
+
+
+
 <script src="js/bootstrap.js"></script>
 <script src="js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="js/scripts.js"></script>
