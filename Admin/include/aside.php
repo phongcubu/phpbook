@@ -37,7 +37,6 @@
                         <span>Danh mục sản phẩm</span>
                     </a>
                     <ul class="sub">
-						<li><a href="themdanhmuc.php">Thêm danh muc sản phẩm</a></li>
 						<li><a href="lietkedanhmucsp.php">Liệt kê danh mục sản phẩm</a></li>
                     </ul>
                 </li>
@@ -47,7 +46,6 @@
                         <span>Thương hiệu sản phẩm</span>
                     </a>
                     <ul class="sub">
-						<li><a href="themthuonghieu.php">Thêm thương hiệu sản phẩm</a></li>
 						<li><a href="lietkethuonghieu.php">Liệt kê thương hiệu sản phẩm</a></li>
                     </ul>
                 </li>

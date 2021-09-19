@@ -30,9 +30,9 @@
 <body>
     <?php 
     // header
-     include('include/header.php');
+    include('include/header.php');
     //  slider
-      include('include/sliderbar.php');
+    include('include/sliderbar.php');
 
     if(isset($_GET['quanly'])){
 		$tam = $_GET['quanly'];
@@ -43,7 +43,7 @@
     if($tam =='danhmuc')
     {
         // hiên thị sản phẩm theo danh mục chọn
-      include('include/showdanhmuc.php');
+    include('include/showdanhmuc.php');
     }
 
     elseif($tam == 'chitietsp'){

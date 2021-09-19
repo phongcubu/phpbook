@@ -1,20 +1,20 @@
 
 <?php
- session_start();
+session_start();
 include('../database/connectdb.php');
- if(!isset($_SESSION['login']))
-  {
+if(!isset($_SESSION['login']))
+{
 	header('Location: index.php');
- }
- if(isset($_GET['login'])){
-	  	$dangxuat = $_GET['login'];
- 	}else{
- 		$dangxuat = '';
- 	}
-	if($dangxuat=='dangxuat'){
-		session_destroy();
- 		header('Location: index.php');
- 	}
+}
+if(isset($_GET['login'])){
+	$dangxuat = $_GET['login'];
+}else{
+	$dangxuat = '';
+}
+if($dangxuat=='dangxuat'){
+	session_destroy();
+	header('Location: index.php');
+}
 
 
 ?>
@@ -50,13 +50,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <section id="container">
 <?php 
-
     // header
-     include('include/header.php');
+    include('include/header.php');
     //  slider
-      include('include/aside.php');
-	  
- 
+    include('include/aside.php');
 ?>
 <!--main content start-->
 <section id="main-content">
@@ -72,7 +69,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-8 market-update-left">
 							<h4>Sản phẩm</h4>
 							<h3>
-								0
+								<?php
+								$lk_sanpham = mysqli_query($con,"SELECT COUNT(sanpham_id) AS soluong FROM tbl_sanpham");
+								$row_sp =mysqli_fetch_array($lk_sanpham);
+								?>
+								<?php
+								echo $row_sp['soluong'];
+								?>
 							</h3>
 							<p>Đang được bán</p>
 						</div>
@@ -88,7 +91,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="col-md-8 market-update-left">
 							<h4>Khách hàng</h4>
-							<h3>0</h3>
+							<h3>
+							<?php
+								$lk_khachhang = mysqli_query($con,"SELECT COUNT(khachhang_id) AS soluong FROM tbl_khachhang");
+								$row_sp =mysqli_fetch_array($lk_khachhang);
+								?>
+								<?php
+								echo $row_sp['soluong'];
+								?>
+							</h3>
 							<p>Đã đăng ký</p>
 						</div>
 						<div class="clearfix"> </div>
@@ -104,7 +115,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-8 market-update-left">
 							<h4>Số thương hiệu</h4>
 							<h3>
-								0
+							<?php
+								$lk_brand = mysqli_query($con,"SELECT COUNT(brand_id) AS soluong FROM tbl_brand");
+								$row_th =mysqli_fetch_array($lk_brand);
+								?>
+								<?php
+								echo $row_th['soluong'];
+								?>
 							</h3>
 							<p>Đang hợp tác</p>
 						</div>
@@ -120,7 +137,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 						<div class="col-md-8 market-update-left">
 							<h4>Số đơn hàng</h4>
-							<h3>0</h3>
+							<h3>
+							<?php
+								$lk_donhang = mysqli_query($con,"SELECT COUNT(donhang_id) AS soluong FROM tbl_donhang");
+								$row_dh =mysqli_fetch_array($lk_donhang);
+								?>
+								<?php
+								echo $row_dh['soluong'];
+								?>
+							</h3>
 							<p>Đã bán</p>
 						</div>
 						<div class="clearfix"> </div>

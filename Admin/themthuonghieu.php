@@ -2,9 +2,36 @@
 include('../database/connectdb.php');
 session_start();
 ?>
+<?php
+if(isset($_POST['update_brand_product']))
+{
+    $tenTH = $_POST['brand_product_name'];
+    
+    $sql_insert =mysqli_query($con,"INSERT INTO tbl_brand(brand_name) values ('$tenTH')");
+    // sql query execution function
+	if($sql_insert)
+	{
+		?>
+		<script type="text/javascript">
+		alert('tên thương hiệu được thêm thành công');
+		window.location.href='lietkethuonghieu.php';
+		</script>
+		<?php
+	}
+	else
+	{
+		?>
+		<script type="text/javascript">
+		alert('đang lỗi chưa thể nào thêm được thương hiệu');
+		</script>
+		<?php
+	}
+	// sql query execution function
+}
+?>
 <!DOCTYPE html>
 <head>
-<title>Thêm thương hiệu</title>
+<title>Thêm thương hiệu sản phẩm</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -44,19 +71,10 @@ include('include/aside.php') ;
                                 <input type="hidden" name="_token" value="qjXZyD171s2S86tqwOpW7ygKbYI6Nh7QEVRcNwPG">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên thương hiệu:</label>
-                                    <input type="text" class="form-control" name="brand_product_name" id="exampleInputEmail1" placeholder="tên Thương Hiệu">
+                                    <input type="text" class="form-control" name="brand_product_name" id="exampleInputEmail1" placeholder="tên thương hiệu">
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Mô tả thương hiệu:</label>
-                                    <textarea style="resize: none;" rows="8" class="form-control" name="brand_product_desc" id="exampleInputEmail1" placeholder="tên thương hiệu"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <select name="brand_product_status" class="form-control trol input-lg m-bot15">
-                                        <option value="0">ẩn</option>
-                                        <option value="1">hiện</option>
-                                    </select>
-                                </div>
-                                <button type="submit" name="updat_brand_product" class="btn btn-info">Cập nhật thương hiệu</button>
+                                
+                                <button type="submit" name="update_brand_product" class="btn btn-info">Thêm thương hiệu</button>
                             </form>
                         </div>
                     </div>
@@ -65,7 +83,6 @@ include('include/aside.php') ;
             </div>
         </div>
     </section>
-<!-- footer -->
 <!-- footer -->
 <div class="footer">
     <div class="wthree-copyright">

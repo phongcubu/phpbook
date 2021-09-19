@@ -1,10 +1,21 @@
-<?php 
- session_start();
+<?php
+session_start();
+include('../database/connectdb.php')
 ?>
+<?php
 
+// delete condition
+if(isset($_GET['xoa_id']))
+{
+	$sql_query="DELETE FROM tbl_brand WHERE brand_id=".$_GET['xoa_id'];
+	mysqli_query($con, $sql_query);
+	header("Location: $_SERVER[PHP_SELF]");
+}
+// delete condition
+?>
 <!DOCTYPE html>
 <head>
-<title>Liệt kê thương hiệu</title>
+<title>Liệt kê thương hiệu sản phẩms</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -22,13 +33,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <script src="js/jquery2.0.3.min.js"></script>
+<script type="text/javascript">
+
+function suathuonghieu(id)
+{
+	if(confirm('bạn muốn thay đổi thương hiệu này chứ?'))
+	{
+		window.location.href='suathuonghieu.php?suathuonghieu_id='+id;
+	}
+}
+function xoa_id(id)
+{
+	if(confirm('Bạn muốn xóa thương hiệu này chứ ?'))
+	{
+		window.location.href='lietkethuonghieu.php?xoa_id='+id;
+	}
+}
+</script>
 </head>
 <body>
+
 <?php  
 include('include/header.php') ;
 include('include/aside.php') ;
 ?>
-<section id="container">
 
 <!--main content start-->
 <section id="main-content">
@@ -38,123 +66,70 @@ include('include/aside.php') ;
         <div class="panel-heading">
             Liệt Kê Thương Hiệu
         </div>
-                <div class="row w3-res-tb">
-            <div class="col-sm-5 m-b-xs">
-            <select class="input-sm form-control w-sm inline v-middle">
-                <option value="0">Bulk action</option>
-                <option value="1">Delete selected</option>
-                <option value="2">Bulk edit</option>
-                <option value="3">Export</option>
-            </select>
-            <button class="btn btn-sm btn-default">Apply</button>                
+        <div class="row w3-res-tb">
+                    <div class="col-sm-5 m-b-xs">
+                        <a href="themthuonghieu.php" class="btn btn-primary ">Thêm Thương Hiệu</a>                
+                    </div>
+                    <div class="col-sm-4">
+                </div>
             </div>
-            <div class="col-sm-4">
-            </div>
-            <div class="col-sm-3">
-            <div class="input-group">
-                <input type="text" class="input-sm form-control" placeholder="Search">
-                <span class="input-group-btn">
-                <button class="btn btn-sm btn-default" type="button">Go!</button>
-                </span>
-            </div>
-            </div>
-        </div>
         <div class="table-responsive">
-            <table class="table table-striped b-t b-light">
-            <thead>
-                <tr>
-                <th style="width:20px;">
-                    <label class="i-checks m-b-none">
-                    <input type="checkbox"><i></i>
-                    </label>
-                </th>
-                <th>Tên Thương Hiệu </th>
-                <th>Hiển Thị</th>
-                
-                <th style="width:30px;"></th>
-                </tr>
-            </thead>
-            <tbody>
+            <table  class="table table-striped b-t b-light">
+                <thead>
+                    <tr>
+                    <th style="width:20px;">
+                    </th>
+                    <th>Tên Thương Hiệu</th>
+                    <th  colspan="2" style="margin:auto">Quản Lý</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                    $sql_kq = mysqli_query($con, "SELECT * FROM tbl_brand");
+                    if (mysqli_num_rows($sql_kq)>0) 
+                    {
+                        while ($row=mysqli_fetch_row($sql_kq)) 
+                        {
+                            ?>
+                                    <tr>
+                                        <td></td>
+
+                                        <td ><span style="font-size: 17px;"><?php echo $row[1]; ?></span></td>
+                                        
+
+                                        <td style="width:4%">
+                                            <a href="javascript:suathuonghieu('<?php echo $row[0]; ?>')" class="active styling-edit" ui-toggle-class="">
+                                            <i style="font-size: 26px;" class="fa fa-pencil-square-o text-success text-active"></i>
+                                            </a></td>
+                                            <td>
+                                            <a href="javascript:xoa_id('<?php echo $row[0]; ?>')" 
+                                            class="active styling-edit" ui-toggle-class="">
+                                            <i style="font-size: 26px;" class="fa fa-trash-o  text-danger text"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                            <?php
+                        }
+                    }
+                    else
+                    {
+                            ?>
                             <tr>
-                <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                <td>Đại học Ngôn ngữ Bắc Kinh</td>
-                <td>
-                    <span class="text-ellipsis">
-                        
-                            <a href="http://localhost/webbook/unactive-brand-product/4"><span class="fa-thumb-styling fa fa-eye" style="font-size: 25px; color:green"></span></a>
-                                                </span>
-                    </td>
-                
-                <td>
-                    <a href="http://localhost/webbook/edit-brand-product/4" class="active styling-edit" ui-toggle-class="">
-                    <i class="fa fa-pencil-square-o text-success text-active"></i>
-                    </a>
-                    <a onclick="return confirm('bạn chắc chắn muốn xóa danh mục này chứ ?')" href="http://localhost/webbook/delete-brand-product/4" class="active styling-edit" ui-toggle-class="">
-                    <i class="fa fa-trash-o  text-danger text"></i>
-                    </a>
-                </td>
-                </tr>
-                            <tr>
-                <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                <td>Dk</td>
-                <td>
-                    <span class="text-ellipsis">
-                        
-                            <a href="http://localhost/webbook/unactive-brand-product/5"><span class="fa-thumb-styling fa fa-eye" style="font-size: 25px; color:green"></span></a>
-                                                </span>
-                    </td>
-                
-                <td>
-                    <a href="http://localhost/webbook/edit-brand-product/5" class="active styling-edit" ui-toggle-class="">
-                    <i class="fa fa-pencil-square-o text-success text-active"></i>
-                    </a>
-                    <a onclick="return confirm('bạn chắc chắn muốn xóa danh mục này chứ ?')" href="http://localhost/webbook/delete-brand-product/5" class="active styling-edit" ui-toggle-class="">
-                    <i class="fa fa-trash-o  text-danger text"></i>
-                    </a>
-                </td>
-                </tr>
-                            <tr>
-                <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                <td>THANH HƯƠNG</td>
-                <td>
-                    <span class="text-ellipsis">
-                        
-                     <a href="http://localhost/webbook/unactive-brand-product/6"><span class="fa-thumb-styling fa fa-eye" style="font-size: 25px; color:green"></span></a></span>
-                    </td>
-                
-                <td>
-                    <a href="http://localhost/webbook/edit-brand-product/6" class="active styling-edit" ui-toggle-class="">
-                    <i class="fa fa-pencil-square-o text-success text-active"></i>
-                    </a>
-                    <a onclick="return confirm('bạn chắc chắn muốn xóa danh mục này chứ ?')" href="http://localhost/webbook/delete-brand-product/6" class="active styling-edit" ui-toggle-class="">
-                    <i class="fa fa-trash-o  text-danger text"></i>
-                    </a>
-                </td>
-                </tr>
-                        </tbody>
+                            <td colspan="5">Không tìm thấy dữ liệu cần tìm !</td>
+                            </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
             </table>
         </div>
         <footer class="panel-footer">
             <div class="row">
-            
-            <div class="col-sm-5 text-center">
-                <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
-            </div>
-            <div class="col-sm-7 text-right text-center-xs">                
-                <ul class="pagination pagination-sm m-t-none m-b-none">
-                <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-                <li><a href="">1</a></li>
-                <li><a href="">2</a></li>
-                <li><a href="">3</a></li>
-                <li><a href="">4</a></li>
-                <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-                </ul>
-            </div>
+
             </div>
         </footer>
         </div>
     </div>
-    </section>
 <!-- footer -->
 <div class="footer">
     <div class="wthree-copyright">

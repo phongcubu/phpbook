@@ -91,23 +91,19 @@
                         <div class="mainmenu pull-left ">
                             <ul class="nav navbar-nav collapse navbar-collapse ">
                                 <li><a href="index.php" class="active ">Trang Chủ</a></li>
-                               
-                                 <li class="dropdown "><a href="?quanly=shop">Sản Phẩm</a></li> 
-
+                                <li class="dropdown "><a href="?quanly=shop">Sản Phẩm</a></li> 
                                 <li><a href="lienhe.php">Liên Hệ</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-4 ">
                         <form action=" " method="POST ">
-
                             <div class="search_box pull-right ">
                                 <input type="text " name="keywords " placeholder="tìm kiếm sản phẩm " />
                                 <input type="submit " style="width: 27%;border-radius: 7px; margin-top:0px;color:black " value="tìm kiếm " name="search_items " class="btn btn-primary btn-small ">
                             </div>
                     </div>
                     </form>
-
                 </div>
             </div>
         </div>

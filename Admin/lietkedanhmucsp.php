@@ -35,7 +35,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery2.0.3.min.js"></script>
 <script type="text/javascript">
 
- function suadanhmuc(id)
+function suadanhmuc(id)
 {
 	if(confirm('bạn muốn thay đổi danh mục này chứ?'))
 	{
@@ -68,20 +68,16 @@ include('include/aside.php') ;
         </div>
         <div class="row w3-res-tb">
                     <div class="col-sm-5 m-b-xs">
-                       
                         <a href="themdanhmuc.php" class="btn btn-primary ">Thêm Danh Mục</a>                
                     </div>
                     <div class="col-sm-4">
                 </div>
-              
             </div>
         <div class="table-responsive">
-
             <table  class="table table-striped b-t b-light">
                 <thead>
                     <tr>
                     <th style="width:20px;">
-                       
                     </th>
                     <th>Tên Danh Mục</th>
                     <th  colspan="2" style="margin:auto">Quản Lý</th>
@@ -119,7 +115,7 @@ include('include/aside.php') ;
                     else
                     {
                             ?>
-                             <tr>
+                            <tr>
                             <td colspan="5">Không tìm thấy dữ liệu cần tìm !</td>
                             </tr>
                     <?php

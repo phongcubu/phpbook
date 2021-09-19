@@ -28,11 +28,11 @@
 								<ul class="nav nav-pills nav-stacked">
 								<?php
 								 $sql_brand = mysqli_query($con,"SELECT * FROM tbl_brand ORDER BY brand_id DESC ");
-                                 while ($brand_item= mysqli_fetch_array($sql_brand)) {
-                                     ?>
+                                while ($brand_item= mysqli_fetch_array($sql_brand)) {
+                                    ?>
 									<li><a href="#"><?php echo $brand_item['brand_name']; ?></a></li>
 								<?php
-                                 }?>
+                                }?>
 								</ul>
 							</div>
 						</div><!--/brands_products-->

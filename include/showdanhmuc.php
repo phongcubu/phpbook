@@ -1,12 +1,12 @@
 <?php 
 //  kiểm tra id của tưng danh mục có tồn tại ?
- if(isset($_GET['id']))
- {
-	 $id = $_GET['id'];
- }
- else{
-	 $id ='';
- }
+if(isset($_GET['id']))
+{
+	$id = $_GET['id'];
+}
+else{
+	$id ='';
+}
 //  lấy sản phẩm theo từng id danh mục
 $sql_cate = mysqli_query($con, "SELECT * FROM tbl_category,tbl_sanpham  WHERE tbl_category.category_id = tbl_sanpham.category_id AND tbl_sanpham.category_id = $id 
 

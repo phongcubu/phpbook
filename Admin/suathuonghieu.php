@@ -4,22 +4,22 @@ session_start();
 ?>
 
 <?php
-if(isset($_GET['suadanhmuc_id']))
+if(isset($_GET['suathuonghieu_id']))
 {
-    $sql_query =mysqli_query($con, "SELECT * FROM tbl_category WHERE category_id=".$_GET['suadanhmuc_id']);
+    $sql_query =mysqli_query($con, "SELECT * FROM tbl_brand WHERE brand_id=".$_GET['suathuonghieu_id']);
     $sql_kq = mysqli_fetch_array($sql_query);
 }
 
-if(isset($_POST['update_category']))
+if(isset($_POST['update_brand']))
 {
-    $tenDM = $_POST['category_product_name'];
-    $sql_update = "UPDATE tbl_category SET category_name='$tenDM' WHERE category_id=".$_GET['suadanhmuc_id'];
+    $tenDM = $_POST['brand_product_name'];
+    $sql_update = "UPDATE tbl_brand SET brand_name='$tenDM' WHERE brand_id=".$_GET['suathuonghieu_id'];
     if(mysqli_query($con, $sql_update))
     {
         ?>
         <script type="text/javascript">
-		alert('cập nhât tên danh mục thành công');
-		window.location.href='lietkedanhmucsp.php';
+		alert('cập nhât tên thương hiệu thành công');
+		window.location.href='lietkethuonghieu.php';
 		</script>
 		<?php
     }
@@ -32,16 +32,15 @@ if(isset($_POST['update_category']))
 		<?php
 	}
 	// sql query execution function
-    
-}
-if(isset($_POST['btn-thoat']))
+    if(isset($_POST['btn-thoat']))
     {
-        header("Location: lietkedanhmucsp.php");
+        header("Location: lietkethuonghieu.php");
     }
+}
 ?>
 <!DOCTYPE html>
 <head>
-<title>Cập nhật danh mục sản phẩm</title>
+<title>Cập nhật thương hiệu sản phẩm</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -81,17 +80,17 @@ include('include/aside.php') ;
             <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">
-                        <header class="panel-heading">Cập nhật danh mục sản phẩm</header>
+                        <header class="panel-heading">Cập nhật thương hiệu sản phẩm</header>
                     </section>
                     <div class="panel-body">
                         <div class="position-center">
                             <form role="form" action="#" method="POST">
                                 <input type="hidden" name="_token" value="qjXZyD171s2S86tqwOpW7ygKbYI6Nh7QEVRcNwPG">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên danh mục:</label>
-                                    <input type="text" value="<?php echo $sql_kq['category_name'] ?>" class="form-control" name="category_product_name" id="exampleInputEmail1" placeholder="tên danh mục">
+                                    <label for="exampleInputEmail1">Tên thương hiệu:</label>
+                                    <input type="text" value="<?php echo $sql_kq['brand_name'] ?>" class="form-control" name="brand_product_name" id="exampleInputEmail1" placeholder="tên thương hiệu">
                                 </div>
-                                <button type="submit" name="update_category" class="btn btn-info">Cập nhật danh mục</button>
+                                <button type="submit" name="update_brand" class="btn btn-info">Cập nhật thương hiệu</button>
                                 <button type="submit" name="btn-thoat" class="btn btn-info">Quay lại</button>
                             </form>
                         </div>
