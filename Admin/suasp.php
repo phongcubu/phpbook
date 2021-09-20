@@ -15,17 +15,18 @@ if(isset($_POST['update_sp_product']))
     $chitiet_SP = $_POST['chitiet_sp'];
     $thuonghieu_SP = $_POST['brand_sp'];
     $danhmuc_SP = $_POST['category_sp'];
-    $hienthi = $_POST['sp_status'];
-    $path = '../images/product/';
-    $sql_insert =mysqli_query($con,"INSERT INTO tbl_sanpham(sanpham_name,sanpham_gia,sanpham_giakhuyenmai,sanpham_soluong,sanpham_image,sanpham_mota,sanpham_chitiet,brand_id,category_id,sanpham_active) 
-    values ('$tenSP','$giaSP','$giaSPkm','$soluong','$hinhanh_SP','$mota_SP','$chitiet_SP','$thuonghieu_SP','$danhmuc_SP','$hienthi')");
+    $path = '../upload/';
+    $sql_insert =mysqli_query($con,"INSERT INTO tbl_sanpham(sanpham_name,sanpham_gia,sanpham_giakhuyenmai,sanpham_soluong,sanpham_image,sanpham_mota,sanpham_chitiet,brand_id,category_id) 
+    values ('$tenSP','$giaSP','$giaSPkm','$soluong','$hinhanh_SP','$mota_SP','$chitiet_SP','$thuonghieu_SP','$danhmuc_SP')");
     move_uploaded_file($hinhanh_tmp,$path.$hinhanh_SP);
     // sql query execution function
+    
+    
 	if($sql_insert)
 	{
 		?>
 		<script type="text/javascript">
-		alert('Thêm sản phẩm thành công');
+		alert('Cập nhật sản phẩm thành công');
 		window.location.href='quanlisp.php';
 		</script>
 		<?php
@@ -34,12 +35,17 @@ if(isset($_POST['update_sp_product']))
 	{
 		?>
 		<script type="text/javascript">
-		alert('Đang lỗi chưa thể nào thêm sản phẩm');
+		alert('Đang lỗi chưa thể nào cập nhật sản phẩm');
 		</script>
 		<?php
 	}
+    
 	// sql query execution function
 }
+if(isset($_POST['btn-thoat']))
+    {
+        header("Location: quanlisp.php");
+    }
 ?>
 <!DOCTYPE html>
 <head>
@@ -76,7 +82,7 @@ include('include/aside.php') ;
             <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">
-                        <header class="panel-heading">Thêm Sản Phẩm</header>
+                        <header class="panel-heading">Cập Nhật Sản Phẩm</header>
                     </section>
                     <div class="panel-body">
                         <div class="position-center">
@@ -149,7 +155,8 @@ include('include/aside.php') ;
                                         <option value="1">hiện</option>
                                     </select>
                                 </div>
-                                <button type="submit" name="update_sp_product" class="btn btn-info">Thêm sản phẩm</button>
+                                <button type="submit" name="update_sp_product" class="btn btn-info">Cập nhật Sản phẩm</button>
+                                <button type="submit" name="btn-thoat" class="btn btn-info">Quay lại</button>
                             </form>
                         </div>
                     </div>

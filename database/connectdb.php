@@ -1,5 +1,5 @@
 <?php
-$con = new mysqli("localhost","root","","php");
+$con = new mysqli("localhost","root","","phpweb");
 
 // Check connection
 if ($con -> connect_errno) {

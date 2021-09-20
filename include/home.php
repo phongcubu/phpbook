@@ -28,11 +28,17 @@
 								<ul class="nav nav-pills nav-stacked">
 								<?php
 								 $sql_brand = mysqli_query($con,"SELECT * FROM tbl_brand ORDER BY brand_id DESC ");
+<<<<<<< HEAD
                                  while ($brand_item= mysqli_fetch_array($sql_brand)) {
                                      ?>
 									<li><a href="?quanly=thuonghieu&brand_id=<?php echo $brand_item['brand_id'] ?>"><?php echo $brand_item['brand_name']; ?></a></li>
+=======
+                                while ($brand_item= mysqli_fetch_array($sql_brand)) {
+                                    ?>
+									<li><a href="#"><?php echo $brand_item['brand_name']; ?></a></li>
+>>>>>>> f03a159c5a167d6768c780c56513705c6fa11642
 								<?php
-                                 }?>
+                                }?>
 								</ul>
 							</div>
 						</div><!--/brands_products-->

@@ -1,7 +1,18 @@
-<?php 
- session_start();
+<?php
+session_start();
+include('../database/connectdb.php')
 ?>
+<?php
 
+// delete condition
+if(isset($_GET['xoa_id']))
+{
+	$sql_query="DELETE FROM tbl_khachhang WHERE khachhang_id=".$_GET['xoa_id'];
+	mysqli_query($con, $sql_query);
+	header("Location: $_SERVER[PHP_SELF]");
+}
+// delete condition
+?>
 <!DOCTYPE html>
 <head>
 <title>Quản lý đơn hàng</title>
@@ -22,9 +33,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <script src="js/jquery2.0.3.min.js"></script>
+<script type="text/javascript">
+
+function suauser(id)
+{
+	if(confirm('bạn muốn thay đổi khách hàng này chứ?'))
+	{
+		window.location.href='suauser.php?suauser_id='+id;
+	}
+}
+function xoa_id(id)
+{
+	if(confirm('Bạn muốn xóa khách hàng này chứ ?'))
+	{
+		window.location.href='quanlykhachhang.php?xoa_id='+id;
+	}
+}
+</script>
 </head>
 <body>
-<section id="container">
+
 <?php  
 include('include/header.php') ;
 include('include/aside.php') ;
@@ -37,23 +65,58 @@ include('include/aside.php') ;
         <div class="panel-heading">
         Quản lý khách hàng
         </div>
-       
         <div class="table-responsive">
             <table class="table table-striped b-t b-light">
                 <thead>
                     <tr>
-                        <th style="width:20px;">
-                            <label class="i-checks m-b-none">
-                                <input type="checkbox"><i></i>
-                            </label>
-                        </th>
                         <th>Tên khách hàng </th>
                         <th>Số điện thoại </th>
                         <th>Email </th>
+                        <th>Password </th>
                         <th>Địa chỉ </th>
+                        
                         <th style="width:30px;"></th>
                     </tr>
                 </thead>
+                <tbody>
+                <?php
+                    $sql_kq = mysqli_query($con, "SELECT * FROM tbl_khachhang");
+                    if (mysqli_num_rows($sql_kq)>0) 
+                    {
+                        while ($row=mysqli_fetch_row($sql_kq)) 
+                        {
+                            ?>
+                                    <tr>
+                                        <td><span style="font-size: 17px;"><?php echo $row[1]; ?></span></td>
+                                        <td ><span style="font-size: 17px;"><?php echo $row[2]; ?></span></td>
+                                        <td ><span style="font-size: 17px;"><?php echo $row[5]; ?></span></td>
+                                        <td ><span style="font-size: 17px;"><?php echo $row[6]; ?></span></td>
+                                        <td ><span style="font-size: 17px;"><?php echo $row[3]; ?></span></td>
+                                        
+                                        <td style="width:4%">
+                                            <a href="javascript:suauser('<?php echo $row[0]; ?>')" class="active styling-edit" ui-toggle-class="">
+                                            <i style="font-size: 26px;" class="fa fa-pencil-square-o text-success text-active"></i>
+                                            </a></td>
+                                            <td>
+                                            <a href="javascript:xoa_id('<?php echo $row[0]; ?>')" 
+                                            class="active styling-edit" ui-toggle-class="">
+                                            <i style="font-size: 26px;" class="fa fa-trash-o  text-danger text"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                            <?php
+                        }
+                    }
+                    else
+                    {
+                            ?>
+                            <tr>
+                            <td colspan="5">Không tìm thấy dữ liệu cần tìm !</td>
+                            </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
             </table>
         </div>
         <footer class="panel-footer">
