@@ -50,7 +50,20 @@
     $id=$_GET['xoa'];
     $sql_delete=mysqli_query($con,"DELETE FROM tbl_giohang WHERE giohang_id='$id'");
     // header('location:index.php?quanly=giohang');
+}elseif(isset($_POST['thanhtoan'])){
+    $name=$_POST['name'];
+    $phone=$_POST['phone'];
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+    $note=$_POST['note'];
+    $address=$_POST['address'];
+    $giaohang=$_POST['giaohang'];
+    $sql_khachhang=mysqli_query($con,"INSERT INTO tbl_khachhang(name,phone,email,password,address,note,giaohang) values ('$name','$phone','$email','$password','$address','$note','$giaohang')");
+// if($sql_khachhang)
+//     $sql_select_khachhang= mysqli_query($con,"SELECT * FROM tbl_khachhang ORDER BY khachhang_id DESC LIMIT 1");
+
 }
+
 
  ?>
 <section id="cart_items">
@@ -164,7 +177,7 @@
 										<input type="text" class="form-control" placeholder="Email" name="email" required="">
 									</div>
 									<div class="controls form-group"style="margin-left: 19px;">
-										<input type="text" class="form-control" placeholder="Password" name="password" required="">
+										<input type="password" class="form-control" placeholder="Password" name="password" required="">
 									</div>
 									<div class="controls form-group"style="margin-left: 19px;">
 										<textarea style="resize: none;" class="form-control" placeholder="Ghi chú" name="note" required=""></textarea>  
