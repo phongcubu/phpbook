@@ -1,18 +1,18 @@
 <?php 
 //  kiểm tra id của tưng danh mục có tồn tại ?
- if(isset($_GET['id']))
- {
-	 $id = $_GET['id'];
- }
- else{
-	 $id ='';
- }
+if(isset($_GET['id']))
+{
+	$id = $_GET['id'];
+}
+else{
+	$id ='';
+}
 //  lấy sản phẩm theo từng id danh mục
-$sql_cate = mysqli_query($con, "SELECT * FROM tbl_category,tbl_sanpham  WHERE tbl_category.category_id = tbl_sanpham.category_id AND tbl_sanpham.category_id = $id 
+$sql_cate = mysqli_query($con, "SELECT * FROM tbl_category,tbl_sanpham  WHERE tbl_category.category_id = tbl_sanpham.category_id AND tbl_sanpham.category_id = '$id' 
 
 		ORDER BY tbl_sanpham.sanpham_id DESC");
 // lấy title
-$sql_cate_title = mysqli_query($con, "SELECT * FROM tbl_category,tbl_sanpham  WHERE tbl_category.category_id = tbl_sanpham.category_id AND tbl_sanpham.category_id = $id 
+$sql_cate_title = mysqli_query($con, "SELECT * FROM tbl_category,tbl_sanpham  WHERE tbl_category.category_id = tbl_sanpham.category_id AND tbl_sanpham.category_id = '$id' 
 
 		ORDER BY tbl_sanpham.sanpham_id DESC");
 $sql_title = mysqli_fetch_array($sql_cate_title);
@@ -24,7 +24,7 @@ $title = $sql_title['category_name']
 			<div class="row">
 				<div class="col-sm-3">
 					<div class="left-sidebar" >
-						<h2 class="rise-text">Danh Mục</h2>
+						<h2 >Danh Mục</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 							<?php 
                              $sql_category = mysqli_query($con,' SELECT * FROM tbl_category ORDER BY category_id DESC');
@@ -43,7 +43,7 @@ $title = $sql_title['category_name']
 						</div><!--/category-products-->
 					
 						<div class="brands_products" ><!--brands_products-->
-							<h2 class="rise-text">NHÀ XUẤT BẢN </h2>
+							<h2 >NHÀ XUẤT BẢN </h2>
 							<div class="brands-name">
 								
 								<ul class="nav nav-pills nav-stacked">
@@ -51,7 +51,7 @@ $title = $sql_title['category_name']
 								 $sql_brand = mysqli_query($con,"SELECT * FROM tbl_brand ORDER BY brand_id DESC ");
                                  while ($brand_item= mysqli_fetch_array($sql_brand)) {
                                      ?>
-									<li><a href="#"><?php echo $brand_item['brand_name']; ?></a></li>
+									<li><a href="?quanly=thuonghieu&brand_id=<?php echo $brand_item['brand_id'] ?>"><?php echo $brand_item['brand_name']; ?></a></li>
 								<?php
                                  }?>
 								</ul>
@@ -60,7 +60,7 @@ $title = $sql_title['category_name']
 						
 						
 						<div class="brands_products" ><!--products sales-->
-							<h2 class="rise-text" style="margin-top:20px;">SẢN PHẨM BÁN CHẠY</h2>
+							<h2  style="margin-top:20px;">SẢN PHẨM BÁN CHẠY</h2>
 							<div class="box-scroll">
 								<div class="scroll">
 									<?php

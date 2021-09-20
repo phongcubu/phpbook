@@ -50,8 +50,6 @@
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
 
-                                <li>
-                                    <a href="../Admin/admin.php"><i class=" fa fa-user "></i>Trang Admin</a></li>
 
 
                                 <li><a href="checkout.php"><i class="fa fa-credit-card "></i> Thanh Toán</a></li>
@@ -62,7 +60,7 @@
 
                                
                                 <li>
-                                    <a href="login.php"><i class="fa fa-sign-in "></i>Đăng Nhập</a>
+                                    <a href="" data-toggle="modal" data-target="#dangky"><i class="fa fa-user-plus "></i>Đăng Ký</a>
                                 </li>
 
 
@@ -79,7 +77,7 @@
             <!--header-bottom-->
             <div class="container ">
                 <div class="row ">
-                    <div class="col-sm-8 ">
+                    <div class="col-sm-5 ">
                         <div class="navbar-header ">
                             <button type="button " class="navbar-toggle " data-toggle="collapse " data-target=".navbar-collapse ">
                                 <span class="sr-only ">Toggle navigation</span>
@@ -91,26 +89,113 @@
                         <div class="mainmenu pull-left ">
                             <ul class="nav navbar-nav collapse navbar-collapse ">
                                 <li><a href="index.php" class="active ">Trang Chủ</a></li>
-                               
-                                 <li class="dropdown "><a href="?quanly=shop">Sản Phẩm</a></li> 
-
+                                <li class="dropdown "><a href="?quanly=shop">Sản Phẩm</a></li> 
                                 <li><a href="lienhe.php">Liên Hệ</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-4 ">
-                        <form action=" " method="POST ">
-
-                            <div class="search_box pull-right ">
+                    <div class="col-sm-7">
+                        
+                        <!-- <div class="search_box  ">
+                                <form action="index.php?quanly=timkiem" method="POST">
                                 <input type="text " name="keywords " placeholder="tìm kiếm sản phẩm " />
-                                <input type="submit " style="width: 27%;border-radius: 7px; margin-top:0px;color:black " value="tìm kiếm " name="search_items " class="btn btn-primary btn-small ">
-                            </div>
+                                <button type="submit " style=" margin-top:0px;color:black " name="search_items " class="btn btn-primary btn-small ">tìm</button>
+                            </form>
+                            </div> -->
+                            <!-- search -->
+						<div class="col-sm-7 agileits_search search_box pull-right ">
+							<form class="form-inline" action="index.php?quanly=timkiem" method="POST">
+								<input class="form-control mr-sm-2" name="key_product" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Search" required>
+								<button class="btn my-2 my-sm-0" name="search_btn" type="submit">Tìm kiếm</button>
+							</form>
+						</div>
+						<!-- //search -->
                     </div>
-                    </form>
-
                 </div>
             </div>
         </div>
         <!--/header-bottom-->
     </header>
     <!--/header-->
+
+    	<!-- log in -->
+	<div class="modal fade" id="dangnhap" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-center">Đăng nhập</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="#" method="post">
+						<div class="form-group">
+							<label class="col-form-label">Email</label>
+							<input type="text" class="form-control" placeholder=" " name="email_login" required="">
+						</div>
+						<div class="form-group">
+							<label class="col-form-label">Mật khẩu</label>
+							<input type="password" class="form-control" placeholder=" " name="password_login" required="">
+						</div>
+						<div class="right-w3l">
+							<input type="submit" class="form-control" name="dangnhap" value="Đăng nhập">
+						</div>
+						
+						<p class="text-center dont-do mt-3">Chưa có tài khoản?
+							<a href="#" data-toggle="modal" data-target="#dangky">
+								Đăng ký</a>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- register -->
+<div class="modal fade" id="dangky" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Đăng ký</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form action="" method="post">
+						<div class="form-group">
+							<label class="col-form-label">Tên khách hàng</label>
+							<input type="text" class="form-control" placeholder=" " name="name" required="">
+						</div>
+						<div class="form-group">
+							<label class="col-form-label">Email</label>
+							<input type="email" class="form-control" placeholder=" " name="email" required="">
+						</div>
+						<div class="form-group">
+							<label class="col-form-label">Phone</label>
+							<input type="text" class="form-control" placeholder=" " name="phone"  required="">
+						</div>
+						<div class="form-group">
+							<label class="col-form-label">Address</label>
+							<input type="text" class="form-control" placeholder=" " name="address"  required="">
+						</div>
+						<div class="form-group">
+							<label class="col-form-label">Password</label>
+							<input type="password" class="form-control" placeholder=" " name="password"  required="">
+							<input type="hidden" class="form-control" placeholder="" name="giaohang"  value="0">
+						</div>
+						<div class="form-group">
+							<label class="col-form-label">Ghi chú</label>
+							<textarea class="form-control" name="note"></textarea>
+						</div>
+						
+						<div class="right-w3l">
+							<input type="submit" class="form-control" name="dangky" value="Đăng ký">
+						</div>
+					
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- //modal -->

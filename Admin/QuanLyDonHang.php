@@ -1,9 +1,18 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
+<?php
+session_start();
+include('../database/connectdb.php')
+?>
+<?php
+
+// delete condition
+if(isset($_GET['xoa_id']))
+{
+	$sql_query="DELETE FROM tbl_donhang WHERE donhang_id=".$_GET['xoa_id'];
+	mysqli_query($con, $sql_query);
+	header("Location: $_SERVER[PHP_SELF]");
+}
+// delete condition
+?>
 <!DOCTYPE html>
 <head>
 <title>Quản lý đơn hàng</title>
@@ -24,115 +33,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <script src="js/jquery2.0.3.min.js"></script>
+<script type="text/javascript">
+
+function suauser(id)
+{
+	if(confirm('bạn muốn thay đổi đơn hàng này chứ?'))
+	{
+		window.location.href='suaorder.php?suaorder_id='+id;
+	}
+}
+function xoa_id(id)
+{
+	if(confirm('Bạn muốn xóa đơn hàng này chứ ?'))
+	{
+		window.location.href='QuanLyDonHang.php?xoa_id='+id;
+	}
+}
+</script>
 </head>
 <body>
 <section id="container">
-<!--header start-->
-<header class="header fixed-top clearfix">
-<!--logo start-->
-<div class="brand">
-    <a href="index.php" class="logo">
-        PSP BOOK
-    </a>
-    <div class="sidebar-toggle-box">
-        <div class="fa fa-bars"></div>
-    </div>
-</div>
-<!--logo end-->
-    
-<div class="top-nav clearfix">
-    <!--search & user info start-->
-    <ul class="nav pull-right top-menu">
-        <li>
-            <input type="text" class="form-control search" placeholder=" Search">
-        </li>
-        <!-- user login dropdown start-->
-        <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                <img alt="" src="images/2.png">
-                <span class="username">Admin</span>
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu extended logout">
-                <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="login.php"><i class="fa fa-key"></i> Log Out</a></li>
-            </ul>
-        </li>
-        <!-- user login dropdown end -->
-    </ul>
-    <!--search & user info end-->
-</div>
-</header>
-<!--header end-->
-<!--sidebar start-->
-<aside>
-    <div id="sidebar" class="nav-collapse">
-        <!-- sidebar menu start-->
-        <div class="leftside-navigation">
-            <ul class="sidebar-menu" id="nav-accordion">
-                <li>
-                    <a class="active" href="admin.php">
-                        <i class="fa fa-dashboard"></i>
-                        <span>Tổng quát</span>
-                    </a>
-                </li>
-                
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>Đơn hàng</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="them_don_hang.php">Thêm đơn hàng</a></li>
-						<li><a href="QuanLyDonHang.php">Quản lý đơn hàng</a></li>
-                    </ul>
-                </li>
-				<li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-users"></i>
-                        <span>Khách hàng</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="ThemKH.php">Thêm khách hàng</a></li>
-						<li><a href="QuanlyKH.php">Quản lý khách hàng</a></li>
-                    </ul>
-                </li>
-				<li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Danh mục sản phẩm</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="ThemDanhMucSP.php">Thêm danh muc sản phẩm</a></li>
-						<li><a href="LietkeDMSP.php">Liệt kê danh mục sản phẩm</a></li>
-                    </ul>
-                </li>
-				<li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-bank"></i>
-                        <span>Thương hiệu sản phẩm</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="ThemTH.php">Thêm thương hiệu sản phẩm</a></li>
-						<li><a href="LietkeTH.php">Liệt kê thương hiệu sản phẩm</a></li>
-                    </ul>
-                </li>
-				<li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-archive"></i>
-                        <span>Sản phẩm</span>
-                    </a>
-                    <ul class="sub">
-						<li><a href="ThemSP.php">Thêm sản phẩm</a></li>
-						<li><a href="QuanlySP.php">Quản lý sản phẩm</a></li>
-                    </ul>
-                </li>
-            </ul>            </div>
-        <!-- sidebar menu end-->
-    </div>
-</aside>
-<!--sidebar end-->
+<?php  
+include('include/header.php') ;
+include('include/aside.php') ;
+?>
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper">
@@ -141,88 +65,90 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="panel-heading">
                     Quản lý Đơn Hàng
                 </div>
-                <div class="row w3-res-tb">
-                    <div class="col-sm-5 m-b-xs">
-                        <select class="input-sm form-control w-sm inline v-middle">
-                            <option value="0">Bulk action</option>
-                            <option value="1">Delete selected</option>
-                            <option value="2">Bulk edit</option>
-                            <option value="3">Export</option>
-                        </select>
-                        <button class="btn btn-sm btn-default">Apply</button>                
-                    </div>
-                    <div class="col-sm-4">
-                </div>
-                <div class="col-sm-3">
-                    <div class="input-group">
-                        <input type="text" class="input-sm form-control" placeholder="Search">
-                        <span class="input-group-btn">
-                            <button class="btn btn-sm btn-default" type="button">Go!</button>
-                        </span>
-                    </div>
-                </div>
+                
             </div>
             <div class="table-responsive">
                 <table class="table table-striped b-t b-light">
-                <thead>
-                <tr>
-                <th style="width:20px;">
-                    <label class="i-checks m-b-none">
-                    <input type="checkbox"><i></i>
-                    </label>
-                </th>
-                <th>Tên người đặt</th>
-                <th>Tổng giá tiền</th>
-                <th>Tình trạng</th>
-                <th>Hiển Thị</th>
-                
-                <th style="width:30px;"></th>
-                </tr>
-            </thead>
+                    <thead>
+                        <tr>
+                        <th>Tên người đặt</th>
+                        <th>Tổng giá tiền</th>
+                        <th>Ngày tháng</th>
+                        <th>Tình trạng</th>
+                        <th style="width:30px;"></th>
+                        </tr>
+                    </thead>
             <tbody>
+            <?php
+                    
+                    
+                    $sql_dh = mysqli_query($con, "SELECT * FROM tbl_donhang");
+                    if (mysqli_num_rows($sql_dh)>0) 
+                    {
+                        while ($row_dh=mysqli_fetch_row($sql_dh)) 
+                        {
+                            ?>
                             <tr>
-                <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                <td>phong</td>
-                <td>6,997,476.95</td>
-                <td>Đang chờ xử lí</td><td>
-                    </td><td> 
-                        <a href="http://localhost/webbook/view-order/3" class="active styling-edit" ui-toggle-class="">
-                    <i class="fa fa-pencil-square-o text-success text-active"></i>
-                    </a>
-                    <a onclick="return confirm('bạn chắc chắn muốn xóa đơn hàng không ?')" href="http://localhost/webbook/delete-order/3" class="active styling-edit" ui-toggle-class="">
-                    <i class="fa fa-times text-danger text"></i>
-                    </a>
-                </td>
-                </tr>
+                                <td>
+                                    <span style="font-size: 17px;">
+                                    <?php 
+                                    $sql_kh = mysqli_query($con,"SELECT * FROM tbl_khachhang");
+                                    $row_kh=mysqli_fetch_row($sql_kh);
+                                    if($row_dh[4]==$row_kh[0])
+                                    {
+                                        echo $row_kh[1];
+                                    } 
+                                    ?>
+                                    </span>
+                                </td>
+                                <td >
+                                    <span style="font-size: 17px;">
+                                    <?php
+                                    $sql_gh= mysqli_query($con,"SELECT SUM(giasanpham) AS tong FROM tbl_giohang");
+                                    $row_gh=mysqli_fetch_array($sql_gh); 
+                                    echo $row_gh['tong']; 
+                                    ?>
+                                    </span>
+                                </td>
+                                <td ><span style="font-size: 17px;"><?php echo $row_dh[5]; ?></span></td>
+                                <td >
+                                    <span style="font-size: 17px;">
+                                    <?php 
+                                    if($row_dh[6]==1)
+                                    {
+                                        echo 'Đã xử lý';
+                                    }
+                                    if($row_dh[6]==0)
+                                    {
+                                        echo 'Đang xử lý';
+                                    } 
+                                    ?>
+                                    </span>
+                                </td>
+                                <td style="width:4%">
+                                    <a href="javascript:suaorder('<?php echo $row_dh[0]; ?>')" class="active styling-edit" ui-toggle-class="">
+                                    <i style="font-size: 26px;" class="fa fa-pencil-square-o text-success text-active"></i>
+                                    </a></td>
+                                <td>
+                                    <a href="javascript:xoa_id('<?php echo $row_dh[0]; ?>')" 
+                                    class="active styling-edit" ui-toggle-class="">
+                                    <i style="font-size: 26px;" class="fa fa-trash-o  text-danger text"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                    }
+                    else
+                    {
+                            ?>
                             <tr>
-                <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                <td>phong</td>
-                <td>6,997,476.95</td>
-                <td>Đang chờ xử lí</td><td>
-                    </td><td> 
-                        <a href="http://localhost/webbook/view-order/2" class="active styling-edit" ui-toggle-class="">
-                    <i class="fa fa-pencil-square-o text-success text-active"></i>
-                    </a>
-                    <a onclick="return confirm('bạn chắc chắn muốn xóa đơn hàng không ?')" href="http://localhost/webbook/delete-order/2" class="active styling-edit" ui-toggle-class="">
-                    <i class="fa fa-times text-danger text"></i>
-                    </a>
-                </td>
-                </tr>
-                            <tr>
-                <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-                <td>phong</td>
-                <td>6,997,476.95</td>
-                <td>Đang chờ xử lí</td><td>
-                    </td><td> 
-                        <a href="http://localhost/webbook/view-order/1" class="active styling-edit" ui-toggle-class="">
-                    <i class="fa fa-pencil-square-o text-success text-active"></i>
-                    </a>
-                    <a onclick="return confirm('bạn chắc chắn muốn xóa đơn hàng không ?')" href="http://localhost/webbook/delete-order/1" class="active styling-edit" ui-toggle-class="">
-                    <i class="fa fa-times text-danger text"></i>
-                    </a>
-                </td>
-                </tr>
-                        </tbody>
+                            <td colspan="5">Không tìm thấy dữ liệu cần tìm !</td>
+                            </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
             </table>
         </div>
         <footer class="panel-footer">
@@ -245,6 +171,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </footer>
         </div>
     </div>
+    </section>
 <!-- footer -->
 <div class="footer">
     <div class="wthree-copyright">

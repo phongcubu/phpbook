@@ -30,9 +30,9 @@
 <body>
     <?php 
     // header
-     include('include/header.php');
+    include('include/header.php');
     //  slider
-      include('include/sliderbar.php');
+    include('include/sliderbar.php');
 
     if(isset($_GET['quanly'])){
 		$tam = $_GET['quanly'];
@@ -43,7 +43,12 @@
     if($tam =='danhmuc')
     {
         // hiên thị sản phẩm theo danh mục chọn
-      include('include/showdanhmuc.php');
+    include('include/showdanhmuc.php');
+    }
+    elseif($tam == 'thuonghieu')
+    {
+        // hiên thị sản phẩm theo thương hiệu chọn
+      include('include/showthuonghieu.php');
     }
 
     elseif($tam == 'chitietsp'){
@@ -55,8 +60,12 @@
         include('include/giohang.php');
     }
     elseif($tam == 'shop'){
-        // hiển thị chi tiết 1 sản phẩm
+        // hiển thị chi tiết  sản phẩm theo danh mục
         include('include/shop.php');
+    }
+    elseif($tam == 'timkiem'){
+        // tìm kiếm sản phẩm
+        include('include/search.php');
     }
 
     else{

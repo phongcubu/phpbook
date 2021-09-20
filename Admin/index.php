@@ -6,33 +6,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <?php
 session_start();
-include('../database/connectdb.php');
+ include('../database/connectdb.php');
 ?>
 <?php
-	if(isset($_POST['login']))
-	{
-		$email = $_POST['Email'];
-		$password = md5($_POST['Password']);
-		if($email==''|| $password=='')
-		{
-			echo '<p>Bạn chưa nhập tài khoản hoặc mật khẩu!</p>';
-			header('Location: login.php');
-		}
-		else{
-			$sql_select_admin = mysqli_query($con,"SELECT * FROM tbl_admin WHERE email='$email' AND password='$password' LIMIT 1");
-			$count = mysqli_num_rows($sql_select_admin);
-			$row_login = mysqli_fetch_array($sql_select_admin);
-			if($count >0){
-				$_SESSION['login'] = $row_login['admin_name'];
-				$_SESSION['admin_id'] = $row_login['admin_id'];
-				header('Location:admin.php');
-			}else{
-				echo 'Tài khoản hoặc mật khẩu của bạn không chính xác.';
-				header('Location: login.php');
-			}
+//  session_destroy()
+	 if(isset($_POST['login']))
+	 {
+	 	$email = $_POST['Email'];
+	 	$password = md5($_POST['Password']);
+	 	//  $password = $_POST['Password'];
+	 	if($email==''|| $password=='')
+	 	{
+	 		echo '<p>Bạn chưa nhập tài khoản hoặc mật khẩu!</p>';
+	 		 header('Location: login.php');
+	 	}
+	 	else{
+	 		 $sql_select_admin = mysqli_query($con,"SELECT * FROM tbl_admin WHERE email='$email' AND  password='$password' LIMIT 1");
+	 		 $count = mysqli_num_rows($sql_select_admin);
+	 		$row_login = mysqli_fetch_array($sql_select_admin);
+	 		 if($count >0){
+	 			 $_SESSION['login'] = $row_login['admin_name'];
+	 		 	$_SESSION['admin_id'] = $row_login['admin_id'];
+	 			 header('Location:admin.php');
+	 		 
+	 		}else{
+	 			echo 'Tài khoản hoặc mật khẩu của bạn không chính xác.';
+	 		 	 header('Location: login.php');
+	 		 }
 			
-		}
-	}
+	 	}
+	 }
 ?>
 <!DOCTYPE html>
 <head>
@@ -58,6 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery2.0.3.min.js"></script>
 </head>
 <body>
+
 <div class="log-w3">
 <div class="w3layouts-main">
 	<h2>Đăng nhập</h2>
@@ -71,6 +75,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</form>
 </div>
 </div>
+
+
 <script src="js/bootstrap.js"></script>
 <script src="js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="js/scripts.js"></script>

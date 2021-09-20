@@ -16,7 +16,7 @@
 									 $sql_brand = mysqli_query($con, "SELECT * FROM tbl_brand ORDER BY brand_id DESC");
 									 while($brand_item = mysqli_fetch_array($sql_brand)){
 									?>
-									<li><a href="#"> <span class="pull-right"></span><?php echo $brand_item['brand_name'] ?></a></li>
+									<li><a href="?quanly=thuonghieu&brand_id=<?php echo $brand_item['brand_id']?>"> <span class="pull-right"></span><?php echo $brand_item['brand_name'] ?></a></li>
 									<?php
 								}?>
 								</ul>
