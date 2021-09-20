@@ -236,7 +236,7 @@ a#scrollUp i {
     height: 35px;
     outline: medium none;
     padding-left: 10px;
-    width: 155px;
+    width: 263px;
     background-image: url(../images/home/searchicon.png);
     background-repeat: no-repeat;
     background-position: 130px;
@@ -842,80 +842,6 @@ h2.title {
     max-width: 300px;
     background-color: #333;
 }
-
-
-/*  */
-
-@-webkit-keyframes rise {
-    0% {
-        padding-top: 100%;
-    }
-    60% {
-        padding-top: 7%;
-    }
-    80% {
-        padding-top: 5%;
-        border-bottom: 0px solid #fff;
-        opacity: 0.5;
-        text-shadow: 2px 2px 5px #fff;
-    }
-    100% {
-        padding-top: 0%;
-        border-bottom: 0.35em solid #fff;
-        opacity: 1;
-        text-shadow: 0;
-    }
-}
-
-@keyframes rise {
-    0% {
-        padding-top: 100%;
-    }
-    60% {
-        padding-top: 7%;
-    }
-    80% {
-        padding-top: 5%;
-        border-bottom: 0px solid #fff;
-        opacity: 0.5;
-        text-shadow: 2px 2px 200px rgba(255, 255, 255, 1);
-    }
-    100% {
-        padding-top: 0%;
-        border-bottom: 0.35em solid #fff;
-        opacity: 1;
-        text-shadow: 200px 200px 200px rgba(255, 255, 255, 0);
-    }
-}
-
-.rise-text {
-    position: relative;
-    text-align: center;
-    margin: auto;
-    opacity: 0;
-    padding-top: 100%;
-    color: black;
-    border-bottom: 0;
-    text-shadow: 2px 2px 5px #fff;
-    font-family: Trebuchet MS, sans-serif;
-    font-size: 6em;
-    font-weight: normal;
-    -webkit-animation-name: rise;
-    -webkit-animation-duration: 5s;
-    -webkit-animation-delay: 0.5s;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-timing-function: cubic-bezier(0, 0.25, 0.55, 1);
-    -webkit-animaiton-fill-mode: forwards;
-    animation-name: rise;
-    animation-duration: 1s;
-    animation-delay: 0.5s;
-    animation-iteration-count: 1;
-    animation-timing-function: cubic-bezier(0, 0.25, 0.55, 1);
-    animation-fill-mode: forwards;
-}
-
-
-/**/
 
 
 /*  giá cữ giá mới*/
