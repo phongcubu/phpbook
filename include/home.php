@@ -93,7 +93,17 @@
 												<span class="old_price"><?php echo number_format($product_item['sanpham_gia'], 0, ",", ".")."đ"; ?></span>
 												</p>
 											<p class="product-name" ><?php echo $product_item['sanpham_name']; ?></p>
-                                                <a href="gio-hang.php" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+											<form action="?quanly=giohang" method="POST"> 
+                                    <fieldset>
+                                    <input type="hidden" name="tensanpham" value="<?php echo $product_item['sanpham_name']?>"/>
+                                    <input type="hidden" name="sanpham_id" value="<?php echo $product_item['sanpham_id']?>"/>
+                                    <input type="hidden" name="giasanpham" value="<?php echo $product_item['sanpham_gia']?>"/>
+                                    <input type="hidden" name="hinhanh" value="<?php echo $product_item['sanpham_image']?>"/>
+                                    <input type="hidden" name="soluong" value="1"/>
+                                     <input type="submit" name="themgiohang" value="Thêm giỏ hàng"class="btn btn-default add-to-cart" /> 
+                                    <!-- <a href="?quanly=giohang" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a> -->
+                                </fieldset>
+                                </form> 
                                             </div>
                                         </a>
 							

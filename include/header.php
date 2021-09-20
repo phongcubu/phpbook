@@ -57,7 +57,7 @@
                                 <li><a href="checkout.php"><i class="fa fa-credit-card "></i> Thanh Toán</a></li>
 
                                 <li>
-                                    <a href="gio-hang.php"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a></li>
+                                    <a href="?quanly=giohang"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a></li>
 
 
                                
