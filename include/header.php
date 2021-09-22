@@ -154,7 +154,7 @@ elseif(isset($_POST['dangky']))
                                 <li>
                                     <a href="" data-toggle="modal" data-target="#dangky"><i class="fa fa-user-plus "></i>Đăng Ký</a>
                                 </li>
-                                <?php } ?>
+                              
 
 
                             </ul>
