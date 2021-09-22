@@ -15,7 +15,7 @@ if(isset($_POST['update_sp_product']))
     $chitiet_SP = $_POST['chitiet_sp'];
     $thuonghieu_SP = $_POST['brand_sp'];
     $danhmuc_SP = $_POST['category_sp'];
-    $path = '../upload/';
+    $path = '../images/product/';
     $sql_insert =mysqli_query($con,"INSERT INTO tbl_sanpham(sanpham_name,sanpham_gia,sanpham_giakhuyenmai,sanpham_soluong,sanpham_image,sanpham_mota,sanpham_chitiet,brand_id,category_id) 
     values ('$tenSP','$giaSP','$giaSPkm','$soluong','$hinhanh_SP','$mota_SP','$chitiet_SP','$thuonghieu_SP','$danhmuc_SP')");
     move_uploaded_file($hinhanh_tmp,$path.$hinhanh_SP);
