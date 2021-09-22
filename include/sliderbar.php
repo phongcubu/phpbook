@@ -26,7 +26,7 @@
 								<div class="col-sm-4">
 									<h1><span>PSP</span>-BOOK</h1>
 									<h2>Sách Cho Người Việt - Trí Tuệ Việt </h2>
-									<p>Đem cả kho tàng tri thức Việt tới gần bạn hơn </p>
+									<p>Đem cả kho tàng tri thức nhân loại tới cho bạn đọc  hơn </p>
 									<button type="button" class="btn btn-default get">Lựa Chọn Ngay</button>
 								</div>
 								<div class="col-sm-6">
@@ -39,7 +39,7 @@
 								<div class="col-sm-4">
 								<h1><span>PSP</span>-BOOK</h1>
 								<h2>Sách Cho Người Việt - Trí Tuệ Việt </h2>
-									<p>Đem cả kho tàng tri thức Việt tới gần bạn hơn </p>
+									<p>Đem cả kho tàng tri thức nhân loại tới cho bạn đọc  hơn </p>
 									<button type="button" class="btn btn-default get">Lựa Chọn Ngay</button>
 								</div>
 								<div class="col-sm-8">

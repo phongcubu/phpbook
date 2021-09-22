@@ -50,7 +50,9 @@
     $id=$_GET['xoa'];
     $sql_delete=mysqli_query($con,"DELETE FROM tbl_giohang WHERE giohang_id='$id'");
     // header('location:index.php?quanly=giohang');
-}elseif(isset($_POST['thanhtoan'])){
+}
+//  thanh toán khi chưa đăng nhập
+elseif(isset($_POST['thanhtoan'])){
     $name=$_POST['name'];
     $phone=$_POST['phone'];
     $email=$_POST['email'];
@@ -61,9 +63,22 @@
     $sql_khachhang=mysqli_query($con,"INSERT INTO tbl_khachhang(name,phone,email,password,address,note,giaohang) values ('$name','$phone','$email','$password','$address','$note','$giaohang')");
 // if($sql_khachhang)
 //     $sql_select_khachhang= mysqli_query($con,"SELECT * FROM tbl_khachhang ORDER BY khachhang_id DESC LIMIT 1");
-
 }
+//  thanh toán khi đăng nhập 
+elseif(isset($_POST['thanhtoanlogin'])){
 
+    $khachhang_id = $_SESSION['khachhang_id'];
+    $mahang = rand(0,9999);	
+    for($i=0;$i<count($_POST['thanhtoan_product_id']);$i++){
+            $sanpham_id = $_POST['thanhtoan_product_id'][$i];
+            $soluong = $_POST['thanhtoan_soluong'][$i];
+            $sql_donhang = mysqli_query($con,"INSERT INTO tbl_donhang(sanpham_id,khachhang_id,soluong,mahang) values ('$sanpham_id','$khachhang_id','$soluong','$mahang')");
+            $sql_giaodich = mysqli_query($con,"INSERT INTO tbl_giaodich(sanpham_id,soluong,magiaodich,khachhang_id) values ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
+            $sql_delete_thanhtoan = mysqli_query($con,"DELETE FROM tbl_giohang WHERE sanpham_id='$sanpham_id'");
+        }
+
+    
+}
 
  ?>
 <section id="cart_items">
@@ -139,7 +154,28 @@
                         ?>
                         
                         <tr style="text-align:center">
-                          <td colspan="7"><input type="submit" value=" Cập nhật giỏ hàng " class="btn btn-default add-to-cart" name="capnhatsoluong"  ></td>
+                          <td colspan="7">
+                              <input style="color: #fff;" type="submit" value=" Cập nhật giỏ hàng " class="btn btn-primary add-to-cart" name="capnhatsoluong"  >
+                              <?php 
+								$sql_giohang = mysqli_query($con,"SELECT * FROM tbl_giohang");
+								$count = mysqli_num_rows($sql_giohang);
+                                
+                                // kiểm tra phải có tên ng dùng và trong giỏ hàng phải có sản phẩm mới hiện nút thanh toán
+								if(isset($_SESSION['dangnhap']) && $count>0){
+									while($row= mysqli_fetch_array($sql_giohang)){
+								?>
+								
+								<input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row['sanpham_id'] ?>">
+								<input type="hidden" name="thanhtoan_soluong[]" value="<?php echo $row['soluong'] ?>">
+								<?php 
+							    }
+								?>
+								<input style="margin-top: -9px; margin-left:10px" type="submit" class="btn btn-primary" value="Thanh toán giỏ hàng" name="thanhtoanlogin">
+		
+								<?php
+								} 
+								?>
+                            </td>
                         </tr> 
                     </tbody>
                   
@@ -155,10 +191,10 @@
         <div class="container">
             
             <div class="row">
-
+            <?php if(!isset($_SESSION['dangnhap'])) {?>
             <div class="col-sm-6">
-            <div class="chose_area">
-            <h4 class="mb-sm-4 mb-3" style="text-align: center;font-size: 24px;color: aqua;text-transform: uppercase;">Thêm địa chỉ giao hàng</h4>
+                <div class="chose_area">
+                    <h4 class="mb-sm-4 mb-3" style="text-align: center;font-size: 24px;color: aqua;text-transform: uppercase;">Thêm địa chỉ giao hàng</h4>
 					<form action="" method="post" class="creditly-card-form agileinfo_form">
 						<div class="creditly-wrapper wthree, w3_agileits_wrapper">
 							<div class="information-wrapper">
@@ -193,21 +229,23 @@
 									</div>
 								</div>
 								<?php
-								$sql_lay_giohang = mysqli_query($con,"SELECT * FROM tbl_giohang ORDER BY giohang_id DESC");
-								while($row_thanhtoan = mysqli_fetch_array($sql_lay_giohang)){ 
-								?>
+                                $sql_lay_giohang = mysqli_query($con, "SELECT * FROM tbl_giohang ORDER BY giohang_id DESC");
+                                while ($row_thanhtoan = mysqli_fetch_array($sql_lay_giohang)) {
+                                    ?>
 									<input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row_thanhtoan['sanpham_id'] ?>">
 									<input type="hidden" name="thanhtoan_soluong[]" value="<?php echo $row_thanhtoan['soluong'] ?>">
 								<?php
-								} 
-								?>
+                                }
+                                ?>
 								<input type="submit" name="thanhtoan" class="btn btn-default check_out" style="width: 20%" value="Thanh toán">
-								
+					
 							</div>
 						</div>
 					</form>
             </div>
             </div>
+            <?php }
+            ?>
                
                 <div class="col-sm-6">
                     <div class="total_area">
