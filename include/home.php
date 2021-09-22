@@ -1,3 +1,4 @@
+
 <section>
 		<div class="container">
 			<div class="row">
@@ -17,10 +18,7 @@
                             <?php
                                 }
                             ?>
-
-							
 						</div><!--/category-products-->
-					
 						<div class="brands_products" ><!--brands_products-->
 							<h2 >NHÀ XUẤT BẢN </h2>
 							<div class="brands-name">
@@ -28,22 +26,15 @@
 								<ul class="nav nav-pills nav-stacked">
 								<?php
 								 $sql_brand = mysqli_query($con,"SELECT * FROM tbl_brand ORDER BY brand_id DESC ");
-<<<<<<< HEAD
-                                 while ($brand_item= mysqli_fetch_array($sql_brand)) {
-                                     ?>
-									<li><a href="?quanly=thuonghieu&brand_id=<?php echo $brand_item['brand_id'] ?>"><?php echo $brand_item['brand_name']; ?></a></li>
-=======
                                 while ($brand_item= mysqli_fetch_array($sql_brand)) {
                                     ?>
 									<li><a href="#"><?php echo $brand_item['brand_name']; ?></a></li>
->>>>>>> f03a159c5a167d6768c780c56513705c6fa11642
 								<?php
                                 }?>
 								</ul>
 							</div>
 						</div><!--/brands_products-->
-						
-						
+			
 						<div class="brands_products" ><!--products sales-->
 							<h2  style="margin-top:20px;">SẢN PHẨM BÁN CHẠY</h2>
 							<div class="box-scroll">
@@ -66,9 +57,7 @@
 									<?php
                                         }
 										?>
-								
-									
-									
+							
 								</div>
 							</div>
 						</div><!--/sales products-->
@@ -110,12 +99,9 @@
 						</div>
 						<?php
                             }?>
-                       
-						
 
 					</div><!--features_items-->
-					
-					
+
 				</div>
 			</div>
 		</div>

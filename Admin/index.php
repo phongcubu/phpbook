@@ -31,7 +31,7 @@ session_start();
 	 		 
 	 		}else{
 	 			echo 'Tài khoản hoặc mật khẩu của bạn không chính xác.';
-	 		 	 header('Location: login.php');
+	 		 	 header('Location: index.php');
 	 		 }
 			
 	 	}

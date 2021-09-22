@@ -1,5 +1,6 @@
 
 <?php
+    session_start();
     include('database/connectdb.php');
 ?>
 <!DOCTYPE html>
@@ -35,46 +36,45 @@
     include('include/sliderbar.php');
 
     if(isset($_GET['quanly'])){
-		$tam = $_GET['quanly'];
+		$quanly = $_GET['quanly'];
 	}else{
-		$tam = '';
+		$quanly = '';
 	}
     
-    if($tam =='danhmuc')
+    if($quanly == 'danhmuc')
     {
         // hiên thị sản phẩm theo danh mục chọn
     include('include/showdanhmuc.php');
     }
-    elseif($tam == 'thuonghieu')
+    elseif($quanly == 'thuonghieu')
     {
         // hiên thị sản phẩm theo thương hiệu chọn
       include('include/showthuonghieu.php');
     }
 
-    elseif($tam == 'chitietsp'){
+    elseif($quanly == 'chitietsp'){
         // hiển thị chi tiết 1 sản phẩm
         include('include/chitietsp.php');
     }
-    elseif($tam == 'shop'){
+    elseif($quanly == 'shop'){
         // hiển thị chi tiết  sản phẩm theo danh mục
         include('include/shop.php');
     }
-    elseif($tam == 'timkiem'){
+    elseif($quanly == 'timkiem'){
         // tìm kiếm sản phẩm
         include('include/search.php');
     }
 
     else{
         //  home
+        
         include('include/home.php');
     }
     
-
     //  footer
     include('include/footer.php');
       
     ?>
-
     <script src="js/jquery.js "></script>
     <script src="js/bootstrap.min.js "></script>
     <script src="js/jquery.scrollUp.min.js "></script>
@@ -85,6 +85,8 @@
 	<!-- scroll seller -->
 	<script src="js/scroll.js"></script>
 	<!-- //scroll seller -->
+    
+
     
 
 </body>

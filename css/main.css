@@ -858,6 +858,18 @@ h2.title {
     text-decoration: line-through;
 }
 
+.right-w3l>input {
+    color: aqua;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.right-w3l>input:hover {
+    background-color: aqua;
+    color: #fff;
+    opacity: 0.5;
+}
+
 
 /* bán chạy sản phẩm  */
 

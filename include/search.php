@@ -2,8 +2,9 @@
 //  kiểm tra id của tưng danh mục có tồn tại ?
  if(isset($_POST['search_btn']))
  {
-	 $key = $_POST['key_product'];
-     $sql_search =mysqli_query($con,"SELECT * FROM tbl_sanpham WHERE sanpham_name LIKE '%$key%' ORDER BY sanpham_id DESC");
+	$key = $_POST['key_product'];
+    $sql_search =mysqli_query($con,"SELECT * FROM tbl_sanpham WHERE sanpham_name LIKE '%$key%' ORDER BY sanpham_id DESC");
+
  }
 ?> 
 <section>
@@ -88,7 +89,7 @@
                         <?php 
 							if(mysqli_num_rows($sql_search)>0)
                             {
-                                while($product_item = mysqli_fetch_array($sql_search)) {
+                        	while($product_item = mysqli_fetch_array($sql_search)) {
                         ?>
 						<div class="col-sm-4 ">
 							<div class="product-image-wrapper">
