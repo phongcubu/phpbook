@@ -56,7 +56,11 @@
         // hiển thị chi tiết 1 sản phẩm
         include('include/chitietsp.php');
     }
-    elseif($quanly == 'shop'){
+    elseif($tam == 'giohang'){
+        // hiển thị giỏ hàng
+        include('include/giohang.php');
+    }
+    elseif($tam == 'shop'){
         // hiển thị chi tiết  sản phẩm theo danh mục
         include('include/shop.php');
     }

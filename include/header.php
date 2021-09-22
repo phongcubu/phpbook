@@ -141,17 +141,16 @@ elseif(isset($_POST['dangky']))
                     <div class="col-sm-8" style="margin-top:16px; ">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <?php if(isset($_SESSION['dangnhap'])){
-                                    ?>   
-                                    <li><a href="checkout.php"><i class="fa fa-user"></i><?php echo $_SESSION['dangnhap'];  ?> </a></li>
-                                    <li><a href="checkout.php"><i class="fa fa-credit-card "></i> Thanh Toán</a></li>
-                                
-                                <li><a href="gio-hang.php"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a></li>
-                                <li><a href="?quanly=dangxuat&dangxuat_id=<?php  echo $_SESSION['khachhang_id']; ?>"><i class="fa fa-sign-out "></i> Đăng Xuất</a></li>
-                                <?php }else{ ?>
-                                <li >
-                                    <a href="" data-toggle="modal" data-target="#dangnhap"><i class="fa fa-sign-in "></i>Đăng Nhập</a>
-                                </li>
+
+
+
+                                <li><a href="checkout.php"><i class="fa fa-credit-card "></i> Thanh Toán</a></li>
+
+                                <li>
+                                    <a href="?quanly=giohang"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a></li>
+
+
+                               
                                 <li>
                                     <a href="" data-toggle="modal" data-target="#dangky"><i class="fa fa-user-plus "></i>Đăng Ký</a>
                                 </li>
