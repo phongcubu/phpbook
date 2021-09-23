@@ -29,6 +29,7 @@
 <!--/head-->
 
 <body>
+
     <?php 
     // header
     include('include/header.php');
@@ -71,10 +72,8 @@
 
     else{
         //  home
-        
         include('include/home.php');
     }
-    
     //  footer
     include('include/footer.php');
       
@@ -89,9 +88,7 @@
 	<!-- scroll seller -->
 	<script src="js/scroll.js"></script>
 	<!-- //scroll seller -->
-    
-
-    
+  
 
 </body>
 

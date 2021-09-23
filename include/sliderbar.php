@@ -15,7 +15,7 @@
 								<h1><span>PSP</span>-BOOK</h1>
 									<h2>Sách Cho Người Việt - Trí Tuệ Việt</h2>
 									<p>Đem cả kho tàng tri thức nhân loại tới cho bạn đọc  hơn </p>
-									<button type="button" class="btn btn-default get">Lựa Chọn Ngay</button>
+									<button style="margin-top: 0px;" type="button" class="btn btn-default get">Lựa Chọn Ngay</button>
 								</div>
 								<div class="col-sm-8">
 									<img src="images/shop/baner/banner1.jpg" class="girl img-responsive" alt="" />
@@ -27,7 +27,7 @@
 									<h1><span>PSP</span>-BOOK</h1>
 									<h2>Sách Cho Người Việt - Trí Tuệ Việt </h2>
 									<p>Đem cả kho tàng tri thức nhân loại tới cho bạn đọc  hơn </p>
-									<button type="button" class="btn btn-default get">Lựa Chọn Ngay</button>
+									<button style="margin-top: 0px;" type="button" class="btn btn-default get">Lựa Chọn Ngay</button>
 								</div>
 								<div class="col-sm-6">
 									<img src="images/shop/baner/banner2.jpg" class="girl img-responsive" alt="" />
@@ -40,7 +40,7 @@
 								<h1><span>PSP</span>-BOOK</h1>
 								<h2>Sách Cho Người Việt - Trí Tuệ Việt </h2>
 									<p>Đem cả kho tàng tri thức nhân loại tới cho bạn đọc  hơn </p>
-									<button type="button" class="btn btn-default get">Lựa Chọn Ngay</button>
+									<button style="margin-top: 0px;"type="button" class="btn btn-default get">Lựa Chọn Ngay</button>
 								</div>
 								<div class="col-sm-8">
 									<img src="images/shop/baner/banner3.jpg" class="girl img-responsive" alt="" />

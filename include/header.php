@@ -41,16 +41,6 @@ elseif(isset($_GET['dangxuat_id']))
 //  đắng ký 
 elseif(isset($_POST['dangky']))
 {
-   
-        // $name=$_POST['name'];
-        // $phone=$_POST['phone'];
-        // $email=$_POST['email'];
-        // $password=md5($_POST['password']);
-        // $note=$_POST['note'];
-        // $address=$_POST['address'];
-        // $giaohang=$_POST['giaohang'];
-        // $sql_khachhang=mysqli_query($con,"INSERT INTO tbl_khachhang(name,phone,email,password,address,note,giaohang) values ('$name','$phone','$email','$password','$address','$note','$giaohang')");
-    
         $name = isset($_POST['name'])? mysqli_real_escape_string($con,$_POST['name']) : '';
         $phone = isset($_POST['phone']) ? mysqli_real_escape_string($con,$_POST['phone']) : '';
         $email = isset($_POST['email']) ? mysqli_real_escape_string($con,$_POST['email']) : '';
@@ -89,7 +79,10 @@ elseif(isset($_POST['dangky']))
         }
         
 }
+   
 ?>
+
+
 <header id="header">
         <!--header-->
         <div class="header_top">
@@ -176,7 +169,6 @@ elseif(isset($_POST['dangky']))
         </div>
         <!--/header-middle-->
 
-
         <div class="header-bottom ">
             <!--header-bottom-->
             <div class="container ">
@@ -191,10 +183,10 @@ elseif(isset($_POST['dangky']))
                             </button>
                         </div>
                         <div class="mainmenu pull-left ">
-                            <ul class="nav navbar-nav collapse navbar-collapse ">
-                                <li class="<?php if($page=='home'){echo 'active';}?>"><a href="index.php" >Trang Chủ</a></li>
-                                <li class="<?php if($page=='shop'){echo 'active';}?>"><a href="?quanly=shop">Sản Phẩm</a></li> 
-                                <li ><a href="lienhe.php">Liên Hệ</a></li>
+                            <ul class="nav navbar-nav collapse navbar-collapse " >
+                                <li><a href="index.php">Trang Chủ</a></li>
+                                <li ><a href="?quanly=shop" >Sản Phẩm</a></li> 
+                                <li ><a href="lienhe.php" >Liên Hệ</a></li>
                             </ul>
                         </div>
                     </div>

@@ -70,17 +70,29 @@
 				</div>
 
 				<?php 
+							// --------LOC SẢN PHẨM-------
+							$param ="";
+							$fillter="";
+							$field = isset($_GET['field'])? $_GET['field']: "";
+							$sort = isset($_GET['sort'])? $_GET['sort']: "";
+							if(!empty($field) && !empty($sort))
+							{
+								$fillter = " ORDER BY `tbl_sanpham`.`$field`$sort" ;
+								$param = "field=$field&sort=$sort&";
+							
+							
+							}
+
+							//------PHÂN TRANG------ 
 							// sản phẩm trên 1 trang 
-							$item_per_page = !empty($_GET['per_page']) ?$_GET['per_page']:2;
+							$item_per_page = !empty($_GET['per_page']) ?$_GET['per_page']:4;
 							// trang hiện tại 
 							$current_page = !empty($_GET['page']) ?$_GET['page']:1;
 							// bắt đầu từ sản phẩm nào ?
 							$offset = ($current_page -1 ) * $item_per_page;
-							
-
-							$sql_product =  mysqli_query($con,"SELECT * FROM tbl_sanpham ORDER BY sanpham_id ASC LIMIT $item_per_page OFFSET $offset");
+							$sql_product =  mysqli_query($con,"SELECT * FROM tbl_sanpham $fillter LIMIT $item_per_page OFFSET $offset");
+						
 							$total = mysqli_query($con, " SELECT * FROM tbl_sanpham ");
-							
 							$total = $total->num_rows;
 							// số trang có đc 
 							$totalpage = ceil($total/$item_per_page);
@@ -90,11 +102,18 @@
                                     
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center rise-text"> Sản Phẩm Mới</h2>
+						<div style="width: 19%;float: right;margin-top: -33px;margin-right: 15px;">
+							<select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
+								<option value="">----sắp xếp theo giá----</option>
+								<option <?php if(isset($_GET['sort'])&& $_GET['sort'] == 'ASC'){?> selected <?php }?> value="?field=sanpham_giakhuyenmai&sort=ASC">--từ thấp tới cao--</option>
+								<option <?php if(isset($_GET['sort'])&& $_GET['sort'] == 'DESC'){?> selected <?php }?> value="?field=sanpham_giakhuyenmai&sort=DESC">--từ cao về thấp--</option>
+							</select>
+						</div>
                         <?php 
 							
                             while($product_item = mysqli_fetch_array($sql_product)) {
                         ?>
-						<div class="col-sm-4 ">
+						<div class="col-sm-4 " >
 							<div class="product-image-wrapper">
 								<div class="single-products">
                                         <a href="?quanly=chitietsp&id=<?php echo $product_item['sanpham_id'] ?>">
@@ -137,14 +156,14 @@
 								{
 									$first = 1;
 									?>
-									<li><a href="?per_page=<?=$item_per_page ?>&page=<?=$first ?>" class="page-item">Trang đầu</a></li>
+									<li><a href="?<?=$param?>&per_page=<?=$item_per_page ?>&page=<?=$first ?>" class="page-item">Trang đầu</a></li>
 
 								<?php }
 								if($current_page > 1)
 								{
 									$prev_page = $current_page -1 ;
 									?>
-									<li><a href="?per_page=<?=$item_per_page ?>&page=<?= $prev_page ?>" class="page-item"> Trang trước</a></li>
+									<li><a href="?<?=$param?>&per_page=<?=$item_per_page ?>&page=<?= $prev_page ?>" class="page-item"> Trang trước</a></li>
 								<?php
 								}
 								?>
@@ -153,7 +172,7 @@
 									for($i =1 ; $i <= $totalpage;$i++){?>
 									<?php if ($i != $current_page) { ?>
 										<?php if($i > $current_page -2 && $i < $current_page +2) {?>
-										<li><a href="?per_page=<?=$item_per_page ?>&page=<?= $i?>" class="page-item"> <?= $i?></a></li>
+										<li><a href="?<?=$param?>&per_page=<?=$item_per_page ?>&page=<?= $i?>" class="page-item"> <?= $i?></a></li>
 										<?php }?>
 										
 									<?php }else { ?>
@@ -162,11 +181,11 @@
 									<?php } ?>
 								<?php if($current_page <$totalpage-1){
 									$next_page = $current_page +1 ;?>
-										<li><a href="?per_page=<?=$item_per_page ?>&page=<?=$next_page?>" class="page-item"> Trang tiếp</a></li>
+										<li><a href="?<?=$param?>&per_page=<?=$item_per_page ?>&page=<?=$next_page?>" class="page-item"> Trang tiếp</a></li>
 								<?php 
 									}if ($current_page < $totalpage - 2) {
 									$end_page = $totalpage; ?>
-									<li><a href="?per_page=<?=$item_per_page ?>&page=<?=$end_page ?>" class="page-item">Trang cuối</a></li>
+									<li><a href="?<?=$param?>&per_page=<?=$item_per_page ?>&page=<?=$end_page ?>" class="page-item">Trang cuối</a></li>
 									<?php
 								}
 
