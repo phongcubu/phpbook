@@ -9,6 +9,18 @@ h1, h2, h3 {margin: 0;}
 ul, ol {margin: 0;}
 p {margin: 0;}
 
+.product-name {
+    width: 98%;
+    /* white-space: pre-wrap; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-weight: 300;
+    text-align: left;
+    
+}
 html, body{
 	font-family: 'Roboto', sans-serif;
     font-size: 100%;

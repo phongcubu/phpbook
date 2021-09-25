@@ -1,3 +1,6 @@
+<?php
+    include('database/connectdb.php');
+?>
 <header id="header">
         <!--header-->
         <div class="header_top">
@@ -26,7 +29,6 @@
             </div>
         </div>
         <!--/header_top-->
-
         <div class="header-middle">
             <!--header-middle-->
             <div class="container">
@@ -37,11 +39,8 @@
                         </div>
                         <div class="btn-group pull-right">
                             <div class="btn-group">
-
                             </div>
-
                             <div class="btn-group">
-
                                 </ul>
                             </div>
                         </div>
@@ -49,23 +48,14 @@
                     <div class="col-sm-8" style="margin-top:16px; ">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-
                                 <li>
                                     <a href="../Admin/admin.php"><i class=" fa fa-user "></i>Trang Admin</a></li>
-
-
                                 <li><a href="checkout.php"><i class="fa fa-credit-card "></i> Thanh Toán</a></li>
-
                                 <li>
                                     <a href="gio-hang.php"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a></li>
-
-
-                               
                                 <li>
                                     <a href="login.php"><i class="fa fa-sign-in "></i>Đăng Nhập</a>
                                 </li>
-
-
                             </ul>
                         </div>
                     </div>
@@ -73,8 +63,6 @@
             </div>
         </div>
         <!--/header-middle-->
-
-
         <div class="header-bottom ">
             <!--header-bottom-->
             <div class="container ">
@@ -92,7 +80,12 @@
                             <ul class="nav navbar-nav collapse navbar-collapse ">
                                 <li><a href="index.php" class="active ">Trang Chủ</a></li>
                                 <li class="dropdown "><a href="?quanly=shop">Sản Phẩm</a></li> 
-                                <li><a href="lienhe.php">Liên Hệ</a></li>
+                                <li><a href="?quanly=lienhe">Liên Hệ</a></li>
+                                <li>
+                                    <a href="?quanly=tintuc" class="nav-link" role="button">
+                                        Tin Tức
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

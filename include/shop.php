@@ -8,13 +8,12 @@
 					
 						<div class="brands_products" ><!--brands_products-->
 							<h2>NHÀ XUẤT BẢN</h2>
-
 							<div class="brands-name">
 								
 								<ul class="nav nav-pills nav-stacked">
 									<?php
 									 $sql_brand = mysqli_query($con, "SELECT * FROM tbl_brand ORDER BY brand_id DESC");
-									 while($brand_item = mysqli_fetch_array($sql_brand)){
+									while($brand_item = mysqli_fetch_array($sql_brand)){
 									?>
 									<li><a href="#"> <span class="pull-right"></span><?php echo $brand_item['brand_name'] ?></a></li>
 									<?php
@@ -80,6 +79,3 @@
 			</div>
 		</div>
 	</section>
-
-   
-   

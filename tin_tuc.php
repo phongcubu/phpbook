@@ -31,40 +31,22 @@
     <?php 
     // header
     include('include/header.php');
-    //  slider
     include('include/sliderbar.php');
-
+    //  slider
     if(isset($_GET['quanly'])){
 		$tam = $_GET['quanly'];
 	}else{
 		$tam = '';
 	}
-    
-    if($tam =='danhmuc')
-    {
-        // hiên thị sản phẩm theo danh mục chọn
-    include('include/showdanhmuc.php');
-    }
-    elseif($tam == 'chitietsp'){
-        // hiển thị chi tiết 1 sản phẩm
-        include('include/chitietsp.php');
-    }
-    elseif($tam == 'shop'){
-        // hiển thị chi tiết 1 sản phẩm
-        include('include/shop.php');
-    }
-    elseif($tam == 'tintuc'){
+    if($tam == 'tintuc'){
+        // hiển thị chi tiết 1 tin tức
         include('include/tintuc.php');
     }
-    elseif($tam =='chitiettin'){
+    elseif($tam == 'chitiettin'){
         include('include/chitiettin.php');
     }
-    elseif($tam =='danhmuctin'){
+    elseif($tam == 'showdanhmuctin'){
         include('include/showdanhmuctin.php');
-    }
-    elseif($tam == 'lienhe')
-    {   
-        include('include/lienhe.php');
     }
     else{
         //  home
@@ -73,7 +55,6 @@
     //  footer
     include('include/footer.php');
     ?>
-
     <script src="js/jquery.js "></script>
     <script src="js/bootstrap.min.js "></script>
     <script src="js/jquery.scrollUp.min.js "></script>
@@ -84,8 +65,6 @@
 	<!-- scroll seller -->
 	<script src="js/scroll.js"></script>
 	<!-- //scroll seller -->
-    
-
 </body>
 
 </html>

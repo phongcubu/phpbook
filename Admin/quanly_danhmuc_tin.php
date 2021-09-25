@@ -7,7 +7,7 @@ include('../database/connectdb.php')
 // delete condition
 if(isset($_GET['xoa_id']))
 {
-	$sql_query="DELETE FROM tbl_category WHERE category_id=".$_GET['xoa_id'];
+	$sql_query="DELETE FROM tbl_danhmuctin WHERE danhmuctin_id=".$_GET['xoa_id'];
 	mysqli_query($con, $sql_query);
 	header("Location: $_SERVER[PHP_SELF]");
 }
@@ -15,7 +15,7 @@ if(isset($_GET['xoa_id']))
 ?>
 <!DOCTYPE html>
 <head>
-<title>Liệt kê danh mục sản phẩm</title>
+<title>Quản lý danh mục tin tức</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -35,18 +35,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery2.0.3.min.js"></script>
 <script type="text/javascript">
 
-function suadanhmuc(id)
+function suadanhmuctin(id)
 {
 	if(confirm('bạn muốn thay đổi danh mục này chứ?'))
 	{
-		window.location.href='suadanhmuc.php?suadanhmuc_id='+id;
+		window.location.href='suadanhmuc_tin.php?suadanhmuctin_id='+id;
 	}
 }
 function xoa_id(id)
 {
 	if(confirm('Bạn muốn xóa danh mục này chứ ?'))
 	{
-		window.location.href='lietkedanhmucsp.php?xoa_id='+id;
+		window.location.href='quanly_danhmuc_tin.php?xoa_id='+id;
 	}
 }
 </script>
@@ -64,11 +64,11 @@ include('include/aside.php') ;
 		<div class="table-agile-info">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Liệt Kê Danh Mục
+            Quản Lý Danh Muc Tin Tức
         </div>
         <div class="row w3-res-tb">
                     <div class="col-sm-5 m-b-xs">
-                        <a href="themdanhmuc.php" class="btn btn-primary ">Thêm Danh Mục</a>                
+                        <a href="themdanhmuc_tin.php" class="btn btn-primary ">Thêm Danh Mục Tin Tức</a>                
                     </div>
                     <div class="col-sm-4">
                 </div>
@@ -79,14 +79,13 @@ include('include/aside.php') ;
                     <tr>
                     <th style="width:20px;">
                     </th>
-                    <th>Tên Danh Mục</th>
+                    <th>Tên Danh Mục Tin Tức</th>
                     <th  colspan="2" style="margin:auto">Quản Lý</th>
-                    
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-                    $sql_kq = mysqli_query($con, "SELECT * FROM tbl_category");
+                    $sql_kq = mysqli_query($con, "SELECT * FROM tbl_danhmuctin");
                     if (mysqli_num_rows($sql_kq)>0) 
                     {
                         while ($row=mysqli_fetch_row($sql_kq)) 
@@ -94,12 +93,10 @@ include('include/aside.php') ;
                             ?>
                                     <tr>
                                         <td></td>
-
                                         <td ><span style="font-size: 17px;"><?php echo $row[1]; ?></span></td>
                                         
-
                                         <td style="width:4%">
-                                            <a href="javascript:suadanhmuc('<?php echo $row[0]; ?>')" class="active styling-edit" ui-toggle-class="">
+                                            <a href="javascript:suadanhmuctin('<?php echo $row[0]; ?>')" class="active styling-edit" ui-toggle-class="">
                                             <i style="font-size: 26px;" class="fa fa-pencil-square-o text-success text-active"></i>
                                             </a></td>
                                             <td>

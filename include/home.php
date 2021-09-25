@@ -104,9 +104,6 @@
 						</div>
 						<?php
                             }?>
-                       
-						
-
 					</div><!--features_items-->
 					
 					

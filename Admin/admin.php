@@ -62,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="market-updates">
 			<div class="col-md-3 market-update-gd">
 				<div class="market-update-block clr-block-2">
-					<a href="../Admin/QuanlySP.php">
+					<a href="quanlisp.php">
 						<div class="col-md-4 market-update-right">
 							<i class="fa fa-eye"> </i>
 						</div>
@@ -70,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<h4>Sản phẩm</h4>
 							<h3>
 								<?php
-								$lk_sanpham = mysqli_query($con,"SELECT COUNT(sanpham_id) AS soluong FROM tbl_sanpham");
+								$lk_sanpham = mysqli_query($con,"SELECT COUNT(sanpham_id) AS soluong FROM tbl_sanpham WHERE sanpham_active ='1'");
 								$row_sp =mysqli_fetch_array($lk_sanpham);
 								?>
 								<?php
@@ -85,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="col-md-3 market-update-gd">
 				<div class="market-update-block clr-block-1">
-					<a href="../Admin/QuanlyKH.php">
+					<a href="quanlykhachhang.php">
 						<div class="col-md-4 market-update-right">
 							<i class="fa fa-users" ></i>
 						</div>
@@ -93,7 +93,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<h4>Khách hàng</h4>
 							<h3>
 							<?php
-								$lk_khachhang = mysqli_query($con,"SELECT COUNT(khachhang_id) AS soluong FROM tbl_khachhang");
+								$lk_khachhang = mysqli_query($con,"SELECT COUNT(khachhang_id) AS soluong FROM tbl_khachhang ");
 								$row_sp =mysqli_fetch_array($lk_khachhang);
 								?>
 								<?php
@@ -108,22 +108,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="col-md-3 market-update-gd">
 				<div class="market-update-block clr-block-3">
-					<a href="../Admin/LietkeTH.php">
+					<a href="quanly_tintuc.php">
 						<div class="col-md-4 market-update-right">
-							<i class="fa fa-bank fa-3x" style="color: white;"></i>
+							<i class="fa fa-newspaper-o fa-3x" style="color: white;"></i>
 						</div>
 						<div class="col-md-8 market-update-left">
-							<h4>Số thương hiệu</h4>
+							<h4>Số Tin Tức</h4>
 							<h3>
 							<?php
-								$lk_brand = mysqli_query($con,"SELECT COUNT(brand_id) AS soluong FROM tbl_brand");
-								$row_th =mysqli_fetch_array($lk_brand);
+								$lk_tintuc = mysqli_query($con,"SELECT COUNT(tintuc_id) AS soluong FROM tbl_tintuc WHERE hienthi ='1'");
+								$row_tt =mysqli_fetch_array($lk_tintuc);
 								?>
 								<?php
-								echo $row_th['soluong'];
+								echo $row_tt['soluong'];
 								?>
 							</h3>
-							<p>Đang hợp tác</p>
+							<p>Đã đăng lên</p>
 						</div>
 						<div class="clearfix"> </div>
 					</a>
@@ -131,7 +131,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 			<div class="col-md-3 market-update-gd">
 				<div class="market-update-block clr-block-4">
-					<a href="../Admin/QuanLyDonHang.php">
+					<a href="QuanLyDonHang.php">
 						<div class="col-md-4 market-update-right">
 							<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 						</div>
