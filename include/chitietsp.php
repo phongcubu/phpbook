@@ -54,6 +54,7 @@
                             </div>
                            
                         </div>
+                        
                         <div class="col-sm-7">
                             <div class="product-information">
                                 <!--/product-information-->
@@ -67,8 +68,17 @@
                                 <label>Số Lượng có sẵn:</label>
                                 <input type="text" value="<?php echo $chitiet['sanpham_soluong'] ?>" />
                                 </span>
-                                <p><a href="gio-hang.php" class="btn btn-default add-to-cart"></i>Mua hàng</a></p>
-                               
+                                 <form action="?quanly=giohang" method="POST"> 
+                                    <fieldset>
+                                    <input type="hidden" name="tensanpham" value="<?php echo $chitiet['sanpham_name']?>"/>
+                                    <input type="hidden" name="sanpham_id" value="<?php echo $chitiet['sanpham_id']?>"/>
+                                    <input type="hidden" name="giasanpham" value="<?php echo $chitiet['sanpham_gia']?>"/>
+                                    <input type="hidden" name="hinhanh" value="<?php echo $chitiet['sanpham_image']?>"/>
+                                    <input type="hidden" name="soluong" value="1"/>
+                                     <input type="submit" name="themgiohang" value="Thêm giỏ hàng"class="btn btn-default add-to-cart" /> 
+                                    <!-- <a href="?quanly=giohang" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a> -->
+                                </fieldset>
+                                </form> 
                                 <?php
                                     }else{
                                 ?>
@@ -78,7 +88,7 @@
                                
                                
                             </div><!--/product-information-->
-
+                           
                             <hr>
                          <div class="row">
                             <div class="col-sm-4" >

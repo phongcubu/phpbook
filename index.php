@@ -1,5 +1,6 @@
 
 <?php
+    session_start();
     include('database/connectdb.php');
 ?>
 <!DOCTYPE html>
@@ -28,6 +29,7 @@
 <!--/head-->
 
 <body>
+
     <?php 
     // header
     include('include/header.php');
@@ -35,37 +37,52 @@
     include('include/sliderbar.php');
 
     if(isset($_GET['quanly'])){
-		$tam = $_GET['quanly'];
+		$quanly = $_GET['quanly'];
 	}else{
-		$tam = '';
+		$quanly = '';
 	}
     
-    if($tam =='danhmuc')
+    if($quanly == 'danhmuc')
     {
         // hiên thị sản phẩm theo danh mục chọn
     include('include/showdanhmuc.php');
     }
-    elseif($tam == 'chitietsp'){
+    elseif($quanly == 'thuonghieu')
+    {
+        // hiên thị sản phẩm theo thương hiệu chọn
+    include('include/showthuonghieu.php');
+    }
+
+    elseif($quanly == 'chitietsp'){
         // hiển thị chi tiết 1 sản phẩm
         include('include/chitietsp.php');
     }
-    elseif($tam == 'shop'){
-        // hiển thị chi tiết 1 sản phẩm
+    elseif($quanly == 'giohang'){
+        // hiển thị giỏ hàng
+        include('include/giohang.php');
+    }
+    elseif($quanly== 'shop'){
+        // hiển thị chi tiết  sản phẩm theo danh mục
         include('include/shop.php');
     }
-    elseif($tam == 'tintuc'){
+    elseif($quanly == 'tintuc'){
         include('include/tintuc.php');
     }
-    elseif($tam =='chitiettin'){
+    elseif($quanly =='chitiettin'){
         include('include/chitiettin.php');
     }
-    elseif($tam =='danhmuctin'){
+    elseif($quanly =='danhmuctin'){
         include('include/showdanhmuctin.php');
     }
-    elseif($tam == 'lienhe')
+    elseif($quanly == 'lienhe')
     {   
         include('include/lienhe.php');
     }
+    elseif($quanly == 'timkiem'){
+        // tìm kiếm sản phẩm
+        include('include/search.php');
+    }
+
     else{
         //  home
         include('include/home.php');
@@ -73,7 +90,6 @@
     //  footer
     include('include/footer.php');
     ?>
-
     <script src="js/jquery.js "></script>
     <script src="js/bootstrap.min.js "></script>
     <script src="js/jquery.scrollUp.min.js "></script>
@@ -84,7 +100,6 @@
 	<!-- scroll seller -->
 	<script src="js/scroll.js"></script>
 	<!-- //scroll seller -->
-    
 
 </body>
 

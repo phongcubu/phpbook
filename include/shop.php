@@ -1,4 +1,6 @@
-
+<?php
+	$page = 'shop';
+?>
     <section>
 		<div class="container">
 			<div class="row">
@@ -15,7 +17,7 @@
 									 $sql_brand = mysqli_query($con, "SELECT * FROM tbl_brand ORDER BY brand_id DESC");
 									while($brand_item = mysqli_fetch_array($sql_brand)){
 									?>
-									<li><a href="#"> <span class="pull-right"></span><?php echo $brand_item['brand_name'] ?></a></li>
+									<li><a href="?quanly=thuonghieu&brand_id=<?php echo $brand_item['brand_id']?>"> <span class="pull-right"></span><?php echo $brand_item['brand_name'] ?></a></li>
 									<?php
 								}?>
 								</ul>
@@ -58,7 +60,17 @@
 												<span class="old_price"><?php echo number_format($sanpham_item['sanpham_gia'], 0, ",", ".")."đ"; ?></span>
 											</p>
 											<p class="product-name" ><?php echo $sanpham_item['sanpham_name']; ?></p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ </a>
+											<form action="?quanly=giohang" method="POST"> 
+                                        <fieldset>
+                                            <input type="hidden" name="tensanpham" value="<?php echo $sanpham_item['sanpham_name']?>"/>
+                                            <input type="hidden" name="sanpham_id" value="<?php echo $sanpham_item['sanpham_id']?>"/>
+                                            <input type="hidden" name="giasanpham" value="<?php echo $sanpham_item['sanpham_gia']?>"/>
+                                            <input type="hidden" name="hinhanh" value="<?php echo $sanpham_item['sanpham_image']?>"/>
+                                            <input type="hidden" name="soluong" value="1"/>
+                                            <input type="submit" name="themgiohang" value="Thêm giỏ hàng"class="btn btn-default add-to-cart" /> 
+                                    <!-- <a href="?quanly=giohang" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a> -->
+                                      </fieldset>
+                                    </form> 
 										</div>
 
 								</div>

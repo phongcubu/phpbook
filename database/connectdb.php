@@ -3,7 +3,7 @@ $con = new mysqli("localhost","root","","phpweb");
 
 // Check connection
 if ($con -> connect_errno) {
-  echo "Failed to connect to MySQL: " . $con -> connect_error;
+  echo "Failed to connect to MySQL: " .$con -> connect_error;
   exit();
 }
 //  đọc csdl sang danh utf8 
