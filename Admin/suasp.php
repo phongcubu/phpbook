@@ -106,7 +106,7 @@ include('include/aside.php') ;
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh sản phẩm:</label>
                                     <input type="file" class="form-control" name="sp_image" id="exampleInputEmail1">
-                                    <img src="..//<?php ?>" height="100" width="100">
+                                    <img src="../images/product/<?php echo $row_sp['sanpham_image'] ?>" height="100" width="100">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá sản phẩm:</label>
@@ -122,19 +122,20 @@ include('include/aside.php') ;
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Mô tả sản phẩm:</label>
-                                    <textarea type="text" value="<?php echo $row_sp['sanpham_mota'] ?>" class="form-control ckeditor" name="mota_sp" id="exampleInputEmail1" placeholder="mô tả sản phẩm"></textarea>
+                                    <textarea type="text" value="" class="form-control ckeditor" name="mota_sp" id="exampleInputEmail1" placeholder="mô tả sản phẩm"><?php echo $row_sp['sanpham_mota'] ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Chi tiết sản phẩm:</label>
-                                    <textarea type="text" value="<?php echo $row_sp['sanpham_chitiet'] ?>" class="form-control ckeditor" name="chitiet_sp" id="exampleInputEmail1" placeholder="chi tiết sản phẩm"></textarea>
+                                    <textarea type="text" value="" class="form-control ckeditor" name="chitiet_sp" id="exampleInputEmail1" placeholder="chi tiết sản phẩm"><?php echo $row_sp['sanpham_chitiet'] ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên thương hiệu:</label><br/>
-                                    <select name="brand_sp">
+                                    <select name="brand_sp" class="form-control">
                                     <?php 
-                                        $sql_thuonghieu = mysqli_query($con,"SELECT * FROM tbl_brand ORDER BY brand_id DESC")
+                                        $sql_thuonghieu = mysqli_query($con,"SELECT * FROM tbl_brand ORDER BY brand_id DESC");
+                                        $row_th = mysqli_fetch_array($sql_thuonghieu);
                                         ?>
-                                        <option value="0">--------Chọn thương hiệu--------</option>
+                                        <option value="<?php echo $row_th['brand_id'] ?>"><?php echo $row_th['brand_name'] ?></option>
                                         <?php
                                         while($row_th = mysqli_fetch_array($sql_thuonghieu)){
                                         ?>
@@ -148,9 +149,10 @@ include('include/aside.php') ;
                                     <label for="exampleInputEmail1">Tên danh mục:</label><br/>
                                     <select name="category_sp" class="form-control">
                                         <?php 
-                                        $sql_danhmuc = mysqli_query($con,"SELECT * FROM tbl_category ORDER BY category_id DESC")
+                                        $sql_danhmuc = mysqli_query($con,"SELECT * FROM tbl_category ORDER BY category_id DESC");
+                                        $row_dm = mysqli_fetch_array($sql_danhmuc);
                                         ?>
-                                        <option value="0">--------Chọn danh mục--------</option>
+                                        <option value="<?php echo $row_dm['category_id'] ?>"><?php echo $row_dm['category_name'] ?></option>
                                         <?php
                                         while($row_dm = mysqli_fetch_array($sql_danhmuc)){
                                         ?>

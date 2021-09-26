@@ -69,7 +69,7 @@
                                             <input type="hidden" name="soluong" value="1"/>
                                             <input type="submit" name="themgiohang" value="Thêm giỏ hàng"class="btn btn-default add-to-cart" /> 
                                     <!-- <a href="?quanly=giohang" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a> -->
-                                      </fieldset>
+                                	</fieldset>
                                     </form> 
 										</div>
 
