@@ -96,7 +96,6 @@
 							$total = $total->num_rows;
 							// số trang có đc 
 							$totalpage = ceil($total/$item_per_page);
-                          
                         ?>
 				<div class="col-sm-9 padding-right">
                                     
@@ -143,10 +142,8 @@
 								
 							</div>
 						</div>
-						
 						<?php
-                         }?>
-
+                            }?>
 					</div><!--features_items-->
 					<!--  phân trang -->
 					<div class="pagination-area">

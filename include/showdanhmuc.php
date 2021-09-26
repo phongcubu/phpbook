@@ -49,11 +49,11 @@ $title = $sql_title['category_name']
 								<ul class="nav nav-pills nav-stacked">
 								<?php
 								 $sql_brand = mysqli_query($con,"SELECT * FROM tbl_brand ORDER BY brand_id DESC ");
-                                 while ($brand_item= mysqli_fetch_array($sql_brand)) {
-                                     ?>
+                                while ($brand_item= mysqli_fetch_array($sql_brand)) {
+                                ?>
 									<li><a href="?quanly=thuonghieu&brand_id=<?php echo $brand_item['brand_id'] ?>"><?php echo $brand_item['brand_name']; ?></a></li>
 								<?php
-                                 }?>
+                                }?>
 								</ul>
 							</div>
 						</div><!--/brands_products-->
@@ -125,21 +125,15 @@ $title = $sql_title['category_name']
                                             <input type="hidden" name="soluong" value="1"/>
                                             <input type="submit" name="themgiohang" value="Thêm giỏ hàng"class="btn btn-default add-to-cart" /> 
                                     <!-- <a href="?quanly=giohang" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a> -->
-                                      </fieldset>
+                                    </fieldset>
                                     </form> 
                                             </div>
                                         </a>
-							
 								</div>
-                               
-								
 							</div>
 						</div>
 						<?php
                             }?>
-                       
-						
-
 					</div><!--features_items-->
 					
 					

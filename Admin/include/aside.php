@@ -59,7 +59,18 @@
 						<li><a href="quanlisp.php">Quản lý sản phẩm</a></li>
                     </ul>
                 </li>
-            </ul>            </div>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-newspaper-o"></i>
+                        <span>Tin tức</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="quanly_tintuc.php">Quản lý tin tức</a></li>
+						<li><a href="quanly_danhmuc_tin.php">Quản lý danh mục tin tức</a></li>
+                    </ul>
+                </li>
+            </ul>            
+        </div>
         <!-- sidebar menu end-->
     </div>
 </aside>

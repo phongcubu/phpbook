@@ -3,6 +3,11 @@ include('../database/connectdb.php');
 session_start();
 ?>
 <?php
+if(isset($_GET['suasp_id']))
+{
+    $sql_query =mysqli_query($con, "SELECT * FROM tbl_sanpham WHERE sanpham_id=".$_GET['suasp_id']);
+    $sql_kq = mysqli_fetch_array($sql_query);
+}
 if(isset($_POST['update_sp_product']))
 {
     $tenSP = $_POST['sp_name'];
@@ -15,9 +20,11 @@ if(isset($_POST['update_sp_product']))
     $chitiet_SP = $_POST['chitiet_sp'];
     $thuonghieu_SP = $_POST['brand_sp'];
     $danhmuc_SP = $_POST['category_sp'];
+    $hienthi = $_POST['sp_status'];
     $path = '../images/product/';
-    $sql_insert =mysqli_query($con,"INSERT INTO tbl_sanpham(sanpham_name,sanpham_gia,sanpham_giakhuyenmai,sanpham_soluong,sanpham_image,sanpham_mota,sanpham_chitiet,brand_id,category_id) 
-    values ('$tenSP','$giaSP','$giaSPkm','$soluong','$hinhanh_SP','$mota_SP','$chitiet_SP','$thuonghieu_SP','$danhmuc_SP')");
+    $sql_insert =mysqli_query($con,"UPDATE tbl_sanpham
+    SET sanpham_name='$tenSP',sanpham_gia='$giaSP',sanpham_giakhuyenmai='$giaSPkm',sanpham_soluong='$soluong',sanpham_image='$hinhanh_SP',sanpham_mota='$mota_SP',sanpham_chitiet='$chitiet_SP',brand_id='$thuonghieu_SP',category_id='$danhmuc_SP',sanpham_active='$hienthi'
+    WHERE sanpham_id =$_POST[update_sp_product]");
     move_uploaded_file($hinhanh_tmp,$path.$hinhanh_SP);
     // sql query execution function
     
@@ -84,13 +91,17 @@ include('include/aside.php') ;
                     <section class="panel">
                         <header class="panel-heading">Cập Nhật Sản Phẩm</header>
                     </section>
+                    <?php
+                    $sql_sp = mysqli_query($con,"SELECT * FROM tbl_sanpham WHERE sanpham_id=$_GET[suasp_id] ORDER BY sanpham_id DESC");
+                    $row_sp= mysqli_fetch_array($sql_sp);
+                    ?>
                     <div class="panel-body">
                         <div class="position-center">
                             <form role="form" action="#" method="POST" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" value="qjXZyD171s2S86tqwOpW7ygKbYI6Nh7QEVRcNwPG">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên sản phẩm:</label>
-                                    <input type="text" class="form-control" name="sp_name" id="exampleInputEmail1" placeholder="tên sản phẩm">
+                                    <input type="text" value="<?php echo $row_sp['sanpham_name'] ?>" class="form-control" name="sp_name" id="exampleInputEmail1" placeholder="tên sản phẩm">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh sản phẩm:</label>
@@ -99,23 +110,23 @@ include('include/aside.php') ;
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá sản phẩm:</label>
-                                    <input type="text" class="form-control" name="giasp" id="exampleInputEmail1" placeholder="giá sản phẩm">
+                                    <input type="text" value="<?php echo $row_sp['sanpham_gia'] ?>" class="form-control" name="giasp" id="exampleInputEmail1" placeholder="giá sản phẩm">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá khuyến mãi:</label>
-                                    <input type="text" class="form-control" name="giaspkm" id="exampleInputEmail1" placeholder="giá khuyến mãi">
+                                    <input type="text" value="<?php echo $row_sp['sanpham_giakhuyenmai'] ?>" class="form-control" name="giaspkm" id="exampleInputEmail1" placeholder="giá khuyến mãi">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Số lượng sản phẩm:</label>
-                                    <input type="text" class="form-control" name="soluong" id="exampleInputEmail1" placeholder="số lượng">
+                                    <input type="text" value="<?php echo $row_sp['sanpham_soluong'] ?>" class="form-control" name="soluong" id="exampleInputEmail1" placeholder="số lượng">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Mô tả sản phẩm:</label>
-                                    <textarea type="text" class="form-control ckeditor" name="mota_sp" id="exampleInputEmail1" placeholder="mô tả sản phẩm"></textarea>
+                                    <textarea type="text" value="<?php echo $row_sp['sanpham_mota'] ?>" class="form-control ckeditor" name="mota_sp" id="exampleInputEmail1" placeholder="mô tả sản phẩm"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Chi tiết sản phẩm:</label>
-                                    <textarea type="text" class="form-control ckeditor" name="chitiet_sp" id="exampleInputEmail1" placeholder="chi tiết sản phẩm"></textarea>
+                                    <textarea type="text" value="<?php echo $row_sp['sanpham_chitiet'] ?>" class="form-control ckeditor" name="chitiet_sp" id="exampleInputEmail1" placeholder="chi tiết sản phẩm"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên thương hiệu:</label><br/>

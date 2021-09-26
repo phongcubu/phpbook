@@ -1,6 +1,5 @@
 
 <?php
-    session_start();
     include('database/connectdb.php');
 ?>
 <!DOCTYPE html>
@@ -29,64 +28,26 @@
 <!--/head-->
 
 <body>
-
     <?php 
     // header
     include('include/header.php');
-    //  slider
     include('include/sliderbar.php');
-
+    //  slider
     if(isset($_GET['quanly'])){
-		$quanly = $_GET['quanly'];
+		$tam = $_GET['quanly'];
 	}else{
-		$quanly = '';
+		$tam = '';
 	}
-    
-    if($quanly == 'danhmuc')
-    {
-        // hiên thị sản phẩm theo danh mục chọn
-    include('include/showdanhmuc.php');
-    }
-    elseif($quanly == 'thuonghieu')
-    {
-        // hiên thị sản phẩm theo thương hiệu chọn
-    include('include/showthuonghieu.php');
-    }
-
-    elseif($quanly == 'chitietsp'){
-        // hiển thị chi tiết 1 sản phẩm
-        include('include/chitietsp.php');
-    }
-    elseif($quanly == 'giohang'){
-        // hiển thị giỏ hàng
-        include('include/giohang.php');
-    }
-    elseif($quanly== 'shop'){
-        // hiển thị chi tiết  sản phẩm theo danh mục
-        include('include/shop.php');
-    }
-    elseif($quanly == 'tintuc'){
+    if($tam == 'tintuc'){
+        // hiển thị chi tiết 1 tin tức
         include('include/tintuc.php');
     }
-    elseif($quanly =='chitiettin'){
+    elseif($tam == 'chitiettin'){
         include('include/chitiettin.php');
     }
-    elseif($quanly =='danhmuctin'){
+    elseif($tam == 'showdanhmuctin'){
         include('include/showdanhmuctin.php');
     }
-    elseif($quanly == 'lienhe')
-    {   
-        include('include/lienhe.php');
-    }
-    elseif($quanly == 'timkiem'){
-        // tìm kiếm sản phẩm
-        include('include/search.php');
-    }
-    elseif($quanly == 'lienhe'){
-        // tìm kiếm sản phẩm
-        include('include/lienhe.php');
-    }
-
     else{
         //  home
         include('include/home.php');
@@ -104,7 +65,6 @@
 	<!-- scroll seller -->
 	<script src="js/scroll.js"></script>
 	<!-- //scroll seller -->
-
 </body>
 
 </html>

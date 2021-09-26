@@ -7,7 +7,7 @@ include('../database/connectdb.php')
 // delete condition
 if(isset($_GET['xoa_id']))
 {
-	$sql_query="DELETE FROM tbl_category WHERE category_id=".$_GET['xoa_id'];
+	$sql_query="DELETE FROM tbl_tintuc WHERE tintuc_id=".$_GET['xoa_id'];
 	mysqli_query($con, $sql_query);
 	header("Location: $_SERVER[PHP_SELF]");
 }
@@ -15,7 +15,7 @@ if(isset($_GET['xoa_id']))
 ?>
 <!DOCTYPE html>
 <head>
-<title>Liệt kê danh mục sản phẩm</title>
+<title>Quản lý tin tức</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -35,77 +35,86 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery2.0.3.min.js"></script>
 <script type="text/javascript">
 
-function suadanhmuc(id)
+function suatt(id)
 {
-	if(confirm('bạn muốn thay đổi danh mục này chứ?'))
+	if(confirm('bạn muốn thay đổi tin này chứ?'))
 	{
-		window.location.href='suadanhmuc.php?suadanhmuc_id='+id;
+		window.location.href='suatt.php?suatt_id='+id;
 	}
 }
 function xoa_id(id)
 {
-	if(confirm('Bạn muốn xóa danh mục này chứ ?'))
+	if(confirm('Bạn muốn xóa tin này chứ ?'))
 	{
-		window.location.href='lietkedanhmucsp.php?xoa_id='+id;
+		window.location.href='quanly_tintuc.php?xoa_id='+id;
 	}
 }
 </script>
 </head>
 <body>
-
 <?php  
 include('include/header.php') ;
 include('include/aside.php') ;
 ?>
-
 <!--main content start-->
 <section id="main-content">
 	<section class="wrapper">
 		<div class="table-agile-info">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            Liệt Kê Danh Mục
-        </div>
-        <div class="row w3-res-tb">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            Quan lý tin
+            </div>
+            <div class="row w3-res-tb">
                     <div class="col-sm-5 m-b-xs">
-                        <a href="themdanhmuc.php" class="btn btn-primary ">Thêm Danh Mục</a>                
+                        <a href="themtin.php" class="btn btn-primary ">Thêm tin</a>                
                     </div>
                     <div class="col-sm-4">
                 </div>
             </div>
         <div class="table-responsive">
-            <table  class="table table-striped b-t b-light">
+            <table class="table table-striped b-t b-light">
                 <thead>
                     <tr>
-                    <th style="width:20px;">
-                    </th>
-                    <th>Tên Danh Mục</th>
-                    <th  colspan="2" style="margin:auto">Quản Lý</th>
-                    
+                        <th>Tên tin </th>
+                        <th>Hình tin </th>
+                        <th>Tóm tắt </th>
+                        <th>Nội dung </th>
+                        <th>Danh Mục tin tức </th>
+                        <th>Hiển Thị</th>
+                        <th>Quản lý</th>
                     </tr>
                 </thead>
                 <tbody>
                 <?php
-                    $sql_kq = mysqli_query($con, "SELECT * FROM tbl_category");
+                    $sql_kq = mysqli_query($con,"SELECT * FROM tbl_tintuc");
                     if (mysqli_num_rows($sql_kq)>0) 
                     {
                         while ($row=mysqli_fetch_row($sql_kq)) 
                         {
                             ?>
                                     <tr>
-                                        <td></td>
-
-                                        <td ><span style="font-size: 17px;"><?php echo $row[1]; ?></span></td>
                                         
-
-                                        <td style="width:4%">
-                                            <a href="javascript:suadanhmuc('<?php echo $row[0]; ?>')" class="active styling-edit" ui-toggle-class="">
-                                            <i style="font-size: 26px;" class="fa fa-pencil-square-o text-success text-active"></i>
-                                            </a></td>
-                                            <td>
+                                        <td  style="1%"><span style="font-size: 17px;"><?php echo $row[1]; ?></span></td>
+                                        <td ><span style="font-size: 17px;"><img style="height: 50px;" src="../images/product/<?php echo $row[3];?>"/></span></td>
+                                        <td   ><span style="font-size: 17px;" class="product-name"><?php echo $row[2]; ?></span></td>
+                                        <td ><span style="font-size: 17px;" class="product-name"><?php echo $row[4]; ?></span></td>
+                                        <td ><span style="font-size: 17px;"><?php echo $row[6]; ?></span></td>
+                                        <td>
+                                            <?php   if( $row[6] == '1')
+                                            {
+                                                echo  "hiển thị";
+                                            }else
+                                            {
+                                                echo ("ẩn");
+                                            }?>
+                                        </td>
+                                        <td style="width:2%">
+                                            <a href="javascript:suatt('<?php echo $row[0]; ?>')" class="active styling-edit" ui-toggle-class="">
+                                            <i style="font-size: 20px;" class="fa fa-pencil-square-o text-success text-active"></i>
+                                            </a>
                                             <a href="javascript:xoa_id('<?php echo $row[0]; ?>')" 
                                             class="active styling-edit" ui-toggle-class="">
-                                            <i style="font-size: 26px;" class="fa fa-trash-o  text-danger text"></i>
+                                            <i style="font-size: 20px;" class="fa fa-trash-o  text-danger text"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -126,11 +135,24 @@ include('include/aside.php') ;
         </div>
         <footer class="panel-footer">
             <div class="row">
-
+                <div class="col-sm-5 text-center">
+                    <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+                </div>
+                <div class="col-sm-7 text-right text-center-xs">                
+                    <ul class="pagination pagination-sm m-t-none m-b-none">
+                        <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
+                        <li><a href="">1</a></li>
+                        <li><a href="">2</a></li>
+                        <li><a href="">3</a></li>
+                        <li><a href="">4</a></li>
+                        <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
+                    </ul>
+                </div>
             </div>
         </footer>
-        </div>
     </div>
+</div>
+</section>
 <!-- footer -->
 <div class="footer">
     <div class="wthree-copyright">
@@ -138,9 +160,8 @@ include('include/aside.php') ;
     </div>
 </div>
 <!-- / footer -->
-</section>
-
 <!--main content end-->
+</section>
 </section>
 <script src="js/bootstrap.js"></script>
 <script src="js/jquery.dcjqaccordion.2.7.js"></script>

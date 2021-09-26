@@ -41,7 +41,6 @@
                     <div class="col-sm-2 ">
                         <div class="single-widget ">
                             <h2>Thanh toán miễn phí</h2>
-                           
                             <table>
                                 <tr>
                                     <td><img src="images/shop/thanhtoan/bidv.png" style=" width: 90px; height: 40px;margin: 5px; " alt=""></td>
@@ -51,7 +50,6 @@
                                     <td><img src="images/shop/thanhtoan/visa.png" alt="" style=" width: 90px; height: 40px; margin: 5px; "></td>
                                     <td><img src="images/shop/thanhtoan/zalopay.png" alt="" style=" width: 90px; height: 40px; margin: 5px; "></td>
                                 </tr>
-
                             </table>
                         </div>
                     </div>
@@ -61,7 +59,6 @@
                             <form action="# " class="searchform ">
                                 <input type="text " placeholder="Email của bạn ........." />
                                 <button type="submit " class="btn btn-default "><i class="fa fa-arrow-circle-o-right "></i></button>
-
                             </form>
                         </div>
                     </div>

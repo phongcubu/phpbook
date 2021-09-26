@@ -104,9 +104,16 @@ include('include/aside.php') ;
                                 <td >
                                     <span style="font-size: 17px;">
                                     <?php
+                                    $sql_kh = mysqli_query($con,"SELECT * FROM tbl_khachhang");
+                                    $row_kh=mysqli_fetch_row($sql_kh);
+                                    $sql_lk = mysqli_query($con,"SELECT *FROM tbl_giohang, tbl_donhang WHERE tbl_giohang.sanpham_id = tbl_donhang.sanpham_id");
+                                    $row_lk = mysqli_fetch_row($sql_lk);
                                     $sql_gh= mysqli_query($con,"SELECT SUM(giasanpham) AS tong FROM tbl_giohang");
-                                    $row_gh=mysqli_fetch_array($sql_gh); 
-                                    echo $row_gh['tong']; 
+                                    $row_gh=mysqli_fetch_array($sql_gh);
+                                    if($row_dh[4]==$row_kh[0] && $row_lk)
+                                    {
+                                        echo $row_gh['tong'];
+                                    }
                                     ?>
                                     </span>
                                 </td>
@@ -125,10 +132,6 @@ include('include/aside.php') ;
                                     ?>
                                     </span>
                                 </td>
-                                <td style="width:4%">
-                                    <a href="javascript:suaorder('<?php echo $row_dh[0]; ?>')" class="active styling-edit" ui-toggle-class="">
-                                    <i style="font-size: 26px;" class="fa fa-pencil-square-o text-success text-active"></i>
-                                    </a></td>
                                 <td>
                                     <a href="javascript:xoa_id('<?php echo $row_dh[0]; ?>')" 
                                     class="active styling-edit" ui-toggle-class="">

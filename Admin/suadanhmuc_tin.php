@@ -4,26 +4,22 @@ session_start();
 ?>
 
 <?php
-if(isset($_GET['suauser_id']))
+if(isset($_GET['suadanhmuctin_id']))
 {
-    $sql_query =mysqli_query($con, "SELECT * FROM tbl_khachhang WHERE khachhang_id=".$_GET['suauser_id']);
+    $sql_query =mysqli_query($con, "SELECT * FROM tbl_danhmuctin WHERE danhmuctin_id=".$_GET['suadanhmuctin_id']);
     $sql_kq = mysqli_fetch_array($sql_query);
 }
 
-if(isset($_POST['update_user']))
+if(isset($_POST['update_danhmuctin']))
 {
-    $tenKH = $_POST['user_product_name'];
-    $phone = $_POST['user_product_phone'];
-    $email = $_POST['user_product_email'];
-    $pass = $_POST['user_product_pass'];
-    $dchi = $_POST['user_product_dc'];
-    $sql_update = "UPDATE tbl_khachhang SET names='$tenKH',phone='$phone',email='$email',passwords='$pass',addresss='$dchi' WHERE user_id=".$_GET['suauser_id'];
+    $tenDM = $_POST['danhmuctin_name'];
+    $sql_update = "UPDATE tbl_danhmuctin SET danhmuctin_name='$tenDM' WHERE danhmuctin_id=".$_GET['suadanhmuctin_id'];
     if(mysqli_query($con, $sql_update))
     {
         ?>
         <script type="text/javascript">
-		alert('cập nhât tên khách hàng thành công');
-		window.location.href='quanlykhachhang.php';
+		alert('cập nhât tên danh mục thành công');
+		window.location.href='quanly_danhmuc_tin.php';
 		</script>
 		<?php
     }
@@ -36,15 +32,16 @@ if(isset($_POST['update_user']))
 		<?php
 	}
 	// sql query execution function
+    
 }
 if(isset($_POST['btn-thoat']))
     {
-        header("Location: quanlykhachhang.php");
+        header("Location: quanly_danhmuc_tin.php");
     }
 ?>
 <!DOCTYPE html>
 <head>
-<title>Cập nhật khach hang</title>
+<title>Cập nhật danh mục tin tức</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -84,33 +81,17 @@ include('include/aside.php') ;
             <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">
-                        <header class="panel-heading">Cập nhật khách hàng</header>
+                        <header class="panel-heading">Cập nhật danh mục tin tức</header>
                     </section>
                     <div class="panel-body">
                         <div class="position-center">
                             <form role="form" action="#" method="POST">
                                 <input type="hidden" name="_token" value="qjXZyD171s2S86tqwOpW7ygKbYI6Nh7QEVRcNwPG">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên khách hàng:</label>
-                                    <input type="text" value="<?php echo $sql_kq['names'] ?>" class="form-control" name="user_product_name" id="exampleInputEmail1" placeholder="tên khách hàng">
+                                    <label for="exampleInputEmail1">Tên danh mục:</label>
+                                    <input type="text" value="<?php echo $sql_kq['danhmuctin_name'] ?>" class="form-control" name="danhmuctin_name" id="exampleInputEmail1" placeholder="tên danh mục">
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Số Điện Thoại:</label>
-                                    <input type="text" value="<?php echo $sql_kq['phone'] ?>" class="form-control" name="user_product_phone" id="exampleInputEmail1" placeholder="số điện thoại">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Email:</label>
-                                    <input type="text" value="<?php echo $sql_kq['email'] ?>" class="form-control" name="user_product_email" id="exampleInputEmail1" placeholder="email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Password:</label>
-                                    <input type="text" value="<?php echo $sql_kq['passwords'] ?>" class="form-control" name="user_product_pass" id="exampleInputEmail1" placeholder="password">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Địa chỉ:</label>
-                                    <input type="text" value="<?php echo $sql_kq['addresss'] ?>" class="form-control" name="user_product_dc" id="exampleInputEmail1" placeholder="địa chỉ">
-                                </div>
-                                <button type="submit" name="update_user" class="btn btn-info">Cập nhật khách hàng</button>
+                                <button type="submit" name="update_danhmuctin" class="btn btn-info">Cập nhật danh mục</button>
                                 <button type="submit" name="btn-thoat" class="btn btn-info">Quay lại</button>
                             </form>
                         </div>
