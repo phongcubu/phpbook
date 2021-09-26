@@ -46,6 +46,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery2.0.3.min.js"></script>
 <script src="js/raphael-min.js"></script>
 <script src="js/morris.js"></script>
+
 </head>
 <body>
 <section id="container">
@@ -177,6 +178,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/jquery.nicescroll.js"></script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="js/jquery.scrollTo.js"></script>
+<!-- filter-tables -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <!-- morris JavaScript -->	
 <script>
 	$(document).ready(function() {
@@ -231,7 +234,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		
 	});
 	</script>
-<!-- calendar -->
+	<!-- calendar -->
 	<script type="text/javascript" src="js/monthly.js"></script>
 	<script type="text/javascript">
 		$(window).load( function() {
@@ -263,5 +266,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		});
 	</script>
 	<!-- //calendar -->
+
+
 </body>
 </html>

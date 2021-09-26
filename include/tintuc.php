@@ -44,7 +44,7 @@
                                     <h3><?php echo $row_tin['tintuc_name']; ?></h3>
                                     <div class="post-meta">
                                         <ul>
-                                            <li><i class="fa fa-calendar"></i> <?php echo date("j/n/Y g:i a ") ?></li>
+                                            <li><i class="fa fa-calendar"></i><?php echo date("j/n/Y g:i a ") ?></li>
                                         </ul>
                                     </div>
                                     <p><?php echo $row_tin['tomtat'] ?></p>

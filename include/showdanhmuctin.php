@@ -64,7 +64,7 @@ else{
                                         <h3><?php echo $tin_item['tintuc_name']; ?></h3>
                                         <div class="post-meta">
                                             <ul>
-                                                <li><i class="fa fa-calendar"></i> <?php echo date("j/n/Y g:i a ") ?></li>
+                                                <li><i class="fa fa-calendar"></i><?php echo date("j/n/Y g:i a ") ?></li>
                                             </ul>
                                         </div>
                                         <p><?php echo $tin_item['tomtat'] ?></p>
@@ -79,6 +79,6 @@ else{
 				</div>
 			</div>
 		</div>
-	</section>
+</section>
 
   

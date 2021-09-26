@@ -162,8 +162,8 @@ include('include/aside.php') ;
                                 </div>
                                 <div class="form-group">
                                     <select name="sp_status" class="form-control trol input-lg m-bot15">
-                                        <option value="0">ẩn</option>
                                         <option value="1">hiện</option>
+                                        <option value="0">ẩn</option>
                                     </select>
                                 </div>
                                 <button type="submit" name="update_sp_product" class="btn btn-info">Cập nhật Sản phẩm</button>

@@ -16,9 +16,10 @@ if(isset($_POST['update_sp_product']))
     $thuonghieu_SP = $_POST['brand_sp'];
     $danhmuc_SP = $_POST['category_sp'];
     $hienthi = $_POST['sp_status'];
+    $hot = $_POST['sp_hot'];
     $path = '../images/product/';
     $sql_insert =mysqli_query($con,"INSERT INTO tbl_sanpham(sanpham_name,sanpham_gia,sanpham_giakhuyenmai,sanpham_soluong,sanpham_image,sanpham_mota,sanpham_chitiet,brand_id,category_id,sanpham_active) 
-    values ('$tenSP','$giaSP','$giaSPkm','$soluong','$hinhanh_SP','$mota_SP','$chitiet_SP','$thuonghieu_SP','$danhmuc_SP','$hienthi')");
+    values ('$tenSP','$giaSP','$giaSPkm','$soluong','$hinhanh_SP','$mota_SP','$chitiet_SP','$thuonghieu_SP','$danhmuc_SP','$hienthi','$hot')");
     move_uploaded_file($hinhanh_tmp,$path.$hinhanh_SP);
     // sql query execution function
 	if($sql_insert)
@@ -143,10 +144,19 @@ include('include/aside.php') ;
                                         ?>
                                     </select>
                                 </div>
+
                                 <div class="form-group">
+                                <label for="exampleInputEmail1">Hiển Thị</label><br/>
                                     <select name="sp_status" class="form-control trol input-lg m-bot15">
-                                        <option value="0">ẩn</option>
                                         <option value="1">hiện</option>
+                                        <option value="0">ẩn</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1">Sản phẩm bán chạy</label><br/>
+                                    <select name="sp_hot" class="form-control trol input-lg m-bot15">
+                                        <option value="1">hiện</option>
+                                        <option value="0">ẩn</option>
                                     </select>
                                 </div>
                                 <button type="submit" name="update_sp_product" class="btn btn-info">Thêm sản phẩm</button>
