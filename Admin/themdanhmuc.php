@@ -67,7 +67,7 @@ include('include/aside.php') ;
                     </section>
                     <div class="panel-body">
                         <div class="position-center">
-                            <form role="form" action="#" method="POST">
+                            <form role="form" action="" method="POST">
                                 <input type="hidden" name="_token" value="qjXZyD171s2S86tqwOpW7ygKbYI6Nh7QEVRcNwPG">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên danh mục:</label>

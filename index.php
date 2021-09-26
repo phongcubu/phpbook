@@ -69,6 +69,10 @@
         // tìm kiếm sản phẩm
         include('include/search.php');
     }
+    elseif($quanly == 'lienhe'){
+        // tìm kiếm sản phẩm
+        include('include/lienhe.php');
+    }
 
     else{
         //  home

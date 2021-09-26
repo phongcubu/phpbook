@@ -186,7 +186,7 @@ elseif(isset($_POST['dangky']))
                             <ul class="nav navbar-nav collapse navbar-collapse " >
                                 <li><a href="index.php">Trang Chủ</a></li>
                                 <li ><a href="?quanly=shop" >Sản Phẩm</a></li> 
-                                <li ><a href="lienhe.php" >Liên Hệ</a></li>
+                                <li ><a href="?quanly=lienhe" >Liên Hệ</a></li>
                             </ul>
                         </div>
                     </div>
