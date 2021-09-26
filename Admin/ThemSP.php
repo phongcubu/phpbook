@@ -89,8 +89,8 @@ include('include/aside.php') ;
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh sản phẩm:</label>
-                                    <input type="file" class="form-control" name="sp_image" id="exampleInputEmail1">
-                                    <img src="..//<?php ?>" height="100" width="100">
+                                    <input  type="file" class="form-control image-preview" name="sp_image" id="exampleInputEmail1" onchange="previewFile(this);">
+                                    <img  src="https://lukoilonline.com/uploadFiles/default.png" width="20%" id="previewImg" >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá sản phẩm:</label>
@@ -186,5 +186,21 @@ include('include/aside.php') ;
 <script src="js/jquery.nicescroll.js"></script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="js/jquery.scrollTo.js"></script>
+<!-- -- preview img -- -->
+<script type="text/javascript"> 
+    function previewFile(input)
+    {
+        var file =$(".image-preview").get(0).files[0];
+        console.log(file)
+        if(file)
+        {
+            var read = new FileReader();
+            read.onload = function(){
+                $('#previewImg').attr("src", read.result);
+            }
+            read.readAsDataURL(file);
+        }
+    }
+</script>
 </body>
 </html>
