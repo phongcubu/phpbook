@@ -16,9 +16,10 @@ if(isset($_POST['update_sp_product']))
     $thuonghieu_SP = $_POST['brand_sp'];
     $danhmuc_SP = $_POST['category_sp'];
     $hienthi = $_POST['sp_status'];
+    $hot = $_POST['sp_hot'];
     $path = '../images/product/';
     $sql_insert =mysqli_query($con,"INSERT INTO tbl_sanpham(sanpham_name,sanpham_gia,sanpham_giakhuyenmai,sanpham_soluong,sanpham_image,sanpham_mota,sanpham_chitiet,brand_id,category_id,sanpham_active) 
-    values ('$tenSP','$giaSP','$giaSPkm','$soluong','$hinhanh_SP','$mota_SP','$chitiet_SP','$thuonghieu_SP','$danhmuc_SP','$hienthi')");
+    values ('$tenSP','$giaSP','$giaSPkm','$soluong','$hinhanh_SP','$mota_SP','$chitiet_SP','$thuonghieu_SP','$danhmuc_SP','$hienthi','$hot')");
     move_uploaded_file($hinhanh_tmp,$path.$hinhanh_SP);
     // sql query execution function
 	if($sql_insert)
@@ -88,8 +89,8 @@ include('include/aside.php') ;
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh sản phẩm:</label>
-                                    <input type="file" class="form-control" name="sp_image" id="exampleInputEmail1">
-                                    <img src="..//<?php ?>" height="100" width="100">
+                                    <input  type="file" class="form-control image-preview" name="sp_image" id="exampleInputEmail1" onchange="previewFile(this);">
+                                    <img  src="https://lukoilonline.com/uploadFiles/default.png" width="20%" id="previewImg" >
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Giá sản phẩm:</label>
@@ -143,10 +144,19 @@ include('include/aside.php') ;
                                         ?>
                                     </select>
                                 </div>
+
                                 <div class="form-group">
+                                <label for="exampleInputEmail1">Hiển Thị</label><br/>
                                     <select name="sp_status" class="form-control trol input-lg m-bot15">
-                                        <option value="0">ẩn</option>
                                         <option value="1">hiện</option>
+                                        <option value="0">ẩn</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1">Sản phẩm bán chạy</label><br/>
+                                    <select name="sp_hot" class="form-control trol input-lg m-bot15">
+                                        <option value="1">hiện</option>
+                                        <option value="0">ẩn</option>
                                     </select>
                                 </div>
                                 <button type="submit" name="update_sp_product" class="btn btn-info">Thêm sản phẩm</button>
@@ -176,5 +186,21 @@ include('include/aside.php') ;
 <script src="js/jquery.nicescroll.js"></script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="js/jquery.scrollTo.js"></script>
+<!-- -- preview img -- -->
+<script type="text/javascript"> 
+    function previewFile(input)
+    {
+        var file =$(".image-preview").get(0).files[0];
+        console.log(file)
+        if(file)
+        {
+            var read = new FileReader();
+            read.onload = function(){
+                $('#previewImg').attr("src", read.result);
+            }
+            read.readAsDataURL(file);
+        }
+    }
+</script>
 </body>
 </html>

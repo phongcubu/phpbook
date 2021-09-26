@@ -29,11 +29,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/style-responsive.css" rel="stylesheet"/>
 <!-- font CSS -->
 <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<!-- filter table -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <!-- font-awesome icons -->
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <!-- //font-awesome icons -->
 <script src="js/jquery2.0.3.min.js"></script>
 <script type="text/javascript">
+
 
 function suasp(id)
 {
@@ -72,7 +75,7 @@ include('include/aside.php') ;
                 </div>
             </div>
         <div class="table-responsive">
-            <table class="table table-striped b-t b-light">
+            <table class="table table-striped b-t b-light" id="example">
                 <thead>
                     <tr>
                         
@@ -85,6 +88,7 @@ include('include/aside.php') ;
                         <th>Thương Hiệu Sản Phẩm </th>
                         <th>Hiển Thị</th>
                         <th>Bán chạy</th>
+                        <th>Đăng ngày</th>
                         <th>Quản lý</th>
                     </tr>
                 </thead>
@@ -141,6 +145,9 @@ include('include/aside.php') ;
                                                     echo ("ẩn");
                                                 }?>
                                             </td>
+                                        <td>
+                                        <span style="font-size: 17px;"><?php echo $row[12]; ?></span>
+                                        </td>
                                         <td style="width:2%">
                                             <a href="javascript:suasp('<?php echo $row[0]; ?>')" class="active styling-edit" ui-toggle-class="">
                                             <i style="font-size: 20px;" class="fa fa-pencil-square-o text-success text-active"></i>
@@ -166,7 +173,7 @@ include('include/aside.php') ;
                 </tbody>
             </table>
         </div>
-        <footer class="panel-footer">
+        <!-- <footer class="panel-footer">
             <div class="row">
                 <div class="col-sm-5 text-center">
                     <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
@@ -182,7 +189,7 @@ include('include/aside.php') ;
                     </ul>
                 </div>
             </div>
-        </footer>
+        </footer> -->
     </div>
 </div>
 </section>
@@ -201,7 +208,16 @@ include('include/aside.php') ;
 <script src="js/scripts.js"></script>
 <script src="js/jquery.slimscroll.js"></script>
 <script src="js/jquery.nicescroll.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="js/jquery.scrollTo.js"></script>
+	<!--Filter tables  -->
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#example').DataTable();
+		})
+
+	</script>
+	<!--Filter tables  -->
 </body>
 </html>

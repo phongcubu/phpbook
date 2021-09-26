@@ -7,7 +7,9 @@
  {
      $id ="";
  }
-  $sql_chitiet = mysqli_query($con, "SELECT * FROM tbl_sanpham WHERE sanpham_id ='$id'")
+  $sql_chitiet = mysqli_query($con, "SELECT * FROM tbl_sanpham WHERE sanpham_id ='$id'");
+  $sql_dm = mysqli_query($con, "SELECT * FROM  tbl_sanpham WHERE sanpham_id  NOT IN ($id) LIMIT 2,7 ");
+  
 
 ?>
     <section>
@@ -49,7 +51,7 @@
                         <!--product-details-->
                         
                         <div class="col-sm-5">
-                            <div class="view-product">
+                            <div class="view-product zoom">
                             <img src="images/product/<?php echo $chitiet['sanpham_image']?>" class="newarrival" alt="" />
                             </div>
                            
@@ -68,23 +70,32 @@
                                 <label>Số Lượng có sẵn:</label>
                                 <input type="text" value="<?php echo $chitiet['sanpham_soluong'] ?>" />
                                 </span>
-                                 <form action="?quanly=giohang" method="POST"> 
+                                <form action="?quanly=giohang" method="POST"> 
                                     <fieldset>
-                                    <input type="hidden" name="tensanpham" value="<?php echo $chitiet['sanpham_name']?>"/>
-                                    <input type="hidden" name="sanpham_id" value="<?php echo $chitiet['sanpham_id']?>"/>
-                                    <input type="hidden" name="giasanpham" value="<?php echo $chitiet['sanpham_gia']?>"/>
-                                    <input type="hidden" name="hinhanh" value="<?php echo $chitiet['sanpham_image']?>"/>
-                                    <input type="hidden" name="soluong" value="1"/>
-                                     <input type="submit" name="themgiohang" value="Thêm giỏ hàng"class="btn btn-default add-to-cart" /> 
-                                    <!-- <a href="?quanly=giohang" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a> -->
-                                </fieldset>
+                                        <input type="hidden" name="tensanpham" value="<?php echo $chitiet['sanpham_name']?>"/>
+                                        <input type="hidden" name="sanpham_id" value="<?php echo $chitiet['sanpham_id']?>"/>
+                                        <input type="hidden" name="giasanpham" value="<?php echo $chitiet['sanpham_gia']?>"/>
+                                        <input type="hidden" name="hinhanh" value="<?php echo $chitiet['sanpham_image']?>"/>
+                                        <input type="hidden" name="soluong" value="1"/>
+                                        <input type="submit" name="themgiohang" value="Thêm giỏ hàng"class="btn btn-default add-to-cart" /> 
+                                        <!-- <a href="?quanly=giohang" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a> -->
+                                    </fieldset>
+                                <p><b>Tình trạng:</b> Mới 100 %</p> 
+                              
+                                <p><b>Nhà xuất bản:</b>
+                                <?php
+                                   $sql_th = mysqli_query($con, "SELECT * FROM tbl_brand,tbl_sanpham WHERE tbl_brand.brand_id = tbl_sanpham.brand_id AND tbl_sanpham.brand_id = $chitiet[brand_id] ORDER BY tbl_sanpham.sanpham_id DESC");
+                                        $row_th=mysqli_fetch_array($sql_th);
+                                        echo $row_th['brand_name']; ?>
+                                </p>
+                                <a href=""><img src="images/shop/share.png" class="share img-responsive"  alt="" /></a>
                                 </form> 
                                 <?php
-                                    }else{
-                                ?>
+                                    } else {
+                                        ?>
                                 <p style="color:#e21515" >Sản phẩm đã bán hết , mong quý khách quay lại lần sau !</p>
                                 <?php
-                                    }?>
+                                    } ?>
                                
                                
                             </div><!--/product-information-->
@@ -139,10 +150,52 @@
                                 <p><?php echo $chitiet['sanpham_chitiet'] ?></p>
                             </div>
 
-                            </div>
+                         </div>
 
-                        </div>
                     </div>
+                    <!--  sản phẩm liên quan  -->
+                    <div class="recommended_items"><!--recommended_items-->
+						<h2 class="title text-center">Sản phẩm liên quan</h2>
+
+					
+                      <?php  while ($row_dm=mysqli_fetch_array($sql_dm)) {
+                                        
+                                     ?>          
+                        <div class="col-sm-4 ">
+                            <div class="product-image-wrapper">
+								<div class="single-products">
+                                        <a href="?quanly=chitietsp&id=<?php echo  $row_dm['sanpham_id'] ?>">
+                                            <div class="productinfo text-center">
+                                                <img src="images/product/<?php echo  $row_dm['sanpham_image']; ?>"  alt="" />
+                                                <p style="height: 20px;">
+												<span class="new_price"><?php echo number_format($row_dm['sanpham_giakhuyenmai'], 0, ",", ".")."đ"; ?></span>
+												<span class="old_price"><?php echo number_format($row_dm['sanpham_gia'], 0, ",", ".")."đ"; ?></span>
+												</p>
+												<p class="product-name" ><?php echo  $row_dm['sanpham_name']; ?></p>
+												<form action="?quanly=giohang" method="POST"> 
+													<fieldset>
+													<input type="hidden" name="tensanpham" value="<?php echo  $row_dm['sanpham_name']?>"/>
+													<input type="hidden" name="sanpham_id" value="<?php echo  $row_dm['sanpham_id']?>"/>
+													<input type="hidden" name="giasanpham" value="<?php echo  $row_dm['sanpham_gia']?>"/>
+													<input type="hidden" name="hinhanh" value="<?php echo  $row_dm['sanpham_image']?>"/>
+													<input type="hidden" name="soluong" value="1"/>
+													<input type="submit" name="themgiohang" value="Thêm giỏ hàng"class="btn btn-default add-to-cart" /> 
+												
+													</fieldset>
+												</form> 
+                                            </div>
+                                        </a>
+							
+								</div>
+                              
+								
+							</div>
+						</div>
+                        <?php
+                    }?>
+								
+					</div><!--/recommended_items-->
+                </div>
 
                 </div>
                 <?php 
