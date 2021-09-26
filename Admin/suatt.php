@@ -101,17 +101,17 @@ include('include/aside.php') ;
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh tin:</label>
-                                    <input type="file" value="" class="form-control" name="tt_image" id="exampleInputEmail1">
+                                    <input type="file" class="form-control" name="tt_image" id="exampleInputEmail1">
                                     <img src="../images/product/<?php echo $row_tin['img_dautrang']?>" height="100" width="100">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tóm tắt:</label>
-                                    <textarea type="text" value="" class="form-control ckeditor" name="tomtat" id="exampleInputEmail1" placeholder="tóm tắt"><?php echo $row_tin['tomtat'] ?></textarea>
+                                    <textarea type="text" class="form-control ckeditor" name="tomtat" id="exampleInputEmail1" placeholder="tóm tắt"><?php echo $row_tin['tomtat'] ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nội dung:</label>
-                                    <textarea type="text" value="" class="form-control ckeditor" name="noidung" id="exampleInputEmail1" placeholder="nội dung"><?php echo $row_tin['noidung_tin'] ?></textarea>
+                                    <textarea type="text" class="form-control ckeditor" name="noidung" id="exampleInputEmail1" placeholder="nội dung"><?php echo $row_tin['noidung_tin'] ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên danh mục tin:</label><br/>
@@ -142,7 +142,6 @@ include('include/aside.php') ;
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

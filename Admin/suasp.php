@@ -24,7 +24,7 @@ if(isset($_POST['update_sp_product']))
     $path = '../images/product/';
     $sql_insert =mysqli_query($con,"UPDATE tbl_sanpham
     SET sanpham_name='$tenSP',sanpham_gia='$giaSP',sanpham_giakhuyenmai='$giaSPkm',sanpham_soluong='$soluong',sanpham_image='$hinhanh_SP',sanpham_mota='$mota_SP',sanpham_chitiet='$chitiet_SP',brand_id='$thuonghieu_SP',category_id='$danhmuc_SP',sanpham_active='$hienthi'
-    WHERE sanpham_id =$_POST[update_sp_product]");
+    WHERE sanpham_id =".$_GET['suasp_id']);
     move_uploaded_file($hinhanh_tmp,$path.$hinhanh_SP);
     // sql query execution function
     
@@ -122,11 +122,11 @@ include('include/aside.php') ;
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Mô tả sản phẩm:</label>
-                                    <textarea type="text" value="" class="form-control ckeditor" name="mota_sp" id="exampleInputEmail1" placeholder="mô tả sản phẩm"><?php echo $row_sp['sanpham_mota'] ?></textarea>
+                                    <textarea type="text" value="<?php echo $row_sp['sanpham_mota'] ?>" class="form-control ckeditor" name="mota_sp" id="exampleInputEmail1" placeholder="mô tả sản phẩm"><?php echo $row_sp['sanpham_mota'] ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Chi tiết sản phẩm:</label>
-                                    <textarea type="text" value="" class="form-control ckeditor" name="chitiet_sp" id="exampleInputEmail1" placeholder="chi tiết sản phẩm"><?php echo $row_sp['sanpham_chitiet'] ?></textarea>
+                                    <textarea type="text" value="<?php echo $row_sp['sanpham_mota'] ?>" class="form-control ckeditor" name="chitiet_sp" id="exampleInputEmail1" placeholder="chi tiết sản phẩm"><?php echo $row_sp['sanpham_chitiet'] ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên thương hiệu:</label><br/>
