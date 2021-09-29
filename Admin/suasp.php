@@ -213,5 +213,6 @@ include('include/aside.php') ;
             read.readAsDataURL(file);
         }
     }
+</script>
 </body>
 </html>
