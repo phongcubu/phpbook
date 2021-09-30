@@ -176,7 +176,6 @@ include('include/aside.php') ;
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

@@ -3,13 +3,19 @@ session_start();
 include('../database/connectdb.php')
 ?>
 <?php
-
-// delete condition
-// delete condition
+if(isset($_GET['mahang'])){
+    $mahang = $_GET['mahang'];
+}else{
+    $mahang = '';
+}
+if(isset($_POST['btn-thoat']))
+{
+    header("Location:QuanLyDonHang.php");
+}
 ?>
 <!DOCTYPE html>
 <head>
-<title>Quản lý đơn hàng</title>
+<title>Chi tiết đơn hàng</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -28,11 +34,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- //font-awesome icons -->
 <script src="js/jquery2.0.3.min.js"></script>
 <script type="text/javascript">
-
-function xemdonhang(id)
-{
-	window.location.href='chitietdon.php?mahang='+id;
-}
 </script>
 </head>
 <body>
@@ -47,29 +48,28 @@ include('include/aside.php') ;
 		<div class="table-agile-info">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Quản lý Đơn Hàng
+                    Chi Tiết Đơn Hàng
                 </div>
+                
             </div>
             <div class="table-responsive">
                 <table class="table table-striped b-t b-light">
                     <thead>
                         <tr>
                         <th>Thứ tự</th>
-                        <th>Tên người đặt</th>
-                        <th>Mã hàng</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Tổng tiền</th>
                         <th>Ngày tháng</th>
-                        <th>Tình trạng</th>
-                        <th style="width:100px;">Chi tiết</th>
                         </tr>
                     </thead>
                 <tbody>
                     <?php
-                    $sql_dh = mysqli_query($con,"SELECT * FROM tbl_donhang,tbl_khachhang,tbl_sanpham WHERE tbl_donhang.sanpham_id = tbl_sanpham.sanpham_id 
-                            AND tbl_donhang.khachhang_id = tbl_khachhang.khachhang_id ORDER BY tbl_donhang.donhang_id DESC");
-                    if (mysqli_num_rows($sql_dh)>0) 
-                    {
+                        $sql_chitiet = mysqli_query($con,"SELECT * FROM tbl_donhang,tbl_sanpham WHERE tbl_donhang.sanpham_id = tbl_sanpham.sanpham_id 
+                        AND tbl_donhang.mahang='$mahang' ORDER BY tbl_donhang.donhang_id DESC");
                         $i=0;
-                        while ($row_dh=mysqli_fetch_array($sql_dh))
+                        while ($row_chitiet=mysqli_fetch_array($sql_chitiet))
                         {
                             $i++;
                     ?>
@@ -80,52 +80,34 @@ include('include/aside.php') ;
                                 <td>
                                     <span style="font-size: 17px;">
                                     <?php 
-                                        echo $row_dh['name'];
+                                        echo $row_chitiet['sanpham_name'];
                                     ?>
                                     </span>
                                 </td>
                                 <td >
-                                    <span style="font-size: 17px;"><?php echo $row_dh['mahang']; ?></span>
+                                    <span style="font-size: 17px;"><?php echo $row_chitiet['soluong']; ?></span>
                                 </td>
                                 <td >
-                                    <span style="font-size: 17px;"><?php echo $row_dh['ngaythang']; ?></span>
+                                    <span style="font-size: 17px;"><?php echo number_format($row_chitiet['sanpham_giakhuyenmai']).'vnđ'; ?></span>
                                 </td>
                                 <td >
-                                    <span style="font-size: 17px;">
-                                    <?php 
-                                    if($row_dh['tinhtrang']==1)
-                                    {
-                                        echo 'Đã xử lý';
-                                    }
-                                    if($row_dh['tinhtrang']==0)
-                                    {
-                                        echo 'Đang xử lý';
-                                    } 
-                                    ?>
-                                    </span>
+                                    <span style="font-size: 17px;"><?php echo number_format($row_chitiet['soluong'] * $row_chitiet['sanpham_giakhuyenmai']).'vnđ'; ?></span>
                                 </td>
-                                <td>
-                                    <a href="javascript:xemdonhang('<?php echo $row_dh['mahang'];?>')" 
-                                    class="active styling-edit" ui-toggle-class="">
-                                    <i style="font-size: 20px;" class="fa fa-eye  text-danger text"></i>
-                                    </a>
+                                <td >
+                                    <span style="font-size: 17px;"><?php echo $row_chitiet['ngaythang']; ?></span>
                                 </td>
                             </tr>
                     <?php
                         }
-                    }
-                    else
-                    {
                     ?>
-                            <tr>
-                            <td colspan="5">Không tìm thấy dữ liệu cần tìm !</td>
-                            </tr>
-                    <?php
-                    }
-                    ?>
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
+            <footer class="panel-footer">
+                <form action="" method="POST">
+                    <button type="submit" name="btn-thoat" class="btn btn-info">Quay lại</button>
+                </form>
+            </footer>
     </div>
 </section>
 <!-- footer -->

@@ -93,11 +93,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 							<div class="col-md-8 market-update-left">
 								<h4>Sản phẩm</h4>
-							
 								<h3>
 									<?php echo $fetch1['soluongsp'] ?>
 								</h3>
-							
 								<p>Đang được bán</p>
 							</div>
 							<div class="clearfix"> </div>

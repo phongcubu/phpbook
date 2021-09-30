@@ -23,8 +23,6 @@ if(isset($_POST['update_tin']))
     WHERE tintuc_id=".$_GET['suatt_id']);
     move_uploaded_file($hinhanh_tmp,$path.$hinhanh_tt);
     // sql query execution function
-    
-    
 	if($sql_insert)
 	{
 		?>
@@ -138,7 +136,7 @@ include('include/aside.php') ;
                                     </select>
                                 </div>
                                 <button type="submit" name="update_tin" class="btn btn-info">Cập nhật tin</button>
-                                <button type="submit" name="btn-thoat" class="btn btn-info">Quay lại</button>
+                                <button type="out" name="btn-thoat" class="btn btn-info">Quay lại</button>
                             </form>
                         </div>
                     </div>
@@ -164,5 +162,20 @@ include('include/aside.php') ;
 <script src="js/jquery.nicescroll.js"></script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
 <script src="js/jquery.scrollTo.js"></script>
+<script type="text/javascript"> 
+    function previewFile(input)
+    {
+        var file =$(".image-preview").get(0).files[0];
+        console.log(file)
+        if(file)
+        {
+            var read = new FileReader();
+            read.onload = function(){
+                $('#previewImg').attr("src", read.result);
+            }
+            read.readAsDataURL(file);
+        }
+    }
+</script>
 </body>
 </html>
