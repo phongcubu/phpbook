@@ -68,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div><br>
 				<button class="btn btn-primary" name="search"><span class="glyphicon glyphicon-search"></span></button><a href="admin.php" type="button" class="btn btn-success"><span class = "glyphicon glyphicon-refresh"><span></a>
 			</form>
-			
+
 		</div>
 		<?php
 		if(isset($_POST['search'])){

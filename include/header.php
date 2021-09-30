@@ -1,5 +1,88 @@
+<!-- đăng nhập  -->
 <?php
-    include('database/connectdb.php');
+//  đăng nhập
+if(isset($_POST['dangnhap']))
+{
+    $email = $_POST['email_login'];
+    $matkhau = md5($_POST['password_login']);
+   
+    if($email==''|| $matkhau=='')
+    {
+        echo '<script>alert("Làm ơn không để trống")</script>';
+       
+    }
+    else{
+         $sql_khachhang = mysqli_query($con,"SELECT * FROM tbl_khachhang WHERE email='$email' AND  passwords='$matkhau' LIMIT 1");
+         $count = mysqli_num_rows($sql_khachhang);
+         $row_login = mysqli_fetch_array($sql_khachhang);
+         if($count >0){
+             $_SESSION['dangnhap'] = $row_login['names'];
+             $_SESSION['khachhang_id'] = $row_login['khachhang_id'];
+          
+         
+        }else{
+            echo '<script>alert("Tài khoản mật khẩu sai")</script>';
+           
+        }
+       
+    }
+}
+// đăng xuất
+elseif(isset($_GET['dangxuat_id']))
+{
+    $dangxuat_id =  $_GET['dangxuat_id'];
+   
+    if( $dangxuat_id ==  $_SESSION['khachhang_id'])
+    {
+        unset($_SESSION['dangnhap']);
+        header('Location: index.php');
+    }
+}
+//  đắng ký 
+elseif(isset($_POST['dangky']))
+{
+   
+        
+        $name = isset($_POST['name'])? mysqli_real_escape_string($con,$_POST['name']) : '';
+        $phone = isset($_POST['phone']) ? mysqli_real_escape_string($con,$_POST['phone']) : '';
+        $email = isset($_POST['email']) ? mysqli_real_escape_string($con,$_POST['email']) : '';
+        $password = isset($_POST['password']) ? md5($_POST['password']) : '';
+        $note = isset($_POST['note']) ? mysqli_real_escape_string($con,$_POST['note']) : '';
+        $address = isset($_POST['address']) ? mysqli_real_escape_string($con,$_POST['address']) : '';
+        $giaohang = isset($_POST['giaohang']) ? mysqli_real_escape_string($con,$_POST['giaohang']) : '';
+    
+        //kiểm tra user và email có bị trung nhau khong và //  thực thi câu lệnh ?
+        $sql = "SELECT * FROM tbl_khachhang WHERE names = '$name' OR email = '$email' ";
+        $result = mysqli_query($con,$sql);
+        
+         // Nếu kết quả trả về lớn hơn 1 thì nghĩa là username hoặc email đã tồn tại trong CSDL
+        if(mysqli_num_rows($result)>0)
+        {
+            // Sử dụng javascript để thông báo
+        echo '<script language="javascript">alert("Bị trùng tên hoặc tài khoản đã được đăng Ký!");
+                window.location="index.php";</script>';
+
+        // Dừng chương trình
+        die ();
+        }
+        else {
+            $sql = "INSERT INTO tbl_khachhang(names,phone,email,passwords,addresss,note,giaohang) VALUES ('$name','$phone','$email','$password','$address','$note','$giaohang')";
+            
+            if (mysqli_query($con, $sql)){
+                echo '<script language="javascript">alert("đăng ký thành công"); </script>';
+                $sql_kh = mysqli_query($con, "SELECT * FROM  tbl_khachhang ORDER BY khachhang_id LIMIT 1");
+                $khach_hang = mysqli_fetch_array( $sql_kh );
+                $_SESSION['dangnhap']=$name;
+                $_SESSION['khachhang_id'] = $khach_hang['khachhang_id'];
+                $_SESSION['phuongthuc'] =   $khach_hang['giaohang'];
+                header('Location:index.php');
+            }
+            else {
+            echo '<script language="javascript">alert("Có lỗi trong quá trình xử lý"); window.location="index.php";</script>';
+            }
+        }
+        
+}
 ?>
 <header id="header">
         <!--header-->
@@ -29,6 +112,7 @@
             </div>
         </div>
         <!--/header_top-->
+
         <div class="header-middle">
             <!--header-middle-->
             <div class="container">
@@ -39,8 +123,11 @@
                         </div>
                         <div class="btn-group pull-right">
                             <div class="btn-group">
+
                             </div>
+
                             <div class="btn-group">
+
                                 </ul>
                             </div>
                         </div>
@@ -48,30 +135,23 @@
                     <div class="col-sm-8" style="margin-top:16px; ">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-
-                            <?php if(isset( $_SESSION['dangnhap'])) {
-                            
-                            ?>
-                                <li><a href=""><i class="fa fa-user "></i><?php echo  $_SESSION['dangnhap'] ?></a></li>
-                                <li><a href="checkout.php"><i class="fa fa-credit-card "></i> Thanh Toán</a></li>
-                                <li>
-                                    <a href="?quanly=giohang"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a>
+                                <?php if(isset($_SESSION['dangnhap'])){
+                                    ?>   
+                                    <li><a href="checkout.php"><i class="fa fa-user"></i><?php echo $_SESSION['dangnhap'];  ?> </a></li>
+                                   
+                                
+                                <li><a href="?quanly=giohang"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a></li>
+                                <li><a href="?quanly=dangxuat&dangxuat_id=<?php  echo $_SESSION['khachhang_id']; ?>"><i class="fa fa-sign-out "></i> Đăng Xuất</a></li>
+                                <?php }else{ ?>
+                                <li >
+                                    <a href="" data-toggle="modal" data-target="#dangnhap"><i class="fa fa-sign-in "></i>Đăng Nhập</a>
                                 </li>
-                                <li>
-                                    <a href="?quanly=dangxuat&dangxuat_id=<?php echo  $_SESSION['khachhang_id'] ?>"><i class="fa fa-sign-out"></i> Đăng Xuất</a>
-                                </li>
-                                <?php  }else { ?>
-                                    <li>
-                                        <a href="?quanly=giohang"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a>
-                                    </li>
-                    
                                 <li>
                                     <a href="" data-toggle="modal" data-target="#dangky"><i class="fa fa-user-plus "></i>Đăng Ký</a>
                                 </li>
-                                <li>
-                                    <a href="" data-toggle="modal" data-target="#dangnhap"><i class="fa fa-sign-in "></i>Đăng Nhập</a>
-                                </li>
-                            <?php } ?>
+                                <?php } ?>
+
+
                             </ul>
                         </div>
                     </div>
@@ -79,6 +159,8 @@
             </div>
         </div>
         <!--/header-middle-->
+
+
         <div class="header-bottom ">
             <!--header-bottom-->
             <div class="container ">
@@ -94,18 +176,15 @@
                         </div>
                         <div class="mainmenu pull-left ">
                             <ul class="nav navbar-nav collapse navbar-collapse ">
-                                <li><a href="index.php" class="active ">Trang Chủ</a></li>
-                                <li class="dropdown "><a href="?quanly=shop">Sản Phẩm</a></li> 
-                                <li><a href="?quanly=lienhe">Liên Hệ</a></li>
-                                <li>
-                                    <a href="?quanly=tintuc" class="nav-link" role="button">
-                                        Tin Tức
-                                    </a>
-                                </li>
+                                <li class="active"><a href="index.php" >Trang Chủ</a></li>
+                                <li class=""><a href="?quanly=shop">Sản Phẩm</a></li> 
+                                <li ><a href="lienhe.php">Liên Hệ</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-sm-7">
+                        
+                      
 						<div class="col-sm-7 agileits_search search_box pull-right " style="margin-top: -10px;">
 							<form class="form-inline" action="index.php?quanly=timkiem" method="POST">
 								<input class="form-control mr-sm-2" name="key_product" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Search" required>
@@ -121,7 +200,7 @@
     </header>
     <!--/header-->
 
-    <!-- log in -->
+    	<!-- log in -->
 	<div class="modal fade" id="dangnhap" tabindex="-1" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -186,12 +265,19 @@
 						<div class="form-group">
 							<label class="col-form-label">Password</label>
 							<input type="password" class="form-control" placeholder=" " name="password"  required="">
-							<input type="hidden" class="form-control" placeholder="" name="giaohang"  value="0">
+						
 						</div>
 						<div class="form-group">
 							<label class="col-form-label">Ghi chú</label>
 							<textarea class="form-control" name="note"></textarea>
 						</div>
+                        <div class="controls form-group">
+										<select class="option-w3ls" name="giaohang">
+											<option>Chọn hình thức thanh toán sản phẩm</option>
+											<option value="1">Thanh toán ATM</option>
+											<option value="0">Thanh toán khi nhận hàng</option>
+										</select>
+									</div>
 						
 						<div class="right-w3l">
 							<input  type="submit" class="form-control input_hover" name="dangky" value="Đăng ký">
