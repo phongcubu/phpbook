@@ -123,11 +123,11 @@ include('include/aside.php') ;
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Mô tả sản phẩm:</label>
-                                    <textarea type="text" value="" class="form-control ckeditor" name="mota_sp" id="exampleInputEmail1" placeholder="mô tả sản phẩm"><?php echo $row_sp['sanpham_mota'] ?></textarea>
+                                    <textarea type="text" value="<?php echo $row_sp['sanpham_mota'] ?>" class="form-control ckeditor" name="mota_sp" id="exampleInputEmail1" placeholder="mô tả sản phẩm"><?php echo $row_sp['sanpham_mota'] ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Chi tiết sản phẩm:</label>
-                                    <textarea type="text" value="" class="form-control ckeditor" name="chitiet_sp" id="exampleInputEmail1" placeholder="chi tiết sản phẩm"><?php echo $row_sp['sanpham_chitiet'] ?></textarea>
+                                    <textarea type="text" value="<?php echo $row_sp['sanpham_mota'] ?>" class="form-control ckeditor" name="chitiet_sp" id="exampleInputEmail1" placeholder="chi tiết sản phẩm"><?php echo $row_sp['sanpham_chitiet'] ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên thương hiệu:</label><br/>
@@ -213,5 +213,6 @@ include('include/aside.php') ;
             read.readAsDataURL(file);
         }
     }
+</script>
 </body>
 </html>

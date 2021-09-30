@@ -15,8 +15,6 @@ if($dangxuat=='dangxuat'){
 	session_destroy();
 	header('Location: index.php');
 }
-
-
 ?>
 <!DOCTYPE html>
 <head>
@@ -58,7 +56,132 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 ?>
 <!--main content start-->
 <section id="main-content">
+	
 	<section class="wrapper">
+		<div class="row">
+			<form autocomplete="off" method="POST">
+				<div class="col-md-2">
+					<p>Từ ngày: <input type="date" class="form-control" name="date1" value="<?php echo isset($_POST['date1']) ? $_POST['date1'] : '' ?>"> </p><br>
+				</div>
+				<div class="col-md-2">
+					<p>Đến ngày: <input type="date" class="form-control" name="date2" value="<?php echo isset($_POST['date2']) ? $_POST['date2'] : '' ?>"> </p>
+				</div><br>
+				<button class="btn btn-primary" name="search"><span class="glyphicon glyphicon-search"></span></button><a href="admin.php" type="button" class="btn btn-success"><span class = "glyphicon glyphicon-refresh"><span></a>
+			</form>
+			
+		</div>
+		<?php
+		if(isset($_POST['search'])){
+			$date1 = date("Y-m-d", strtotime($_POST['date1']));
+			$date2 = date("Y-m-d", strtotime($_POST['date2']));
+			$lk_sanpham = mysqli_query($con,"SELECT COUNT(sanpham_id) AS soluongsp FROM tbl_sanpham WHERE sanpham_active ='1' AND sanpham_time BETWEEN '$date1 ' AND '$date2 '");
+			$fetch1= mysqli_fetch_array($lk_sanpham);
+			$lk_khachhang = mysqli_query($con,"SELECT COUNT(khachhang_id) AS soluongkh FROM tbl_khachhang WHERE timee BETWEEN '$date1' AND '$date2'");
+			$fetch2=mysqli_fetch_array($lk_khachhang);
+			$lk_tintuc = mysqli_query($con,"SELECT COUNT(tintuc_id) AS soluongtin FROM tbl_tintuc WHERE hienthi ='1' AND ngaythang BETWEEN '$date1' AND '$date2'");
+			$fetch3=mysqli_fetch_array($lk_tintuc);
+			$lk_donhang = mysqli_query($con,"SELECT COUNT(donhang_id) AS soluongdon FROM tbl_donhang WHERE ngaythang BETWEEN '$date1' AND '$date2'");
+			$fetch4=mysqli_fetch_array($lk_donhang);
+		?>
+			<!-- //market-->
+			<div class="market-updates">
+				<div class="col-md-3 market-update-gd">
+					<div class="market-update-block clr-block-2">
+						<a href="quanlisp.php">
+							<div class="col-md-4 market-update-right">
+								<i class="fa fa-eye"> </i>
+							</div>
+							<div class="col-md-8 market-update-left">
+								<h4>Sản phẩm</h4>
+							
+								<h3>
+									<?php echo $fetch1['soluongsp'] ?>
+								</h3>
+							
+								<p>Đang được bán</p>
+							</div>
+							<div class="clearfix"> </div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-3 market-update-gd">
+					<div class="market-update-block clr-block-1">
+						<a href="quanlykhachhang.php">
+							<div class="col-md-4 market-update-right">
+								<i class="fa fa-users" ></i>
+							</div>
+							<div class="col-md-8 market-update-left">
+								<h4>Khách hàng</h4>
+								<h3>
+									<?php
+									echo $fetch2['soluongkh'];
+									?>
+								</h3>
+								<p>Đã đăng ký</p>
+							</div>
+							<div class="clearfix"> </div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-3 market-update-gd">
+					<div class="market-update-block clr-block-3">
+						<a href="quanly_tintuc.php">
+							<div class="col-md-4 market-update-right">
+								<i class="fa fa-newspaper-o fa-3x" style="color: white;"></i>
+							</div>
+							<div class="col-md-8 market-update-left">
+								<h4>Số Tin Tức</h4>
+								<h3>
+									<?php
+									echo $fetch3['soluongtin'];
+									?>
+								</h3>
+								<p>Đã đăng lên</p>
+							</div>
+							<div class="clearfix"> </div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-3 market-update-gd">
+					<div class="market-update-block clr-block-4">
+						<a href="QuanLyDonHang.php">
+							<div class="col-md-4 market-update-right">
+								<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+							</div>
+							<div class="col-md-8 market-update-left">
+								<h4>Số đơn hàng</h4>
+								<h3>
+									<?php
+									echo $fetch4['soluongdon'];
+									?>
+								</h3>
+								<p>Đã bán</p>
+							</div>
+							<div class="clearfix"> </div>
+						</a>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>	
+		<!-- //market-->
+		<?php
+			// }
+			// else{
+			// 	echo '0';
+			// }
+		}
+		else{
+		$lk_sanpham = mysqli_query($con,"SELECT COUNT(sanpham_id) AS soluongsp FROM tbl_sanpham WHERE sanpham_active ='1'");
+		$lk_khachhang = mysqli_query($con,"SELECT COUNT(khachhang_id) AS soluongkh FROM tbl_khachhang");
+		$lk_tintuc = mysqli_query($con,"SELECT COUNT(tintuc_id) AS soluongtin FROM tbl_tintuc WHERE hienthi ='1'");
+		$lk_donhang = mysqli_query($con,"SELECT COUNT(donhang_id) AS soluongdon FROM tbl_donhang");
+		$fetch1=mysqli_fetch_array($lk_sanpham);
+	
+		$fetch2=mysqli_fetch_array($lk_khachhang);
+		$fetch3=mysqli_fetch_array($lk_tintuc);
+		$fetch4=mysqli_fetch_array($lk_donhang);
+		
+		?>
 		<!-- //market-->
 		<div class="market-updates">
 			<div class="col-md-3 market-update-gd">
@@ -71,11 +194,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<h4>Sản phẩm</h4>
 							<h3>
 								<?php
-								$lk_sanpham = mysqli_query($con,"SELECT COUNT(sanpham_id) AS soluong FROM tbl_sanpham WHERE sanpham_active ='1'");
-								$row_sp =mysqli_fetch_array($lk_sanpham);
-								?>
-								<?php
-								echo $row_sp['soluong'];
+							
+								echo $fetch1['soluongsp'];
 								?>
 							</h3>
 							<p>Đang được bán</p>
@@ -93,12 +213,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-8 market-update-left">
 							<h4>Khách hàng</h4>
 							<h3>
-							<?php
-								$lk_khachhang = mysqli_query($con,"SELECT COUNT(khachhang_id) AS soluong FROM tbl_khachhang ");
-								$row_sp =mysqli_fetch_array($lk_khachhang);
-								?>
 								<?php
-								echo $row_sp['soluong'];
+								echo $fetch2['soluongkh'];
 								?>
 							</h3>
 							<p>Đã đăng ký</p>
@@ -116,12 +232,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-8 market-update-left">
 							<h4>Số Tin Tức</h4>
 							<h3>
-							<?php
-								$lk_tintuc = mysqli_query($con,"SELECT COUNT(tintuc_id) AS soluong FROM tbl_tintuc WHERE hienthi ='1'");
-								$row_tt =mysqli_fetch_array($lk_tintuc);
-								?>
 								<?php
-								echo $row_tt['soluong'];
+								echo $fetch3['soluongtin'];
 								?>
 							</h3>
 							<p>Đã đăng lên</p>
@@ -139,12 +251,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="col-md-8 market-update-left">
 							<h4>Số đơn hàng</h4>
 							<h3>
-							<?php
-								$lk_donhang = mysqli_query($con,"SELECT COUNT(donhang_id) AS soluong FROM tbl_donhang");
-								$row_dh =mysqli_fetch_array($lk_donhang);
-								?>
 								<?php
-								echo $row_dh['soluong'];
+								echo $fetch4['soluongdon'];
 								?>
 							</h3>
 							<p>Đã bán</p>
@@ -156,6 +264,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 	</div>	
 		<!-- //market-->
+		<?php }?>
         <!-- footer -->
     <div class="footer">
 			<div class="wthree-copyright">
