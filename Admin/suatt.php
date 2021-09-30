@@ -19,7 +19,7 @@ if(isset($_POST['update_tin']))
     $hienthi = $_POST['tt_status'];
     $path = '../images/product/';
     $sql_insert =mysqli_query($con,"UPDATE tbl_tintuc
-    SET tintuc_name='$tenTT',tomtat='$tomtat',img_dautrang='$hinhanh_tt',noidung_tin='$noidung',danhmuc_tin='$danhmuctin',hienthi='$hienthi' 
+    SET tintuc_name='$tenTT',tomtat='$tomtat',img_dautrang='$hinhanh_tt',noidung_tin='$noidung',danhmuctin_id='$danhmuctin',hienthi='$hienthi' 
     WHERE tintuc_id=".$_GET['suatt_id']);
     move_uploaded_file($hinhanh_tmp,$path.$hinhanh_tt);
     // sql query execution function

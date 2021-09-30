@@ -179,6 +179,11 @@ elseif(isset($_POST['dangky']))
                                 <li class="active"><a href="index.php" >Trang Chủ</a></li>
                                 <li class=""><a href="?quanly=shop">Sản Phẩm</a></li> 
                                 <li ><a href="lienhe.php">Liên Hệ</a></li>
+                                <li>
+                                    <a href="?quanly=tintuc" class="nav-link" role="button">
+                                        Tin Tức
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
