@@ -21,21 +21,9 @@
          header('location:index.php?quanly=chitietsp'.$sanpham_id);
      }
     
-//      $sql_lay_giohang = mysqli_query($con,"INSERT INTO tbl_giohang(tensanpham,sanpham_id,giasanpham,hinhanh,soluong) value ('$tensanpham','$sanpham_id','$gia','$hinhanh','$soluong')");
- 
-//      if($sql_giohang==0){
- 
-//     header('location:?quanly=chitietsp'.$sanpham_id);
-//  }
+
 }elseif(isset($_POST['capnhatsoluong'])){
   
-   
-    // for($i=0;$i<count($product_id);$i++){
-    //     $sanpham_id=$_POST['product_id'][$i];
-    //     $soluong=$_POST['soluong'][$i];
-    //     $sql_update=mysqli_query($con,"UPDATE tbl_giohang SET soluong='$soluong' WHERE sanpham_id='$sanpham_id'");
-    // }
-    //  header('location:index.php?quanly=giohang');
     for($i=0;$i<count($_POST['product_id']);$i++){
         $sanpham_id = $_POST['product_id'][$i];
         $soluong = $_POST['soluong'][$i];
@@ -49,7 +37,7 @@
 }elseif(isset($_GET['xoa'])){
     $id=$_GET['xoa'];
     $sql_delete=mysqli_query($con,"DELETE FROM tbl_giohang WHERE giohang_id='$id'");
-    // header('location:index.php?quanly=giohang');
+
 }
 //  thanh toán khi chưa đăng nhập
 elseif(isset($_POST['thanhtoan'])){
@@ -60,24 +48,51 @@ elseif(isset($_POST['thanhtoan'])){
     $note=$_POST['note'];
     $address=$_POST['address'];
     $giaohang=$_POST['giaohang'];
-    $sql_khachhang=mysqli_query($con,"INSERT INTO tbl_khachhang(name,phone,email,password,address,note,giaohang) values ('$name','$phone','$email','$password','$address','$note','$giaohang')");
-// if($sql_khachhang)
-//     $sql_select_khachhang= mysqli_query($con,"SELECT * FROM tbl_khachhang ORDER BY khachhang_id DESC LIMIT 1");
+    $sql_khachhang=mysqli_query($con,"INSERT INTO tbl_khachhang(names,phone,email,passwords,addresss,note,giaohang) values ('$name','$phone','$email','$password','$address','$note','$giaohang')");
+    if($sql_khachhang){
+        $sql_select_khachhang = mysqli_query($con,"SELECT * FROM tbl_khachhang ORDER BY khachhang_id DESC LIMIT 1");
+        $mahang = rand(0,9999);
+        $row_khachhang = mysqli_fetch_array($sql_select_khachhang);
+        $khachhang_id = $row_khachhang['khachhang_id'];
+        $_SESSION['dangnhap_home'] = $row_khachhang['names'];
+        $_SESSION['khachhang_id'] = $khachhang_id;
+        $_SESSION['phuongthuc'] = $row_khachhang['giaohang'];
+        if ($_SESSION['phuongthuc'] == 1) {
+            echo '<script language="javascript">window.location="vnpay.php";</script>';
+            
+        }
+        else{
+            for ($i=0;$i<count($_POST['thanhtoan_product_id']);$i++) {
+                $sanpham_id = $_POST['thanhtoan_product_id'][$i];
+                $soluong = $_POST['thanhtoan_soluong'][$i];
+                $sql_donhang = mysqli_query($con, "INSERT INTO tbl_donhang(sanpham_id,khachhang_id,soluong,mahang) values ('$sanpham_id','$khachhang_id','$soluong','$mahang')");
+                $sql_giaodich = mysqli_query($con, "INSERT INTO tbl_giaodich(sanpham_id,soluong,magiaodich,khachhang_id) values ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
+                $sql_delete_thanhtoan = mysqli_query($con, "DELETE FROM tbl_giohang WHERE sanpham_id='$sanpham_id'");
+                echo '<script language="javascript">alert("Cảm ơn quý khách đã đặt hàng"); window.location="index.php";</script>';
+            }
+        }
+    }
+   
 }
 //  thanh toán khi đăng nhập 
 elseif(isset($_POST['thanhtoanlogin'])){
 
     $khachhang_id = $_SESSION['khachhang_id'];
+    $phuongthuc = $_SESSION['phuongthuc'];
     $mahang = rand(0,9999);	
-    for($i=0;$i<count($_POST['thanhtoan_product_id']);$i++){
+    if ($phuongthuc == 1) {
+        echo '<script language="javascript">window.location="vnpay.php";</script>';
+        
+    }
+    else{
+        for ($i=0;$i<count($_POST['thanhtoan_product_id']);$i++) {
             $sanpham_id = $_POST['thanhtoan_product_id'][$i];
             $soluong = $_POST['thanhtoan_soluong'][$i];
-            $sql_donhang = mysqli_query($con,"INSERT INTO tbl_donhang(sanpham_id,khachhang_id,soluong,mahang) values ('$sanpham_id','$khachhang_id','$soluong','$mahang')");
-            $sql_giaodich = mysqli_query($con,"INSERT INTO tbl_giaodich(sanpham_id,soluong,magiaodich,khachhang_id) values ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
-            $sql_delete_thanhtoan = mysqli_query($con,"DELETE FROM tbl_giohang WHERE sanpham_id='$sanpham_id'");
+            $sql_donhang = mysqli_query($con, "INSERT INTO tbl_donhang(sanpham_id,khachhang_id,soluong,mahang) values ('$sanpham_id','$khachhang_id','$soluong','$mahang')");
+            $sql_giaodich = mysqli_query($con, "INSERT INTO tbl_giaodich(sanpham_id,soluong,magiaodich,khachhang_id) values ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
+            $sql_delete_thanhtoan = mysqli_query($con, "DELETE FROM tbl_giohang WHERE sanpham_id='$sanpham_id'");
         }
-
-    
+    }
 }
 
  ?>
@@ -195,7 +210,7 @@ elseif(isset($_POST['thanhtoanlogin'])){
             <div class="col-sm-6">
                 <div class="chose_area">
                     <h4 class="mb-sm-4 mb-3" style="text-align: center;font-size: 24px;color: aqua;text-transform: uppercase;">Thêm địa chỉ giao hàng</h4>
-					<form action="" method="post" class="creditly-card-form agileinfo_form">
+					<form action="" method="POST" class="creditly-card-form agileinfo_form">
 						<div class="creditly-wrapper wthree, w3_agileits_wrapper">
 							<div class="information-wrapper">
 								<div class="first-row">
@@ -222,9 +237,7 @@ elseif(isset($_POST['thanhtoanlogin'])){
 										<select class="option-w3ls" name="giaohang">
 											<option>Chọn hình thức giao hàng</option>
 											<option value="1">Thanh toán ATM</option>
-											<option value="0">Nhận tiền tại nhà</option>
-											
-
+											<option value="0">Thanh toán khi nhận hàng</option>
 										</select>
 									</div>
 								</div>
@@ -255,7 +268,7 @@ elseif(isset($_POST['thanhtoanlogin'])){
                             <li>Phí ship <span><?php echo number_format("10000",0,",",".")."đ"; ?></span></li>
                             <li>Tổng Tiền<span><?php echo number_format($totall)."đ"?></span></li>
                         </ul>
-                        <a class="btn btn-default update" href="">Quay lại trang chủ</a>
+                        <a class="btn btn-default update" href="/index.php">Quay lại trang chủ</a>
                         <!-- <a class="btn btn-default check_out" href="">Thanh Toán</a> -->
                     </div>
                 </div>
