@@ -91,6 +91,7 @@ elseif(isset($_POST['thanhtoanlogin'])){
             $sql_donhang = mysqli_query($con, "INSERT INTO tbl_donhang(sanpham_id,khachhang_id,soluong,mahang) values ('$sanpham_id','$khachhang_id','$soluong','$mahang')");
             $sql_giaodich = mysqli_query($con, "INSERT INTO tbl_giaodich(sanpham_id,soluong,magiaodich,khachhang_id) values ('$sanpham_id','$soluong','$mahang','$khachhang_id')");
             $sql_delete_thanhtoan = mysqli_query($con, "DELETE FROM tbl_giohang WHERE sanpham_id='$sanpham_id'");
+            echo '<script language="javascript">alert("Cảm ơn quý khách đã đặt hàng"); window.location="index.php";</script>';
         }
     }
 }

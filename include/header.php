@@ -42,15 +42,7 @@ elseif(isset($_GET['dangxuat_id']))
 elseif(isset($_POST['dangky']))
 {
    
-        // $name=$_POST['name'];
-        // $phone=$_POST['phone'];
-        // $email=$_POST['email'];
-        // $password=md5($_POST['password']);
-        // $note=$_POST['note'];
-        // $address=$_POST['address'];
-        // $giaohang=$_POST['giaohang'];
-        // $sql_khachhang=mysqli_query($con,"INSERT INTO tbl_khachhang(name,phone,email,password,address,note,giaohang) values ('$name','$phone','$email','$password','$address','$note','$giaohang')");
-    
+        
         $name = isset($_POST['name'])? mysqli_real_escape_string($con,$_POST['name']) : '';
         $phone = isset($_POST['phone']) ? mysqli_real_escape_string($con,$_POST['phone']) : '';
         $email = isset($_POST['email']) ? mysqli_real_escape_string($con,$_POST['email']) : '';
@@ -62,12 +54,12 @@ elseif(isset($_POST['dangky']))
         //kiểm tra user và email có bị trung nhau khong và //  thực thi câu lệnh ?
         $sql = "SELECT * FROM tbl_khachhang WHERE names = '$name' OR email = '$email' ";
         $result = mysqli_query($con,$sql);
-        var_dump( $result);
+        
          // Nếu kết quả trả về lớn hơn 1 thì nghĩa là username hoặc email đã tồn tại trong CSDL
         if(mysqli_num_rows($result)>0)
         {
             // Sử dụng javascript để thông báo
-        echo '<script language="javascript">alert("Bị trùng tên hoặc chưa nhập tên!");
+        echo '<script language="javascript">alert("Bị trùng tên hoặc tài khoản đã được đăng Ký!");
                 window.location="index.php";</script>';
 
         // Dừng chương trình
