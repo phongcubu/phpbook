@@ -26,9 +26,6 @@ if(isset($_POST['update_sp_product']))
     SET sanpham_name='$tenSP',sanpham_gia='$giaSP',sanpham_giakhuyenmai='$giaSPkm',sanpham_soluong='$soluong',sanpham_image='$hinhanh_SP',sanpham_mota='$mota_SP',sanpham_chitiet='$chitiet_SP',brand_id='$thuonghieu_SP',category_id='$danhmuc_SP',sanpham_active='$hienthi'
     WHERE sanpham_id =".$_GET['suasp_id']);
     move_uploaded_file($hinhanh_tmp,$path.$hinhanh_SP);
-  
-    
-    
 	if($sql_insert)
 	{
 		?>
@@ -176,7 +173,6 @@ include('include/aside.php') ;
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
