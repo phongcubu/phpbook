@@ -101,6 +101,7 @@ include('include/aside.php') ;
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh tin:</label>
                                     <input type="file" class="form-control" name="tt_image" id="exampleInputEmail1">
+                                    
                                     <img src="../images/product/<?php echo $row_tin['img_dautrang']?>" height="100" width="100">
                                 </div>
                                 
