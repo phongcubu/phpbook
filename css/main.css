@@ -231,8 +231,7 @@ a#scrollUp i {
     border: medium none;
     color: #B2B2B2;
     font-family: 'roboto';
-    font-size: 12p
-    font-weight: 300;
+    font-size: 12p font-weight: 300;
     height: 35px;
     outline: medium none;
     padding-left: 10px;
@@ -1734,7 +1733,7 @@ h2.title {
     font-size: 16px;
     text-align: center;
     font-family: 'Roboto', sans-serif;
-    width: 36px;
+    width: 46px;
     height: 34px;
 }
 

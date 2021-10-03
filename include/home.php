@@ -79,13 +79,11 @@
 							{
 								$fillter = " ORDER BY `tbl_sanpham`.`$field`$sort" ;
 								$param = "field=$field&sort=$sort&";
-							
-							
 							}
 
 							//------PHÂN TRANG------ 
 							// sản phẩm trên 1 trang 
-							$item_per_page = !empty($_GET['per_page']) ?$_GET['per_page']:4;
+							$item_per_page = !empty($_GET['per_page']) ?$_GET['per_page']:7;
 							// trang hiện tại 
 							$current_page = !empty($_GET['page']) ?$_GET['page']:1;
 							// bắt đầu từ sản phẩm nào ?
@@ -103,7 +101,7 @@
 						<h2 class="title text-center rise-text"> Sản Phẩm Mới</h2>
 						<div style="width: 19%;float: right;margin-top: -33px;margin-right: 15px;">
 							<select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-								<option value="">----sắp xếp theo giá----</option>
+								<option value="">>----sắp xếp theo giá----<</option>
 								<option <?php if(isset($_GET['sort'])&& $_GET['sort'] == 'ASC'){?> selected <?php }?> value="?field=sanpham_giakhuyenmai&sort=ASC">--từ thấp tới cao--</option>
 								<option <?php if(isset($_GET['sort'])&& $_GET['sort'] == 'DESC'){?> selected <?php }?> value="?field=sanpham_giakhuyenmai&sort=DESC">--từ cao về thấp--</option>
 							</select>

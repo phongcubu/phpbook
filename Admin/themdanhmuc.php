@@ -73,13 +73,11 @@ include('include/aside.php') ;
                                     <label for="exampleInputEmail1">Tên danh mục:</label>
                                     <input type="text" class="form-control" name="category_product_name" id="exampleInputEmail1" placeholder="tên danh mục">
                                 </div>
-                                
                                 <button type="submit" name="update_category_product" class="btn btn-info">Thêm danh mục</button>
                             </form>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
@@ -91,7 +89,6 @@ include('include/aside.php') ;
 </div>
 <!-- / footer -->
 </section>
-
 <!--main content end-->
 </section>
 <script src="js/bootstrap.js"></script>
