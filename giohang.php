@@ -1,4 +1,11 @@
-<?php
+
+
+
+
+<!-- 
+
+ -->
+ <?php
  if(isset($_POST['themgiohang'])){
      $tensanpham=$_POST['tensanpham'];
      $sanpham_id=$_POST['sanpham_id'];
@@ -95,12 +102,10 @@ elseif(isset($_POST['thanhtoanlogin'])){
             $sanpham_id = $_POST['thanhtoan_product_id'][$i];
             $soluong = $_POST['thanhtoan_soluong'][$i];
             $total = $_POST['total'];
-            $url = "";
             $sql_donhang = mysqli_query($con, "INSERT INTO tbl_donhang(sanpham_id,khachhang_id,soluong,mahang) values ('$sanpham_id','$khachhang_id','$soluong','$mahang')");
             $sql_giaodich = mysqli_query($con, "INSERT INTO tbl_giaodich(sanpham_id,soluong,magiaodich,khachhang_id,tong_tien) values ('$sanpham_id','$soluong','$mahang','$khachhang_id','$total')");
             $sql_delete_thanhtoan = mysqli_query($con, "DELETE FROM tbl_giohang WHERE sanpham_id='$sanpham_id'");
-            echo '<script language="javascript">window.location.href="vnpay/indexpm.php?khachhang_id='.$khachhang_id.'"</script>';
-          
+            echo '<script language="javascript">window.location="vnpay/index.php";</script>';
         }
     }
     else{
@@ -122,7 +127,7 @@ elseif(isset($_POST['thanhtoanlogin'])){
             <div class="breadcrumbs">
                 <ol class="breadcrumb">
                     <li><a href="index.php">Home</a></li>
-                    <li class="active">Giỏ Hàng</li>
+                    <li class="active"></li>
                 </ol>
             </div>
             <div class="table-responsive cart_info">
@@ -203,27 +208,8 @@ elseif(isset($_POST['thanhtoanlogin'])){
                                     <!-- <a class="btn btn-default check_out" href="">Thanh Toán</a> -->
                                 </div>
                          
-                            <input style="color: #fff;" type="submit" value=" Cập nhật giỏ hàng " class="btn btn-primary add-to-cart" name="capnhatsoluong"  >
-                            <?php 
-								$sql_giohang = mysqli_query($con,"SELECT * FROM tbl_giohang");
-								$count = mysqli_num_rows($sql_giohang);
-                                
-                                // kiểm tra phải có tên ng dùng và trong giỏ hàng phải có sản phẩm mới hiện nút thanh toán
-								if(isset($_SESSION['dangnhap']) && $count>0){
-									while($row= mysqli_fetch_array($sql_giohang)){
-								?>
-								
-								<input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row['sanpham_id'] ?>">
-								<input type="hidden" name="thanhtoan_soluong[]" value="<?php echo $row['soluong'] ?>">
-                                <input type="hidden" name="total" value="<?php echo $totall?>" >
-								<?php 
-							    }
-								?>
-								<input style="margin-top: -9px; margin-left:10px" type="submit" class="btn btn-primary" value="Thanh toán giỏ hàng" name="thanhtoanlogin">
-		
-								<?php
-								} 
-								?>
+                              <input style="color: #fff;" type="submit" value=" Cập nhật giỏ hàng " class="btn btn-primary add-to-cart" name="capnhatsoluong"  >
+                             <!-- thanh toán khi có đăng nhập  -->
                             </td>
                         </tr> 
                     </tbody>
@@ -295,9 +281,96 @@ elseif(isset($_POST['thanhtoanlogin'])){
             </div>
             <?php }
             ?>
+
+        <?php 
+      
+        if(isset($_SESSION['dangnhap'])) {
+      
+            
+        ?>
+            <div class="col-sm-6">
+                <div class="chose_area">
+                    <h4 class="mb-sm-4 mb-3" style="text-align: center;font-size: 24px;color: aqua;text-transform: uppercase;">Thêm địa chỉ giao hàng</h4>
+					<form action="" method="POST" class="creditly-card-form agileinfo_form">
+						<div class="creditly-wrapper wthree, w3_agileits_wrapper">
+							<div class="information-wrapper">
+								<div class="first-row">
+									<div class="controls form-group" style="margin-left: 19px;">
+										<input class="billing-address-name form-control" type="text" name="name" placeholder="Điền tên" required="">
+									</div>
+								 
+									<div class="controls form-group"style="margin-left: 19px;">
+                                    <input type="text" class="form-control" placeholder="Số phone" name="phone" required="">
+									</div>
+									<div class="controls form-group"style="margin-left: 19px;">
+                                    <input type="text" class="form-control" placeholder="Địa chỉ" name="address" required="">
+									</div>
+									<div class="controls form-group"style="margin-left: 19px;">
+										<input type="text" class="form-control" placeholder="Email" name="email" required="">
+									</div>
+									<div class="controls form-group"style="margin-left: 19px;">
+										<input type="password" class="form-control" placeholder="Password" name="password" required="">
+									</div>
+									<div class="controls form-group"style="margin-left: 19px;">
+										<textarea style="resize: none;" class="form-control" placeholder="Ghi chú" name="note" required=""></textarea>  
+									</div>
+									<div class="controls form-group"style="margin-left: 19px;">
+										<select class="option-w3ls" name="giaohang">
+											<option>Chọn hình thức giao hàng</option>
+											<option value="1">Thanh toán ATM</option>
+											<option value="0">Thanh toán khi nhận hàng</option>
+										</select>
+									</div>
+								</div>
+								<?php
+                                  $sql_giohang = mysqli_query($con,"SELECT * FROM tbl_giohang ORDER BY giohang_id DESC");
+                                  $count = mysqli_num_rows($sql_giohang);
+                                  if($count>0){
+                                      while($row= mysqli_fetch_array($sql_giohang)){
+                               
+                                    ?>
+									<input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row_thanhtoan['sanpham_id'] ?>">
+									<input type="hidden" name="thanhtoan_soluong[]" value="<?php echo $row_thanhtoan['soluong'] ?>">
+                                    <input type="hidden" name="total" value="<?php echo $totall?>" >
+                                    
+								<?php
+                                }}
+                                ?>
+								<input type="submit" name="thanhtoan" class="btn btn-default check_out" style="width: 20%" value="Thanh toán">
+                                <a class="btn btn-default update" href="/index.php">Quay lại trang chủ</a>
+							</div>
+						</div>
+					</form>
+            </div>
+            </div>
+            <?php }
+            ?>
                
                 
             </div>
         </div>
     </section>
 <!--/#do_action-->
+
+
+<!-- 
+<?php 
+								
+                                
+                                // kiểm tra phải có tên ng dùng và trong giỏ hàng phải có sản phẩm mới hiện nút thanh toán
+								if(isset($_SESSION['dangnhap']) && $count>0){
+									while($row= mysqli_fetch_array($sql_giohang)){
+								?>
+								
+								<input type="hidden" name="thanhtoan_product_id[]" value="<?php echo $row['sanpham_id'] ?>">
+								<input type="hidden" name="thanhtoan_soluong[]" value="<?php echo $row['soluong'] ?>">
+                                <input type="hidden" name="total" value="<?php echo $totall?>" >
+								<?php 
+							    }
+								?>
+								<input style="margin-top: -9px; margin-left:10px" type="submit" class="btn btn-primary" value="Thanh toán giỏ hàng" name="thanhtoanlogin">
+		
+								<?php
+								} 
+								?>
+ -->
