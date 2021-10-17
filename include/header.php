@@ -35,6 +35,7 @@ elseif(isset($_GET['dangxuat_id']))
     if( $dangxuat_id ==  $_SESSION['khachhang_id'])
     {
         unset($_SESSION['dangnhap']);
+        unset($_SESSION['khachhang_id']);
         header('Location: index.php');
     }
 }
@@ -67,12 +68,12 @@ elseif(isset($_POST['dangky']))
         }
         else {
             $sql = "INSERT INTO tbl_khachhang(names,phone,email,passwords,addresss,note,giaohang) VALUES ('$name','$phone','$email','$password','$address','$note','$giaohang')";
-            
+            echo '<script language="javascript">alert("đăng ký thành công"); </script>';
+
             if (mysqli_query($con, $sql)){
-                echo '<script language="javascript">alert("đăng ký thành công"); </script>';
-                $sql_kh = mysqli_query($con, "SELECT * FROM  tbl_khachhang ORDER BY khachhang_id LIMIT 1");
-                $khach_hang = mysqli_fetch_array( $sql_kh );
-                $_SESSION['dangnhap']=$name;
+                $sql_kh = mysqli_query($con, "SELECT * FROM  tbl_khachhang  ORDER BY khachhang_id DESC LIMIT 1 ");
+                $khach_hang = mysqli_fetch_array($sql_kh);
+                $_SESSION['dangnhap']= $name;
                 $_SESSION['khachhang_id'] = $khach_hang['khachhang_id'];
                 $_SESSION['phuongthuc'] =   $khach_hang['giaohang'];
                 header('Location:index.php');
@@ -137,7 +138,7 @@ elseif(isset($_POST['dangky']))
                             <ul class="nav navbar-nav">
                                 <?php if(isset($_SESSION['dangnhap'])){
                                     ?>   
-                                    <li><a href="checkout.php"><i class="fa fa-user"></i><?php echo $_SESSION['dangnhap'];  ?> </a></li>
+                                    <li><a href="checkout.php"><i class="fa fa-user"></i><?php echo $_SESSION['dangnhap']; ?> </a></li>
                                    
                                 
                                 <li><a href="?quanly=giohang"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a></li>
@@ -183,12 +184,8 @@ elseif(isset($_POST['dangky']))
                                         Tin Tức
                                     </a>
                                 </li>
-                                <li ><a href="lienhe.php">Liên Hệ</a></li>
-                                <li>
-                                    <a href="?quanly=tintuc" class="nav-link" role="button">
-                                        Tin Tức
-                                    </a>
-                                </li>
+                                <li ><a href="?quanly=lienhe">Liên Hệ</a></li>
+                              
                             </ul>
                         </div>
                     </div>
@@ -275,9 +272,12 @@ elseif(isset($_POST['dangky']))
 						<div class="form-group">
 							<label class="col-form-label">Password</label>
 							<input type="password" class="form-control" placeholder=" " name="password"  required="">
+                            <input type="hidden" name="note" value="a">
+                            <input type="hidden" name="giaohang" value="2">
+                           
 						
 						</div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label class="col-form-label">Ghi chú</label>
 							<textarea class="form-control" name="note"></textarea>
 						</div>
@@ -287,7 +287,7 @@ elseif(isset($_POST['dangky']))
 											<option value="1">Thanh toán ATM</option>
 											<option value="0">Thanh toán khi nhận hàng</option>
 										</select>
-									</div>
+						</div> -->
 						
 						<div class="right-w3l">
 							<input  type="submit" class="form-control input_hover" name="dangky" value="Đăng ký">

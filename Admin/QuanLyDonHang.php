@@ -65,7 +65,7 @@ include('include/aside.php') ;
                 <tbody>
                     <?php
                     $sql_dh = mysqli_query($con,"SELECT * FROM tbl_donhang,tbl_khachhang,tbl_sanpham WHERE tbl_donhang.sanpham_id = tbl_sanpham.sanpham_id 
-                            AND tbl_donhang.khachhang_id = tbl_khachhang.khachhang_id ORDER BY tbl_donhang.donhang_id DESC");
+                            AND tbl_donhang.khachhang_id = tbl_khachhang.khachhang_id  GROUP BY tbl_donhang.mahang ORDER BY tbl_donhang.donhang_id DESC");
                     if (mysqli_num_rows($sql_dh)>0) 
                     {
                         $i=0;
@@ -80,7 +80,7 @@ include('include/aside.php') ;
                                 <td>
                                     <span style="font-size: 17px;">
                                     <?php 
-                                        echo $row_dh['name'];
+                                        echo $row_dh['names'];
                                     ?>
                                     </span>
                                 </td>
@@ -104,10 +104,11 @@ include('include/aside.php') ;
                                     ?>
                                     </span>
                                 </td>
+                               
                                 <td>
                                     <a href="javascript:xemdonhang('<?php echo $row_dh['mahang'];?>')" 
                                     class="active styling-edit" ui-toggle-class="">
-                                    <i style="font-size: 20px;" class="fa fa-eye  text-danger text"></i>
+                                    <i style="font-size: 20px;" class="fa fa-building-o   text"></i>
                                     </a>
                                 </td>
                             </tr>

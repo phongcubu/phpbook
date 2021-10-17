@@ -1,4 +1,27 @@
+<?php
+    if(isset($_POST['submit']))
+    {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
+        
 
+        $headers =  'MIME-Version: 1.0' . "\r\n"; 
+        $headers .= 'From:thanhphongdz2707@gmail.com' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
+
+       
+        $to = "thanhphongdz2707@gmail.com";
+
+           if(mail($to, $subject,$message, $headers))
+           {
+               header("location:index.php?success");
+           }
+    
+
+    }
+?>
 
     <div id="contact-page" class="container">
         <div class="bg">
@@ -24,7 +47,7 @@
                                 <input type="email" name="email" class="form-control" required="required" placeholder="Email">
                             </div>
                             <div class="form-group col-md-12">
-                                <input type="text" name="subject" class="form-control" required="required" placeholder="Số điện thoại">
+                                <input type="text" name="subject" class="form-control" required="required" placeholder="Tiêu đề">
                             </div>
                             <div class="form-group col-md-12">
                                 <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Nội dung"></textarea>
