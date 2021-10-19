@@ -1,10 +1,11 @@
-<!-- đăng nhập  -->
+
 <?php
 //  đăng nhập
 if(isset($_POST['dangnhap']))
 {
     $email = $_POST['email_login'];
     $matkhau = md5($_POST['password_login']);
+   
    
     if($email==''|| $matkhau=='')
     {
@@ -143,7 +144,9 @@ elseif(isset($_POST['dangky']))
                                 
                                 <li><a href="?quanly=giohang"><i class="fa fa-shopping-cart "></i> Giỏ Hàng</a></li>
                                 <li><a href="?quanly=dangxuat&dangxuat_id=<?php  echo $_SESSION['khachhang_id']; ?>"><i class="fa fa-sign-out "></i> Đăng Xuất</a></li>
-                                <?php }else{ ?>
+                                <?php 
+                                }else{ 
+                                ?>
                                 <li >
                                     <a href="" data-toggle="modal" data-target="#dangnhap"><i class="fa fa-sign-in "></i>Đăng Nhập</a>
                                 </li>

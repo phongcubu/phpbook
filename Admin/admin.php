@@ -174,7 +174,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		$lk_tintuc = mysqli_query($con,"SELECT COUNT(tintuc_id) AS soluongtin FROM tbl_tintuc WHERE hienthi ='1'");
 		$lk_donhang = mysqli_query($con,"SELECT COUNT(donhang_id) AS soluongdon FROM tbl_donhang");
 		$fetch1=mysqli_fetch_array($lk_sanpham);
-	
 		$fetch2=mysqli_fetch_array($lk_khachhang);
 		$fetch3=mysqli_fetch_array($lk_tintuc);
 		$fetch4=mysqli_fetch_array($lk_donhang);
@@ -262,8 +261,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="clearfix"> </div>
 	</div>	
 		<!-- //market-->
-		<?php }?>
-        <!-- footer -->
+	<?php }?>
+    <!-- footer -->
     <div class="footer">
 			<div class="wthree-copyright">
 				<p>© 2021 PSP BOOK | Thiết kế bởi: Phong-Sơn-Phương</p>
@@ -277,7 +276,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </section>
 
 
-
+<script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/jquery.dcjqaccordion.2.7.js"></script>
 <script src="js/scripts.js"></script>
@@ -369,11 +368,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		case 'file:':
 		alert('Just a heads-up, events will not work when run locally.');
 		}
-
 		});
 	</script>
 	<!-- //calendar -->
-
-
 </body>
 </html>

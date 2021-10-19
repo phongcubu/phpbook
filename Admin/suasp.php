@@ -21,9 +21,10 @@ if(isset($_POST['update_sp_product']))
     $thuonghieu_SP = $_POST['brand_sp'];
     $danhmuc_SP = $_POST['category_sp'];
     $hienthi = $_POST['sp_status'];
+    $hot = $_POST['sp_hot'];
     $path = '../images/product/';
     $sql_insert =mysqli_query($con,"UPDATE tbl_sanpham
-    SET sanpham_name='$tenSP',sanpham_gia='$giaSP',sanpham_giakhuyenmai='$giaSPkm',sanpham_soluong='$soluong',sanpham_image='$hinhanh_SP',sanpham_mota='$mota_SP',sanpham_chitiet='$chitiet_SP',brand_id='$thuonghieu_SP',category_id='$danhmuc_SP',sanpham_active='$hienthi'
+    SET sanpham_name='$tenSP',sanpham_gia='$giaSP',sanpham_giakhuyenmai='$giaSPkm',sanpham_soluong='$soluong',sanpham_image='$hinhanh_SP',sanpham_mota='$mota_SP',sanpham_chitiet='$chitiet_SP',brand_id='$thuonghieu_SP',category_id='$danhmuc_SP',sanpham_active='$hienthi',sanpham_hot='$hot'
     WHERE sanpham_id =".$_GET['suasp_id']);
     move_uploaded_file($hinhanh_tmp,$path.$hinhanh_SP);
 	if($sql_insert)
@@ -102,7 +103,7 @@ include('include/aside.php') ;
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Hình ảnh sản phẩm:</label>
-                                    <input type="file" class="form-control image-preview" name="sp_image" id="exampleInputEmail1" onchange="previewFile(this);">
+                                    <input type="file" class="form-control image-preview"  name="sp_image" id="exampleInputEmail1" onchange="previewFile(this);">
                                     <img src="../images/product/<?php echo $row_sp['sanpham_image'] ?>" height="100" width="100">
                                     <!-- <img src="https://lukoilonline.com/uploadFiles/default.png" width="20%" id="previewImg" > -->
                                 </div>
@@ -163,6 +164,13 @@ include('include/aside.php') ;
                                 <div class="form-group">
                                 <label for="exampleInputEmail1">Hiển Thị</label><br/>
                                     <select name="sp_status" class="form-control trol input-lg m-bot15">
+                                        <option value="1">hiện</option>
+                                        <option value="0">ẩn</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1">Sản phẩm bán chạy</label><br/>
+                                    <select name="sp_hot" class="form-control trol input-lg m-bot15">
                                         <option value="1">hiện</option>
                                         <option value="0">ẩn</option>
                                     </select>

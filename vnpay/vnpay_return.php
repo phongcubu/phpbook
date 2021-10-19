@@ -51,7 +51,6 @@
         <!--Begin display -->
         <?php
             $id  = $_SESSION['khachhang_id'];
-           
             $sql_infor_cus = mysqli_query($con, "SELECT * FROM tbl_khachhang WHERE khachhang_id = '$id' ") ;
             $inf_kh = mysqli_fetch_array($sql_infor_cus);
         ?>

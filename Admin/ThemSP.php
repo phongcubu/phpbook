@@ -18,7 +18,7 @@ if(isset($_POST['update_sp_product']))
     $hienthi = $_POST['sp_status'];
     $hot = $_POST['sp_hot'];
     $path = '../images/product/';
-    $sql_insert =mysqli_query($con,"INSERT INTO tbl_sanpham(sanpham_name,sanpham_gia,sanpham_giakhuyenmai,sanpham_soluong,sanpham_image,sanpham_mota,sanpham_chitiet,brand_id,category_id,sanpham_active) 
+    $sql_insert =mysqli_query($con,"INSERT INTO tbl_sanpham(sanpham_name,sanpham_gia,sanpham_giakhuyenmai,sanpham_soluong,sanpham_image,sanpham_mota,sanpham_chitiet,brand_id,category_id,sanpham_active,sanpham_hot) 
     values ('$tenSP','$giaSP','$giaSPkm','$soluong','$hinhanh_SP','$mota_SP','$chitiet_SP','$thuonghieu_SP','$danhmuc_SP','$hienthi','$hot')");
     move_uploaded_file($hinhanh_tmp,$path.$hinhanh_SP);
     // sql query execution function

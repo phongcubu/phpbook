@@ -56,6 +56,7 @@ include('include/aside.php') ;
                         <tr>
                         <th>Thứ tự</th>
                         <th>Tên người đặt</th>
+                        <th>Hình thức thanh toán</th>
                         <th>Mã hàng</th>
                         <th>Ngày tháng</th>
                         <th>Tình trạng</th>
@@ -81,6 +82,22 @@ include('include/aside.php') ;
                                     <span style="font-size: 17px;">
                                     <?php 
                                         echo $row_dh['names'];
+                                    ?>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span style="font-size: 17px;">
+                                    <?php 
+                                        if($row_dh['giaohang'] == 1)
+                                        {
+                                            echo 'Thanh toán ATM';
+                                        }
+                                        else
+                                        {
+                                            echo 'Thanh toán khi nhận hàng';
+                                        }
+                                    
+                                        
                                     ?>
                                     </span>
                                 </td>

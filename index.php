@@ -1,11 +1,11 @@
-
 <?php
-    session_start();
     include('database/connectdb.php');
+    ob_start();
+    session_start();
+    ob_end_flush();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,6 @@
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
-
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -86,7 +85,6 @@
         // tìm kiếm sản phẩm
         include('include/lienhe.php');
     }
-
     else{
         //  home
         include('include/home.php');

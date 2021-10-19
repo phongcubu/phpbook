@@ -8,7 +8,7 @@ if(isset($_GET['magiaodich'])){
 }else{
     $magiaodich = '';
 }
-$sql_giaodich = mysqli_query($con,"SELECT * FROM tbl_giaodich,tbl_khachhang,tbl_sanpham WHERE tbl_giaodich.sanpham_id=tbl_sanpham.sanpham_id AND tbl_khachhang.khachhang_id=tbl_giaodich.khachhang_id AND tbl_giaodich.magiaodich='$magiaodich' ORDER BY tbl_giaodich.giaodich_id DESC"); 
+$sql_giaodich = mysqli_query($con,"SELECT * FROM tbl_giaodich,tbl_sanpham WHERE tbl_giaodich.sanpham_id=tbl_sanpham.sanpham_id AND tbl_giaodich.magiaodich='$magiaodich' ORDER BY tbl_giaodich.giaodich_id DESC"); 
 
 if(isset($_POST['btn-thoat']))
     {
@@ -52,7 +52,7 @@ include('include/aside.php') ;
         Liệt kê lịch sử đơn hàng
         </div>
         <div class="table-responsive">   
-         <table class="table table-striped b-t b-light">
+        <table class="table table-striped b-t b-light">
                 <thead>
                     <tr>
                     <th>Thứ tự</th>
@@ -63,7 +63,6 @@ include('include/aside.php') ;
                 </thead>
                 <tbody>
                 <?php
-                  
                     if (mysqli_num_rows($sql_giaodich)>0) 
                     {
                         $i = 0;

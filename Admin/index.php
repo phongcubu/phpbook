@@ -14,19 +14,22 @@ include('../database/connectdb.php');
 	{
 		$email = $_POST['Email'];
 		$password = md5($_POST['Password']);
+		
 	 	//  $password = $_POST['Password'];
 		if($email==''|| $password=='')
 		{
 			echo '<p>Bạn chưa nhập tài khoản hoặc mật khẩu!</p>';
-		header('Location: login.php');
+			header('Location: login.php');
 		}
 		else{
 	 		$sql_select_admin = mysqli_query($con,"SELECT * FROM tbl_admin WHERE email='$email' AND  password='$password' LIMIT 1");
 			$count = mysqli_num_rows($sql_select_admin);
 			$row_login = mysqli_fetch_array($sql_select_admin);
+			
 			if($count >0){
 			$_SESSION['login'] = $row_login['admin_name'];
 			$_SESSION['admin_id'] = $row_login['admin_id'];
+			
 			header('Location:admin.php');
 			}else{
 			echo 'Tài khoản hoặc mật khẩu của bạn không chính xác.';

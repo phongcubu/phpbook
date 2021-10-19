@@ -11,6 +11,7 @@ if(isset($_GET['xoa_id']))
 	header("Location: $_SERVER[PHP_SELF]");
 }
 // delete condition
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -35,15 +36,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript">
 function xemgiaodich(id)
 {
+
 	window.location.href='xemgiaodich.php?magiaodich='+id;
+
 }
+
 function xoa_id(id)
 {
-	window.location.href='quanlykhachhang.php?xoa_id='+id;
+	if(confirm('Bạn muốn xóa khách hàng này chứ ?'))
+	{
+		window.location.href='quanlykhachhang.php?xoa_id='+id;
+	}
 }
 </script>
 </head>
 <body>
+
 <?php  
 include('include/header.php') ;
 include('include/aside.php') ;
@@ -79,8 +87,9 @@ include('include/aside.php') ;
                         <th>Email </th>
                         <th>Địa chỉ</th>
                         <th>Ngày mua</th>
-                        <th>Lịch sử giao dịch</th>
-                        <th></th>
+                        <th >Lịch sử giao dịch</th>
+                        
+                        <th style="width:30px;"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -159,16 +168,18 @@ include('include/aside.php') ;
                 </tbody>
             </table>
         </div>
-    </div>
+       
 </section>
 <!-- footer -->
 <div class="footer">
     <div class="wthree-copyright">
-    <p>© 2021 PSP BOOK | Thiết kế bởi: Phong-Sơn-Phương</p>
+        <p>© 2021 PSP BOOK | Thiết kế bởi: Phong-Sơn-Phương</p>
     </div>
 </div>
 <!-- / footer -->
 </section>
+
+
 <!--main content end-->
 </section>
 <script src="js/bootstrap.js"></script>

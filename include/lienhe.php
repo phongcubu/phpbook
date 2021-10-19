@@ -1,28 +1,48 @@
 <?php
+    //Import PHPMailer classes into the global namespace
+    //These must be at the top of your script, not inside a function
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+    //Load Composer's autoloader
+    require 'vendor/autoload.php';;
     if(isset($_POST['submit']))
     {
         $name = $_POST['name'];
         $email = $_POST['email'];
         $subject = $_POST['subject'];
         $message = $_POST['message'];
-        
-
-        $headers =  'MIME-Version: 1.0' . "\r\n"; 
-        $headers .= 'From:thanhphongdz2707@gmail.com' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
-
-       
-        $to = "thanhphongdz2707@gmail.com";
-
-           if(mail($to, $subject,$message, $headers))
-           {
-               header("location:index.php?success");
-           }
-    
-
+        // preparing mail content
+        $messagecontent ="Họ và Tên : ". $name . "<br>Email : " . $email. "<br>Tiêu đề :" . $subject. "<br>Nội Dung :" . $message;
+        //Create an instance; passing `true` enables exceptions
+        $mail = new PHPMailer(true);
+        try {
+            //Server settings
+            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = 'smtp.googlemail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = 'pspbookk@gmail.com';                     //SMTP username
+            $mail->Password   = 'phongsonphuong123';                               //SMTP password
+        // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+            $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            //Recipients
+            $mail->setFrom('from@example.com', 'Customer');
+            $mail->addAddress('pspbookk@gmail.com', 'BOOK PSP');     //Add a recipient
+           
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = "Phản Hồi Khách Hàng";
+            $mail->Body    = $messagecontent;
+            
+            $mail->send();
+            echo "<script>alert('Cảm ơn quý khách đã phản hồi ! ')</script>";
+          
+        } catch (\Exception $e) {
+        // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        }
     }
+   
 ?>
-
     <div id="contact-page" class="container">
         <div class="bg">
             <div class="row">
@@ -39,7 +59,7 @@
                     <div class="contact-form">
                         <h2 class="title text-center">Gửi Phản Hồi</h2>
                         <div class="status alert alert-success" style="display: none"></div>
-                        <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+                        <form id="main-contact-form" action="" class="contact-form row" name="contact-form" method="POST">
                             <div class="form-group col-md-6">
                                 <input type="text" name="name" class="form-control" required="required" placeholder="Họ và Tên">
                             </div>

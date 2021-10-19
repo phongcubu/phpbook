@@ -16,12 +16,11 @@
          $sql_giohang="INSERT INTO tbl_giohang(tensanpham,sanpham_id,giasanpham,hinhanh,soluong) values('$tensanpham','$sanpham_id','$gia','$hinhanh','$soluong')";
      }
      $insert_row=mysqli_query($con,$sql_giohang);
-     if($insert_row==0)
-     {
-         header('location:index.php?quanly=chitietsp'.$sanpham_id);
-     }
-    
-
+    //  if($insert_row==0)
+    //  {
+    //     //header('Location:index.php?quanly=chitietsp'.$sanpham_id);
+    //     echo '<script language="javascript">window.location=":index.php?quanly=chitietsp'.$_SESSION['khachhang_id'].'";</script>';
+    //  }
 }elseif(isset($_POST['capnhatsoluong'])){
   
     for($i=0;$i<count($_POST['product_id']);$i++){
@@ -38,6 +37,7 @@
 }elseif(isset($_GET['xoa'])){
     $id=$_GET['xoa'];
     $sql_delete=mysqli_query($con,"DELETE FROM tbl_giohang WHERE giohang_id='$id'");
+    echo '<script language="javascript">window.location="?quanly=giohang";</script>';
 
 }
 //  thanh toán khi chưa đăng nhập
@@ -57,6 +57,7 @@ elseif(isset($_POST['thanhtoan'])){
         $khachhang_id = $row_khachhang['khachhang_id'];
         $_SESSION['dangnhap_home'] = $row_khachhang['names'];
         $_SESSION['khachhang_id'] = $khachhang_id;
+        echo  $_SESSION['khachhang_id'];
         $_SESSION['phuongthuc'] = $row_khachhang['giaohang'];
         if ($_SESSION['phuongthuc'] == 1) {
             for ($i=0;$i<count(array($_POST['thanhtoan_product_id']));$i++) {
@@ -67,7 +68,8 @@ elseif(isset($_POST['thanhtoan'])){
                 $sql_donhang = mysqli_query($con, "INSERT INTO tbl_donhang(sanpham_id,khachhang_id,soluong,mahang) values ('$sanpham_id','$khachhang_id','$soluong','$mahang')");
                 $sql_giaodich = mysqli_query($con, "INSERT INTO tbl_giaodich(sanpham_id,soluong,magiaodich,khachhang_id,tong_tien) values ('$sanpham_id','$soluong','$mahang','$khachhang_id','$total')");
                 $sql_delete_thanhtoan = mysqli_query($con, "DELETE FROM tbl_giohang WHERE sanpham_id='$sanpham_id'");
-                echo '<script language="javascript">window.location="vnpay/index.php";</script>';
+                echo '<script language="javascript">window.location="vnpay/indexpm.php?khachhang_id='.$_SESSION['khachhang_id'].'";</script>';
+                
             }
             
         }
@@ -131,7 +133,7 @@ elseif(isset($_POST['thanhtoanlogin'])){
   
 }
 
- ?>
+?>
 <section id="cart_items">
         <div class="container">
             <div class="breadcrumbs">

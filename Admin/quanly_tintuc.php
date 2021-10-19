@@ -98,7 +98,7 @@ include('include/aside.php') ;
                                         <td ><span style="font-size: 17px;"><img style="height: 50px;" src="../images/product/<?php echo $row[3];?>"/></span></td>
                                         <td   ><span style="font-size: 17px;" class="product-name"><?php echo $row[2]; ?></span></td>
                                         <td ><span style="font-size: 17px;" class="product-name"><?php echo $row[4]; ?></span></td>
-                                        <td ><span style="font-size: 17px;"><?php echo $row[6]; ?></span></td>
+                                        <td ><span style="font-size: 17px;"><?php echo $row[5]; ?></span></td>
                                         <td>
                                             <?php   if( $row[6] == '1')
                                             {
